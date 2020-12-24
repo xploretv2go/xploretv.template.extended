@@ -1,2 +1,2 @@
 # xploretv
-WordPress Template for VEWD browser on XploreTV set top box
+WordPress template for VEWD browser on XploreTV set top box
