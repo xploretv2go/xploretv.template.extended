@@ -21,11 +21,17 @@ The template is based on third party CSS/Javascript libraries which are included
   <li><a href="https://kenwheeler.github.io/slick/">Slick</a></li>
 </ul>
 
-The theme also takes advantage of the following third party WordPress plugins:
+The theme also takes advantage of the following third party WordPress plugins. These plugins are strictly mandatory:
 
 <ul>
   <li><a href="https://www.advancedcustomfields.com/">Advanced Custom Fields PRO</a></li>
+</ul>
+
+The following WordPress plugins are optional but strongly recommended:
+
+<ul>
   <li><a href="https://de.wordpress.org/plugins/classic-editor/">Classic Editor</a></li>
+  <li><a href="https://wordpress.org/plugins/polylang/">Polylang</a></li>
 </ul>
 
 <h2>Installation and setup</h2>
