@@ -1,12 +1,13 @@
 # xploretv
 <h2>What is xploretv.smarthome</h2>
 
-This is a WordPress template for the VEWD browser used on the XploreTV set top box.
+This is a WordPress template for the VEWD browser used on the XploreTV set top box (STB).
+It supports several basic template elements like paragraphs, videos, image blocks, questionnaires and alike to get your started with your very first WordPress website with the STB user in mind.
 
 <h2>How does this template work</h2>
 
 This template is optimised for navigating through each section with your remote control.
-The keys used are Up, Down, Left, Right, OK and Back. The theme uses the on screen keyboard of VEWD for additional functunality.
+The keys used are [Up], [Down], [Left], [Right], [OK] and [Back]. The theme uses the on screen keyboard of VEWD for additional functunality.
 
 <h2>Technologies used</h2>
 
@@ -14,7 +15,7 @@ The template is based on third party CSS/Javascript libraries which are included
 
 <ul>
   <li><a href="https://github.com/luke-chang/js-spatial-navigation">Spatial Navigation</a></li>
-  <li><a href="https://getbootstrap.com/">Bootstrap</a>/li>
+  <li><a href="https://getbootstrap.com/">Bootstrap</a></li>
   <li><a href="https://jquery.com/">jQuery</a></li>
   <li><a href="https://jqueryvalidation.org/">jQuery Validation Plugin</a></li>
   <li><a href="https://kenwheeler.github.io/slick/">Slick</a></li>
@@ -25,7 +26,7 @@ The theme also takes advantage of the following third party WordPress plugins:
 <ul>
   <li><a href="https://www.advancedcustomfields.com/">Advanced Custom Fields PRO</a></li>
   <li><a href="https://de.wordpress.org/plugins/classic-editor/">Classic Editor</a></li>
-</u>
+</ul>
 
 <h2>Installation and setup</h2>
 
