@@ -36,10 +36,9 @@ The following WordPress plugins are optional but strongly recommended:
 
 <h2>Installation and setup</h2>
 
-Please install and activate the following WordPress plugins:
+Please install and activate the following WordPress plugin:
 <ul>
   <li>Advanced Custom Fields PRO</li>
-  <li>Classic Editor</li>
 </ul>
 
 Install the xploretv WordPress theme by uploading all files to /wp-content/themes/xploretv/ and activate the theme via WordPress backend.
