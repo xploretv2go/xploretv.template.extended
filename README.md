@@ -7,7 +7,7 @@ It supports several basic template elements like paragraphs, videos, image block
 <h2>How does this template work</h2>
 
 This template is optimised for navigating through each section with your remote control.
-The keys used are [Up], [Down], [Left], [Right], [OK] and [Back]. The theme uses the on screen keyboard of VEWD for additional functunality.
+The keys used are [Up], [Down], [Left], [Right], [OK] and [Back]. The theme uses the on screen keyboard of VEWD for additional functionality.
 
 <h2>Technologies used</h2>
 
@@ -36,7 +36,7 @@ Please install and activate the following WordPress plugins:
   <li>Classic Editor</li>
 </ul>
 
-Install the theme by uploading to /wp-content/themes/xploretv/ and activate the theme via WordPress backend.
+Install the xploretv WordPress theme by uploading all files to /wp-content/themes/xploretv/ and activate the theme via WordPress backend.
 
 Import all ACF field groups as described here: https://www.advancedcustomfields.com/resources/synchronized-json/
 
