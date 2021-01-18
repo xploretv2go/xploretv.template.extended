@@ -25,9 +25,11 @@
     }
 
     // slider
-    if($('#js-a1xploretv-k-slider').length > 0) {
-        var slider = $('#js-a1xploretv-k-slider');
-         slider.slick({
+    if($('.js-a1xploretv-k-slider').length > 0) {
+        var slider = $('.js-a1xploretv-k-slider');
+        $(slider).each(function(){
+            console.log('admin');
+         slider.not('.slick-initialized').slick({
            infinite: true,
            slidesToShow: 1,
            slidesToScroll: 1,
@@ -38,52 +40,62 @@
            dots: false,
            arrows: false
          })
+       });
     }
 
-    if($('#js-a1xploretv-l-slider').length > 0) {
-         $('#js-a1xploretv-l-slider').slick({
-               infinite:true,
-               slidesToShow: 4,
-               slidesToScroll: 1,
-               centerMode: true,
-               speed:300,
-               asNavFor: '.productInfo',
-               initialSlide: 0,
-               centerPadding: '225px',
-               focusOnSelect: true,
-               dots: false,
-               arrows: false,
-               responsive: [
-                            {
-                                breakpoint: 1300,
-                                settings: {
-                                    centerPadding: '125px',
-                                }
-                            },
-                        ]
-         })
-
-        jQuery("#productInfo").slick({
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            arrows: false,
-            speed: 260,
-            fade: true,
-            initialSlide: 0,
-            asNavFor: '.a1xploretv-l-slider'
-        });
-
-
-        // combine slick and spatialnavigation
-        $('#js-a1xploretv-l-slider .slick-slide').each(function(){
-            $(this).on('sn:willmove', function(evt){
-                if(evt.detail.direction == 'right'){
-                    $("#js-a1xploretv-l-slider").slick('slickNext');
-                } else if(evt.detail.direction == 'left'){
-                    $("#js-a1xploretv-l-slider").slick('slickPrev');
-                }
+    if($('.js-a1xploretv-l-slider').length > 0) {
+        $('.js-a1xploretv-l-slider').each(function(index){
+            $(this).addClass('a1xploretv-l-slider_'+index);
+            $('.js-a1xploretv-l-slider').not('.slick-initialized').slick({
+                  accessibility: false,
+                  infinite:true,
+                  slidesToShow: 4,
+                  slidesToScroll: 1,
+                  centerMode: true,
+                  speed:300,
+                  asNavFor: '.productInfo',
+                  initialSlide: 0,
+                  centerPadding: '225px',
+                  focusOnSelect: true,
+                  dots: false,
+                  arrows: false,
+                  responsive: [
+                               {
+                                   breakpoint: 1300,
+                                   settings: {
+                                       centerPadding: '125px',
+                                   }
+                               },
+                           ]
             })
+
+            $('.a1xploretv-l-slider_'+index+' .slick-slide').each(function(){
+                $(this).on('sn:willmove', function(evt){
+                    if(evt.detail.direction == 'right'){
+                        $('.a1xploretv-l-slider_'+index+'#js-a1xploretv-l-slider').slick('slickNext');
+                    } else if(evt.detail.direction == 'left'){
+                        $('.a1xploretv-l-slider_'+index+'#js-a1xploretv-l-slider').slick('slickPrev');
+                    }
+                })
+            });
+
+
         });
+
+        if($('.productInfo').length > 0) {
+            $('.productInfo').each(function(index){
+                $(".productInfo").not('.slick-initialized').slick({
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    arrows: false,
+                    speed: 260,
+                    fade: true,
+                    initialSlide: 0,
+                    asNavFor: '.a1xploretv-l-slider_'+index
+                });
+            });
+        };
+
 
     }
 
@@ -103,6 +115,30 @@
         }
     });
 
+    // Send contact form
+    $(".myForm").submit(function(e) {
+      e.preventDefault();
+      var form = $(this);
+      var form_data = $(this).serializeArray();
+      var method = form.attr('method');
+      var url = form.attr('action');
+
+      $.ajax({
+        method: method,
+        url: url,
+        data: form_data,
+        success: function(data) {
+          if (data === 'success') {
+              $( ".response" ).html( data );
+          }
+        },
+        error: function( jqXHR, textStatus) {
+          alert( "Request failed: " + textStatus );
+        }
+      });
+
+    });
+
 
     // Initialize
     SpatialNavigation.init();
@@ -112,8 +148,6 @@
         id:'main',
         selector: '.focusable'
     });
-
-
 
     /*debugging*/
     var validEvents = [
@@ -129,7 +163,7 @@
 
    var eventHandler = function(evt) {
 
-        console.log(evt.target, evt.detail);
+        //console.log(evt);
 
    };
 
@@ -141,9 +175,15 @@
 
    function scrollSmooth(section) {
        $(section).on('sn:willfocus', function() {
+          if($(this).offset().top > 1000) {
            $('html, body').animate({
-               scrollTop: $(this).offset().top - ($(window).height() - $(this).outerHeight(true)) / 3
-           }, 500);
+               scrollTop: $(this).offset().top - ($(window).height() - $(this).outerHeight(true)) / 2.5
+           }, 300);
+       } else {
+           $('html, body').animate({
+               scrollTop: 0
+           }, 300);
+       }
        });
    }
 
@@ -161,11 +201,35 @@
    });
 
 
-    $('#js-a1xploretv-d-start').on('click sn:enter-down', function() {
+    $('.js-a1xploretv-d-start').on('click sn:enter-down', function() {
             // Add "clicking" style.
-            $('#js-a1xploretv-d-video').trigger('play');
-            $('#js-a1xploretv-d-content').fadeTo("fast", 0);
+            if($(this).parent().parent().parent().find('.js-a1xploretv-d-video').length > 0) {
+                $(this).parent().parent().parent().find('.js-a1xploretv-d-video').trigger('play');
+                $(this).parent().parent().parent().find('.js-a1xploretv-d-content').fadeTo("fast", 0);
+            } else {
+                var link = $(this).parent().parent().parent().find('iframe').attr('data-src');
+                var type = $(this).parent().parent().parent().find('iframe').attr('data-type');
+                if(type=='youtube') {
+                    $(this).parent().parent().parent().find('iframe').attr('src',link + '?autoplay=1&mute=1');
+                } else {
+                    $(this).parent().parent().parent().find('iframe').attr('src',link + '?autoplay=1&loop=0');
+                }
+                $(this).parent().parent().parent().find('.js-a1xploretv-d-content').fadeTo("fast", 0);
+            }
     });
+
+    // // custom for video down
+    // if($('#a1xploretv-video-section').next().find('#set-first').length > 0){
+    //     $('#js-a1xploretv-d-start').attr('data-sn-down','#set-first');
+    // };
+    //
+    // // custom for slider up
+    // if($('.a1xploretv-l').prev().find('#js-a1xploretv-d-start').length > 0){
+    //     $('#js-a1xploretv-l-slider img').each(function(){
+    //         $(this).attr('data-sn-up','#js-a1xploretv-d-start');
+    //
+    //     });
+    // };
 
    // Make the *currently existing* navigable elements focusable.
    //SpatialNavigation.makeFocusable();
@@ -176,8 +240,13 @@
    SpatialNavigation.focus();
 
 
-   $('#js-a1xploretv-d-video').on('ended', function(){
-      $('#js-a1xploretv-d-content').fadeTo("fast",1);
+
+
+
+   $('.js-a1xploretv-d-video').on('ended', function(){
+      $('.js-a1xploretv-d-content').fadeTo("fast",1);
    });
+
+   window.addEventListener("keyup", function(e){ if(e.keyCode == 27) history.back(); }, false);
 
 })(jQuery); // End of use strict
