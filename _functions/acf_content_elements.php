@@ -214,7 +214,8 @@ function content_element_section_g($all_data) {
       <h2 class="h1 h-bold"><?= $all_data['headline'] ?></h2>
       <h3><?= $all_data['copytext'] ?></h3>
   </div>
-  <form name="a1xploretv-e-form" method="POST" action="#" autocomplete="off">
+  <form name="a1xploretv-e-form" method="POST" action="<?= get_template_directory_uri(); ?>/ajax_form_contact.php" autocomplete="off" class="myForm">
+    <input name="status_message_success" type="hidden" value="<?= $all_data['status_message_success'] ?>">
     <div class="a1xploretv-e-inner mx-auto">
         <div class="a1xploretv-e-form">
                 <div class="form-group">
@@ -241,6 +242,8 @@ function content_element_section_g($all_data) {
                         </label>
                     </div>
                 </div>
+        </div>
+        <div class="response">
         </div>
     </div>
     <div class="a1xploretv-e-form-btns ">
@@ -269,32 +272,33 @@ function content_element_section_h($all_data) {
         </div>
         <div class="a1xploretv-e-inner">
           <div class="a1xploretv-e-form">
-              <form name="a1xploretv-e-form" method="POST" action="#" autocomplete="off">
+              <form name="a1xploretv-e-form" method="POST" action="<?= get_template_directory_uri(); ?>/ajax_form_survey.php" autocomplete="off" class="myForm">
+                  <input name="status_message_success" type="hidden" value="<?= $all_data['status_message_success'] ?>">
                   <?php
+                    $num = 0;
                     foreach ($all_data['question-blocks'] as $question_block) {
                   ?>
-                      <h4><?= $question_block['question'] ?></h4>
+                      <h4 style="margin-top: 30px;"><?= $question_block['question'] ?></h4>
                       <input name="questions[]" type="hidden" value="<?= $question_block['question'] ?>">
                   <?php
-                    }
+                    foreach ($question_block['answers'] as $answer) {
                   ?>
                   <div class="a1xploretv-e-checkbox-group">
                       <div class="a1xploretv-e-checkboxes">
-                        <?php
-                          $num = 0;
-                          foreach ($question_block['answers'] as $answer) {
-                        ?>
                           <label class="a1xploretv-e-checkbox focusable" tabindex="-1">
-                              <input type="checkbox" value="<?= $answer['answer'] ?>" name="answers-<?= $num ?>[]">
+                              <input type="checkbox" value="<?= $answer['answer'] ?>" name="answers_<?= $num ?>[]">
                               <span class="a1xploretv-e-checkbox-ui-bg" ></span>
                               <span class="a1xploretv-e-checkbox-ui "></span>
                               <span class="a1xploretv-e-checkbox-text "><?= $answer['answer'] ?></span>
                           </label>
-                        <?php
-                            $num++;
-                          }
-                        ?>
                       </div>
+                  </div>
+                  <?php
+                      }
+                      $num++;
+                    }
+                  ?>
+                  <div class="response">
                   </div>
                   <div class="a1xploretv-e-form-btns">
                       <button type="submit" class="btn a1xploretv-icon arrowright btn-block btn-outline-primary focusable">
