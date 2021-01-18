@@ -21,8 +21,9 @@ foreach ($data['questions'] as $question) {
     $num++;
 }
 
+//$to = $data['status_message_receiver'];
 $to = 'bkr@seso.at';
-$subject = 'New contact request';
+$subject = 'New survey has been sent';
 $success = wp_mail($to, $subject, $message);
 
 if ($success === true) {

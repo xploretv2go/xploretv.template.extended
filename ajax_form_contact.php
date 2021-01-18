@@ -12,7 +12,7 @@ foreach ($data as $key => $value) {
   $message .= $key . ': ' . $value . "\n";
 }
 $to = 'bkr@seso.at';
-$subject = 'New contact request';
+$subject = 'New contact request has been sent';
 $success = wp_mail($to, $subject, $message);
 
 if ($success === true) {
