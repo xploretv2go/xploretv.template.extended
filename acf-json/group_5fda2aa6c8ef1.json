@@ -431,13 +431,47 @@
                     "display": "block",
                     "sub_fields": [
                         {
+                            "key": "field_5ffc59cab9211",
+                            "label": "Video Provider",
+                            "name": "video-provider",
+                            "type": "radio",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "local-video": "Local Video",
+                                "youtube": "YouTube",
+                                "vimeo": "Vimeo",
+                                "stream": "Stream"
+                            },
+                            "allow_null": 1,
+                            "other_choice": 0,
+                            "default_value": "local-video",
+                            "layout": "horizontal",
+                            "return_format": "value",
+                            "save_other_choice": 0
+                        },
+                        {
                             "key": "field_5fda43343569f",
-                            "label": "Video Source",
+                            "label": "Video Source (local)",
                             "name": "video-source",
                             "type": "file",
                             "instructions": "Video size 1920 x 1080",
                             "required": 0,
-                            "conditional_logic": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_5ffc59cab9211",
+                                        "operator": "==",
+                                        "value": "local-video"
+                                    }
+                                ]
+                            ],
                             "wrapper": {
                                 "width": "",
                                 "class": "",
@@ -450,13 +484,86 @@
                             "mime_types": ""
                         },
                         {
+                            "key": "field_5ffc5a46b9212",
+                            "label": "Video URL (Stream)",
+                            "name": "video-stream",
+                            "type": "url",
+                            "instructions": "Please paste a qualified URL to the video here.",
+                            "required": 1,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_5ffc59cab9211",
+                                        "operator": "==",
+                                        "value": "stream"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "https:\/\/"
+                        },
+                        {
+                            "key": "field_5ffc5d492e3eb",
+                            "label": "Video ID (YouTube or Vimeo)",
+                            "name": "video-id",
+                            "type": "text",
+                            "instructions": "Please paste a qualified ID to the video here.",
+                            "required": 1,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_5ffc59cab9211",
+                                        "operator": "==",
+                                        "value": "youtube"
+                                    }
+                                ],
+                                [
+                                    {
+                                        "field": "field_5ffc59cab9211",
+                                        "operator": "==",
+                                        "value": "vimeo"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": ""
+                        },
+                        {
                             "key": "field_5fe30c05f99c7",
                             "label": "Video Poster",
                             "name": "video-poster",
                             "type": "image",
-                            "instructions": "",
+                            "instructions": "1920 x 1080 pixels",
                             "required": 0,
-                            "conditional_logic": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_5ffc59cab9211",
+                                        "operator": "==",
+                                        "value": "local-video"
+                                    }
+                                ],
+                                [
+                                    {
+                                        "field": "field_5ffc59cab9211",
+                                        "operator": "==",
+                                        "value": "stream"
+                                    }
+                                ]
+                            ],
                             "wrapper": {
                                 "width": "",
                                 "class": "",
@@ -465,11 +572,11 @@
                             "return_format": "array",
                             "preview_size": "medium",
                             "library": "all",
-                            "min_width": "",
-                            "min_height": "",
+                            "min_width": 1920,
+                            "min_height": 1080,
                             "min_size": "",
-                            "max_width": "",
-                            "max_height": "",
+                            "max_width": 1920,
+                            "max_height": 1080,
                             "max_size": "",
                             "mime_types": ""
                         },
@@ -898,7 +1005,7 @@
                     "sub_fields": [
                         {
                             "key": "field_5fe374155112f",
-                            "label": "headline",
+                            "label": "Headline",
                             "name": "headline",
                             "type": "text",
                             "instructions": "",
@@ -917,7 +1024,7 @@
                         },
                         {
                             "key": "field_5fe3741551130",
-                            "label": "copytext",
+                            "label": "Copytext",
                             "name": "copytext",
                             "type": "textarea",
                             "instructions": "",
@@ -933,6 +1040,104 @@
                             "maxlength": "",
                             "rows": "",
                             "new_lines": ""
+                        },
+                        {
+                            "key": "field_60057815a9375",
+                            "label": "Receiver",
+                            "name": "receiver",
+                            "type": "email",
+                            "instructions": "Please add a receiver for this form.",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_60057598fde4e",
+                            "label": "Question Blocks",
+                            "name": "question-blocks",
+                            "type": "repeater",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "collapsed": "",
+                            "min": 0,
+                            "max": 0,
+                            "layout": "table",
+                            "button_label": "",
+                            "sub_fields": [
+                                {
+                                    "key": "field_600575c4fde4f",
+                                    "label": "Question",
+                                    "name": "question",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": "",
+                                    "maxlength": ""
+                                },
+                                {
+                                    "key": "field_600575d1fde50",
+                                    "label": "Answers",
+                                    "name": "answers",
+                                    "type": "repeater",
+                                    "instructions": "",
+                                    "required": 1,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "collapsed": "",
+                                    "min": 0,
+                                    "max": 0,
+                                    "layout": "table",
+                                    "button_label": "",
+                                    "sub_fields": [
+                                        {
+                                            "key": "field_600575e1fde51",
+                                            "label": "Answer",
+                                            "name": "answer",
+                                            "type": "text",
+                                            "instructions": "",
+                                            "required": 0,
+                                            "conditional_logic": 0,
+                                            "wrapper": {
+                                                "width": "",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "default_value": "",
+                                            "placeholder": "",
+                                            "prepend": "",
+                                            "append": "",
+                                            "maxlength": ""
+                                        }
+                                    ]
+                                }
+                            ]
                         }
                     ],
                     "min": "",
@@ -963,5 +1168,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1608741937
+    "modified": 1610971783
 }
