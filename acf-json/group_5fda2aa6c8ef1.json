@@ -4,7 +4,7 @@
     "fields": [
         {
             "key": "field_5fda2aaef8a70",
-            "label": "content_elements",
+            "label": "Flexible Content Blocks",
             "name": "content_elements",
             "type": "flexible_content",
             "instructions": "",
@@ -127,7 +127,7 @@
                             "label": "Button HREF",
                             "name": "button-href",
                             "type": "text",
-                            "instructions": "",
+                            "instructions": "Please use #homeurl# as a placeholder for the home URL of your WordPress site.",
                             "required": 0,
                             "conditional_logic": [
                                 [
@@ -263,7 +263,7 @@
                                     "label": "Card HREF",
                                     "name": "card-href",
                                     "type": "text",
-                                    "instructions": "",
+                                    "instructions": "Please use #homeurl# as a placeholder for the home URL of your WordPress site.",
                                     "required": 0,
                                     "conditional_logic": 0,
                                     "wrapper": {
@@ -351,7 +351,7 @@
                             "label": "Button HREF",
                             "name": "button-href",
                             "type": "text",
-                            "instructions": "",
+                            "instructions": "Please use #homeurl# as a placeholder for the home URL of your WordPress site.",
                             "required": 0,
                             "conditional_logic": [
                                 [
@@ -752,14 +752,13 @@
                                     "label": "Button HREF",
                                     "name": "button-href",
                                     "type": "text",
-                                    "instructions": "",
+                                    "instructions": "Please use #homeurl# as a placeholder for the home URL of your WordPress site.",
                                     "required": 0,
                                     "conditional_logic": [
                                         [
                                             {
                                                 "field": "field_5fda44a150ce3",
-                                                "operator": "!=empty",
-                                                "value": ""
+                                                "operator": "!=empty"
                                             }
                                         ]
                                     ],
@@ -783,7 +782,7 @@
                 "layout_5fe323011f4d8": {
                     "key": "layout_5fe323011f4d8",
                     "name": "section_f",
-                    "label": "Section F - Package Selector",
+                    "label": "Section F - Selection\/Decision Element",
                     "display": "block",
                     "sub_fields": [
                         {
@@ -926,10 +925,10 @@
                                 },
                                 {
                                     "key": "field_5fe323481f4e0",
-                                    "label": "href",
+                                    "label": "HREF",
                                     "name": "href",
                                     "type": "text",
-                                    "instructions": "",
+                                    "instructions": "Please use #homeurl# as a placeholder for the home URL of your WordPress site.",
                                     "required": 0,
                                     "conditional_logic": 0,
                                     "wrapper": {
@@ -992,6 +991,43 @@
                             "maxlength": "",
                             "rows": "",
                             "new_lines": ""
+                        },
+                        {
+                            "key": "field_60058289ec837",
+                            "label": "Receiver",
+                            "name": "receiver",
+                            "type": "email",
+                            "instructions": "Please add a receiver for this form.",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_600592418bee0",
+                            "label": "Success Message",
+                            "name": "status_message_success",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": ""
                         }
                     ],
                     "min": "",
@@ -1138,6 +1174,25 @@
                                     ]
                                 }
                             ]
+                        },
+                        {
+                            "key": "field_6005921de9a44",
+                            "label": "Success Message",
+                            "name": "status_message_success",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": ""
                         }
                     ],
                     "min": "",
@@ -1168,5 +1223,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1610971783
+    "modified": 1611069441
 }

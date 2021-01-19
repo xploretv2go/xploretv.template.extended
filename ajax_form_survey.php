@@ -21,8 +21,8 @@ foreach ($data['questions'] as $question) {
     $num++;
 }
 
-//$to = $data['status_message_receiver'];
-$to = 'bkr@seso.at';
+$to = seso_decrypt($_POST['status_message_receiver']);
+if ($to === false) return false; // decrypt failed
 $subject = 'New survey has been sent';
 $success = wp_mail($to, $subject, $message);
 

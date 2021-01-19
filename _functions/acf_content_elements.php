@@ -1,4 +1,21 @@
 <?php
+require_once(explode("wp-content", __FILE__)[0] . "wp-load.php");
+
+/**
+ * Search for a pattern in a string and replace it with the home URL of the website.
+ *
+ * @param string  $url
+ * @param string  $search_pattern   Defaults is '#homeurl#'
+ * @return string
+ */
+function parseLink($url, $search_pattern = '#homeurl#') {
+  $replace = get_home_url();
+  if (strpos($url, $search_pattern) !== false) {
+    $url = str_replace($search_pattern, $replace, $url);
+  }
+  return $url;
+}
+
 // Section A - Full width card with optional background image
 function content_element_section_a($all_data) {
     $class = $all_data['full-height'] ? 'a1xploretv-c' : 'a1xploretv-a';
@@ -12,7 +29,7 @@ function content_element_section_a($all_data) {
                     <?= $all_data['copytext'] ?>
                 </h3>
                 <?php if ($all_data['button-label']) { ?>
-                  <a id="a1xploretv-c-btn1" href="<?= $all_data['button-href'] ?>" class="button a1xploretv-icon arrowright focusable"><?= $all_data['button-label'] ?></a>
+                  <a id="a1xploretv-c-btn1" href="<?= parseLink($all_data['button-href']) ?>" class="button a1xploretv-icon arrowright focusable"><?= $all_data['button-label'] ?></a>
                 <?php } ?>
             </div>
         </div>
@@ -30,7 +47,7 @@ function content_element_section_b($all_data) {
         </div>
         <div id="js-a1xploretv-k-slider" class="a1xploretv-k-slider js-a1xploretv-k-slider">
           <?php foreach ($all_data['cards'] as $card) { ?>
-            <a href="<?= $card['card-href'] ?>" class="focusable">
+            <a href="<?= parseLink($card['card-href']) ?>" class="focusable">
                 <img src="<?= $card['image']['url'] ?>" alt="<?= $card['image']['alt'] ?>">
                 <?= $card['copytext'] ?>
             </a>
@@ -54,7 +71,7 @@ function content_element_section_c($all_data) {
                       if ($all_data['button-href'] && false) {
                     ?>
                     <p>
-                      <a href="<?= $all_data['button-href'] ?>" class="button a1xploretv-icon arrowright focusable"><?= $all_data['button-label'] ?></a>
+                      <a href="<?= parseLink($all_data['button-href']) ?>" class="button a1xploretv-icon arrowright focusable"><?= $all_data['button-label'] ?></a>
                     </p>
                     <?php
                       }
@@ -163,7 +180,7 @@ function content_element_section_e($all_data) {
     <?php
 }
 
-// Section F - Image Slider with Detail Card
+// Section F - Selection/Decision Element
 function content_element_section_f($all_data) {
     $class_div = $all_data['full-width'] ? '' : 'full-width';
     $class_section = $all_data['full-width'] ? '' : 'h-auto';
@@ -188,7 +205,7 @@ function content_element_section_f($all_data) {
                       if ($num == $center_card) $my_id = 'a1xploretv-f-f-first';
                     ?>
 
-                    <a id="<?= $my_id ?>" href="<?= $card['href'] ?>" class="a1xploretv-f-box focusable h-100">
+                    <a id="<?= $my_id ?>" href="<?= parseLink($card['href']) ?>" class="a1xploretv-f-box focusable h-100">
                       <span>
                         <?php if (isset($card['image'])) { ?>
                           <img src="<?= $card['image']['url'] ?>" alt="<?= $card['image']['url'] ?>">
@@ -216,6 +233,7 @@ function content_element_section_g($all_data) {
   </div>
   <form name="a1xploretv-e-form" method="POST" action="<?= get_template_directory_uri(); ?>/ajax_form_contact.php" autocomplete="off" class="myForm">
     <input name="status_message_success" type="hidden" value="<?= $all_data['status_message_success'] ?>">
+    <input name="status_message_receiver" type="hidden" value="<?= seso_encrypt($all_data['receiver']) ?>">
     <div class="a1xploretv-e-inner mx-auto">
         <div class="a1xploretv-e-form">
                 <div class="form-group">
@@ -274,6 +292,7 @@ function content_element_section_h($all_data) {
           <div class="a1xploretv-e-form">
               <form name="a1xploretv-e-form" method="POST" action="<?= get_template_directory_uri(); ?>/ajax_form_survey.php" autocomplete="off" class="myForm">
                   <input name="status_message_success" type="hidden" value="<?= $all_data['status_message_success'] ?>">
+                  <input name="status_message_receiver" type="hidden" value="<?= seso_encrypt($all_data['receiver']) ?>">
                   <?php
                     $num = 0;
                     foreach ($all_data['question-blocks'] as $question_block) {
