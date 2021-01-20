@@ -20,12 +20,11 @@ function parseLink($url, $search_pattern = '#homeurl#') {
 function content_element_section_a($all_data) {
     $class = $all_data['full-height'] ? 'a1xploretv-c' : 'a1xploretv-a';
     ?>
-
     <section id="a1xploretv-c" class="<?= $class ?> " style="background-image:url('<?= $all_data['background-image']['url'] ?>');">
         <div class="w-50 mx-auto d-flex flex-column justify-content-center align-items-center text-center h-100">
-            <div class="h1 text-white h-bold"><?= $all_data['headline'] ?></div>
+            <div class="h1 <?= (!empty($all_data['background-image']['url'])) ? 'text-white' : '' ?> h-bold"><?= $all_data['headline'] ?></div>
             <div class="mt-1">
-                <h3 class="text-white mb-5">
+                <h3 class="<?= (!empty($all_data['background-image']['url'])) ? 'text-white' : '' ?> mb-5">
                     <?= $all_data['copytext'] ?>
                 </h3>
                 <?php if ($all_data['button-label']) { ?>
@@ -236,45 +235,76 @@ function content_element_section_g($all_data) {
     <input name="status_message_receiver" type="hidden" value="<?= seso_encrypt($all_data['receiver']) ?>">
     <div class="a1xploretv-e-inner mx-auto">
         <div class="a1xploretv-e-form">
-                <div class="form-group">
-                    <input type="text" name="vorname" class="form-control focusable" placeholder="Vorname *" autocomplete="off">
-                </div>
-                <div class="form-group">
-                    <input type="text" name="nachname" class="form-control focusable" placeholder="Nachname *" autocomplete="off">
-                </div>
-                <div class="form-group">
-                    <input type="email" name="e-email" class="form-control focusable" placeholder="E-Mail *" autocomplete="off">
-                </div>
-                <div class="a1xploretv-e-radio-group">
-                    <p class="a1xploretv-e-radio-label">Wo möchten Sie Ihr unverbindliches Beratungsgespräch vereinbaren?</p>
-                    <div class="a1xploretv-e-radios">
-                        <label class="a1xploretv-e-radio ">
-                            <input type="radio" value="bei mir zuhause" name="consult-radio" checked>
-                            <span class="a1xploretv-e-radio-ui focusable" ></span>
-                            <span class="a1xploretv-e-radio-text">Bei mir zuhause</span>
-                        </label>
-                        <label class="a1xploretv-e-radio "  >
-                            <input type="radio" value="im A1 Shop">
-                            <span class="a1xploretv-e-radio-ui focusable"></span>
-                            <span class="a1xploretv-e-radio-text">Im A1 Shop</span>
-                        </label>
-                    </div>
-                </div>
+            <?php
+              foreach ($all_data['form_elements'] as  $form_element){
+                if ($form_element['form_element_type'] == 'input') {
+                  ?>
+                  <div class="form-group">
+                      <input type="text" name="<?= $form_element['form_element_name'] ?>" class="form-control focusable" placeholder="<?= $form_element['label'] ?><?= ($form_element['required']) ? ' *' : ''?>" autocomplete="off" <?= ($form_element['required']) ? 'required' : ''?>>
+                  </div>
+                  <?php
+                } else if ($form_element['form_element_type'] == 'radio') {
+                  ?>
+                  <div class="a1xploretv-e-radio-group">
+                      <p class="a1xploretv-e-radio-label"><?= $form_element['label'] ?></p>
+                      <div class="a1xploretv-e-radios">
+                        <?php
+                          $num = 0;
+                          foreach ($form_element['radio_values'] as $radio_value) {
+                            ?>
+                            <label class="a1xploretv-e-radio ">
+                                <input type="radio" value="<?= $radio_value['label'] ?>" name="<?= $form_element['form_element_name'] ?>" <?= ($num == 0) ? 'checked' : '' ?>>
+                                <span class="a1xploretv-e-radio-ui focusable" ></span>
+                                <span class="a1xploretv-e-radio-text"><?= $radio_value['label'] ?></span>
+                            </label>
+                            <?php
+                            $num++;
+                          }
+                        ?>
+                      </div>
+                  </div>
+                  <?php
+                } else if ($form_element['form_element_type'] == 'checkbox') {
+                  ?>
+                  <div class="a1xploretv-e-checkbox-group">
+                      <p class="a1xploretv-e-radio-label"><?= $form_element['label'] ?></p>
+                      <div class="a1xploretv-e-checkboxes">
+                        <?php
+                          foreach ($form_element['radio_values'] as $radio_value) {
+                            ?>
+                            <label class="a1xploretv-e-checkbox focusable" tabindex="-1">
+                                <input type="checkbox" value="<?= $radio_value['label'] ?>" name="<?= $form_element['form_element_name'] ?>[]">
+                                <span class="a1xploretv-e-checkbox-ui-bg" ></span>
+                                <span class="a1xploretv-e-checkbox-ui" ></span>
+                                <span class="a1xploretv-e-checkbox-text"><?= $radio_value['label'] ?></span>
+                            </label>
+                            <?php
+                          }
+                        ?>
+                      </div>
+                  </div>
+                  <?php
+                }
+              }
+            ?>
         </div>
-        <div class="response">
+        <div class="a1xploretv-e-form-btns ">
+          <button type="submit" class="btn btn-block btn-outline-primary focusable">
+              <span>Absenden</span>
+              <span class="a1xploretv-icon arrow-right"></span>
+          </button>
+          <!--
+          <a href="#" class="btn btn-outline-primary focusable mt-0">
+              <span>Konnte nicht absenden, Daten stimmen nicht</span>
+              <span class="a1xploretv-icon arrow-right"></span>
+          </a>
+          -->
         </div>
-    </div>
-    <div class="a1xploretv-e-form-btns ">
-        <button type="submit" class="btn btn-outline-primary focusable mr-3">
-            <span>Absenden</span>
-            <span class="a1xploretv-icon arrow-right"></span>
-        </button>
-        <a href="#" class="btn btn-outline-primary focusable mt-0">
-            <span>Konnte nicht absenden, Daten stimmen nicht</span>
-            <span class="a1xploretv-icon arrow-right"></span>
-        </a>
-    </div>
+      </div>
     </form>
+    <div class="a1xploretv-e-textblock text-center response">
+
+    </div>
 </section>
 
 <?php
@@ -317,8 +347,6 @@ function content_element_section_h($all_data) {
                       $num++;
                     }
                   ?>
-                  <div class="response">
-                  </div>
                   <div class="a1xploretv-e-form-btns">
                       <button type="submit" class="btn a1xploretv-icon arrowright btn-block btn-outline-primary focusable">
                           <span>Absenden</span>
@@ -326,6 +354,9 @@ function content_element_section_h($all_data) {
                       </button>
                   </div>
               </form>
+              <div class="a1xploretv-e-textblock text-center response">
+
+              </div>
           </div>
       </div>
   </section>

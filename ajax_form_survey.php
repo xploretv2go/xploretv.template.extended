@@ -1,10 +1,9 @@
 <?php
 require_once(explode("wp-content", __FILE__)[0] . "wp-load.php");
 
-$data = $_POST;
 $message = '';
 
-foreach ($data as $key => $value) {
+foreach ($_POST as $key => $value) {
   // skip all fields starting with status_message_
   if (substr($key, 0, strlen("status_message_")) == "status_message_") {
     continue;
@@ -12,9 +11,9 @@ foreach ($data as $key => $value) {
 }
 
 $num = 0;
-foreach ($data['questions'] as $question) {
+foreach ($_POST['questions'] as $question) {
     $message .= $question . "\n";
-    foreach ($data['answers_' . $num] as $answer) {
+    foreach ($_POST['answers_' . $num] as $answer) {
       $message .= '- ' . $answer . "\n";
     }
     $message .= "\n";
@@ -27,6 +26,7 @@ $subject = 'New survey has been sent';
 $success = wp_mail($to, $subject, $message);
 
 if ($success === true) {
-  return $data['status_message_success'];
+  echo $_POST['status_message_success'];
+  return;
 }
-return $success;
+echo 'Error sending mail';

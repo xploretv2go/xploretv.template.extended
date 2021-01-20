@@ -128,17 +128,16 @@
         url: url,
         data: form_data,
         success: function(data) {
-          if (data === 'success') {
-              $( ".response" ).html( data );
-          }
+          //if (data === 'success') {
+              $( ".response" ).html( '<h3>' + data + '</h3>' );
+              $( ".myForm" ).hide();
+          //}
         },
         error: function( jqXHR, textStatus) {
           alert( "Request failed: " + textStatus );
         }
       });
-
     });
-
 
     // Initialize
     SpatialNavigation.init();
@@ -175,9 +174,10 @@
 
    function scrollSmooth(section) {
        $(section).on('sn:willfocus', function() {
-          if($(this).offset().top > 1000) {
+       if($(this).closest( "section" ).offset().top > 720) {
+          var val = $(this).closest( "section" ).offset().top - ($(window).height() - $(this).closest( "section" ).outerHeight(true)) / 2.5;
            $('html, body').animate({
-               scrollTop: $(this).offset().top - ($(window).height() - $(this).outerHeight(true)) / 2.5
+               scrollTop: val
            }, 300);
        } else {
            $('html, body').animate({
