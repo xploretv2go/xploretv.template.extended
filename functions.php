@@ -49,4 +49,40 @@ function seso_register_scripts() {
   wp_script_add_data( 'a1xploretv-js', 'async', true );
 }
 
+/**
+ * Encrypt a string based on NONCE_KEY
+ */
+function seso_encrypt($plaintext) {
+	$cipher = 'AES-128-CBC';
+	if (in_array($cipher, openssl_get_cipher_methods())) {
+		$ivlen = openssl_cipher_iv_length($cipher);
+    $iv = openssl_random_pseudo_bytes($ivlen);
+		$ciphertext_raw = openssl_encrypt($plaintext, $cipher, NONCE_KEY, $options = OPENSSL_RAW_DATA, $iv);
+		$hmac = hash_hmac('sha256', $ciphertext_raw, NONCE_KEY, $as_binary = true);
+		$cipertext = base64_encode($iv . $hmac . $ciphertext_raw);
+		return $cipertext;
+	}
+	return false;
+}
+
+/**
+ * Decrypt a string based on NONCE_KEY
+ */
+function seso_decrypt($data) {
+	$cipher = 'AES-128-CBC';
+	if (in_array($cipher, openssl_get_cipher_methods())) {
+		$c = base64_decode($data);
+		$ivlen = openssl_cipher_iv_length($cipher);
+    $iv = substr($c, 0, $ivlen);
+		$hmac = substr($c, $ivlen, $sha2len = 32);
+		$ciphertext_raw = substr($c, $ivlen + $sha2len);
+		$original_plaintext = openssl_decrypt($ciphertext_raw, $cipher, NONCE_KEY, $options = OPENSSL_RAW_DATA, $iv);
+		$calcmac = hash_hmac('sha256', $ciphertext_raw, NONCE_KEY, $as_binary = true);
+		if (hash_equals($hmac, $calcmac)) {
+    	return $original_plaintext;
+		}
+	}
+	return false;
+}
+
 add_action( 'wp_enqueue_scripts', 'seso_register_scripts' );

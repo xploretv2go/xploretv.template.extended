@@ -956,7 +956,7 @@
                     "sub_fields": [
                         {
                             "key": "field_5fe35688e04db",
-                            "label": "headline",
+                            "label": "Headline",
                             "name": "headline",
                             "type": "text",
                             "instructions": "",
@@ -975,7 +975,7 @@
                         },
                         {
                             "key": "field_5fe35691e04dc",
-                            "label": "copytext",
+                            "label": "Copytext",
                             "name": "copytext",
                             "type": "textarea",
                             "instructions": "",
@@ -1009,6 +1009,165 @@
                             "placeholder": "",
                             "prepend": "",
                             "append": ""
+                        },
+                        {
+                            "key": "field_60072813a2c3a",
+                            "label": "Form Elements",
+                            "name": "form_elements",
+                            "type": "repeater",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "collapsed": "",
+                            "min": 0,
+                            "max": 0,
+                            "layout": "table",
+                            "button_label": "",
+                            "sub_fields": [
+                                {
+                                    "key": "field_60072828a2c3b",
+                                    "label": "Label",
+                                    "name": "label",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 1,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": "",
+                                    "maxlength": ""
+                                },
+                                {
+                                    "key": "field_60072841a2c3c",
+                                    "label": "Form Element Type",
+                                    "name": "form_element_type",
+                                    "type": "select",
+                                    "instructions": "",
+                                    "required": 1,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "input": "Input",
+                                        "radio": "Radio Buttons",
+                                        "checkbox": "Checkbox"
+                                    },
+                                    "default_value": false,
+                                    "allow_null": 0,
+                                    "multiple": 0,
+                                    "ui": 0,
+                                    "return_format": "value",
+                                    "ajax": 0,
+                                    "placeholder": ""
+                                },
+                                {
+                                    "key": "field_60072890a2c3d",
+                                    "label": "Form Element Name",
+                                    "name": "form_element_name",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 1,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": "",
+                                    "maxlength": ""
+                                },
+                                {
+                                    "key": "field_6007295592673",
+                                    "label": "Required",
+                                    "name": "required",
+                                    "type": "true_false",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "message": "",
+                                    "default_value": 0,
+                                    "ui": 0,
+                                    "ui_on_text": "",
+                                    "ui_off_text": ""
+                                },
+                                {
+                                    "key": "field_600729ef40055",
+                                    "label": "Radio Values",
+                                    "name": "radio_values",
+                                    "type": "repeater",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": [
+                                        [
+                                            {
+                                                "field": "field_60072841a2c3c",
+                                                "operator": "==",
+                                                "value": "radio"
+                                            }
+                                        ],
+                                        [
+                                            {
+                                                "field": "field_60072841a2c3c",
+                                                "operator": "==",
+                                                "value": "checkbox"
+                                            }
+                                        ]
+                                    ],
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "collapsed": "",
+                                    "min": 0,
+                                    "max": 0,
+                                    "layout": "table",
+                                    "button_label": "",
+                                    "sub_fields": [
+                                        {
+                                            "key": "field_60072a2a40056",
+                                            "label": "Label",
+                                            "name": "label",
+                                            "type": "text",
+                                            "instructions": "",
+                                            "required": 1,
+                                            "conditional_logic": 0,
+                                            "wrapper": {
+                                                "width": "",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "default_value": "",
+                                            "placeholder": "",
+                                            "prepend": "",
+                                            "append": "",
+                                            "maxlength": ""
+                                        }
+                                    ]
+                                }
+                            ]
                         },
                         {
                             "key": "field_600592418bee0",
@@ -1223,5 +1382,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1611069441
+    "modified": 1611140304
 }
