@@ -10,14 +10,14 @@ You can also drag and drop blocks to reorder them as you like.
 
 Every block offers individual settings. The following blocks are currently integrated into the theme:
 
-<h3>Full width card with optional background image</h3>
-<h3>Selection/Decision element</h3>
-<h3>Slider Big</h3>
-<h3>Image Slider with Detail card</h3>
-<h3>2 Column Text and Image</h3>
-<h3>Full width video</h3>
-<h3>Form</h3>
-<h3>Survey</h3>
+- Full width card with optional background image
+- Selection/Decision element
+- Slider Big
+- Image Slider with Detail card
+- 2 Column Text and Image
+- Full width video
+- Form
+- Survey
 
 <h2>Extending the theme</h2>
 
