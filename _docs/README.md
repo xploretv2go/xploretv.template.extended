@@ -11,18 +11,21 @@ You can also drag and drop blocks to reorder them as you like.
 Every block offers individual settings. The following blocks are currently integrated into the theme:
 
 - Full width card with optional background image
-- Selection/Decision element
+- Selection/Decision Element
 - Slider Big
 - Image Slider with Detail card
 - 2 Column Text and Image
-- Full width video
+- Full width Video
+- YouTube Video (in the making)
+- Vimeo Video (in the making)
+- Streaming Video (in the making)
 - Form
 - Survey
 
 <h2>Extending the theme</h2>
 
 In order to extend the theme you need to be familiar with WordPress theme development, CSS, Javascript and knowledge about ACF.
-There are numerous ressources available that specifically cover each of there topics.
+There are numerous ressources available throughout the web that specifically cover each of these topic individually.
 We only focus on the theme specific knowledge to get you started.
 So if you need additional Flexible Content Blocks, you can extend the theme accordingly.
 
@@ -39,16 +42,17 @@ Please make sure to replace NAME with a unique identifier that we will later nee
 All data from ACF is coming in via the variable $all_data which is a nested array.
 You can later replace your placeholder content with the values from the variable as soon as you have set up the ACF element accordingly.
 Look at the other content_element_section_ functions in order to get inspired.
-Take care that since we are on a set top box only a limited number of keys is supported and navigating a page needs to be possible with these keys only. The keys available on a regular remote control are as follows:
 
--Up
--Down
--Left
--Right
--Okay
--Back
+Take care that - since we are on a set top box - only a limited number of keys is supported and navigating a page needs to be possible with these keys only. The keys available on a regular remote control are as follows:
 
-<h3>Adding your filed group to ACF</h3>
+- Up
+- Down
+- Left
+- Right
+- Okay
+- Back
+
+<h3>Adding your custom field group to ACF</h3>
 
 Now head over to the WordPress backend and open up Custom Fields > Field Groups.
 Select the field group Content Elements and open up Fexible Content Blocks. All the blocks mentioned above will show up now.
