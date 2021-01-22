@@ -21,7 +21,7 @@ The template is based on third party CSS/Javascript libraries which are included
   <li><a href="https://kenwheeler.github.io/slick/">Slick</a></li>
 </ul>
 
-The theme also takes advantage of the following third party WordPress plugins. These plugins are strictly mandatory:
+The theme takes advantage of the following third party WordPress plugins. These plugins are strictly mandatory:
 
 <ul>
   <li><a href="https://www.advancedcustomfields.com/">Advanced Custom Fields PRO</a></li>
@@ -50,3 +50,7 @@ Get ready to create your very first page!
 <h2>How to update</h2>
 
 Please make sure to check for ACF field group updates when updating the theme.
+
+<h2>Extending the theme</h2>
+
+The theme can be extended to support additional content elements. Please refer to the <a href="_docs/README.md">extended documentation</a> for further information.
