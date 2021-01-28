@@ -1,5 +1,12 @@
 # xploretv - Technical documentation
-<h2>Using the theme</h2>
+<h2>Theme options</h2>
+
+It is possible to inject custom code to the header and footer of the page via Theme Options page.
+This comes in handy if you need to put your custom Analytics code on all page templates.
+
+![Add Flexible Content block element](images/theme-options.png)
+
+<h2>Structure of the theme</h2>
 
 The theme is made up of so called Flexible Content Blocks. Theses blocks can be freely combined on a page.
 
