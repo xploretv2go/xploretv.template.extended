@@ -51,6 +51,8 @@ Get ready to create your very first page!
 
 Please make sure to check for ACF field group updates when updating the theme.
 
+![Add ACF element](_docs/images/acf-sync-reminder.png)
+
 <h2>Using and extending the theme</h2>
 
 The theme can be extended to support additional content elements. Please refer to the <a href="_docs/README.md">extended documentation</a> for further information and how to use the theme.
