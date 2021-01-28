@@ -24,7 +24,7 @@ Every block offers individual settings. The following blocks are currently integ
 
 <h2>Extending the theme</h2>
 
-In order to extend the theme you need to be familiar with WordPress theme development, CSS, Javascript and knowledge about ACF.
+In order to extend the theme you need to be familiar with WordPress theme development, CSS, Javascript and knowledge about <a href="https://www.advancedcustomfields.com/resources/">ACF</a>.
 There are numerous ressources available throughout the web that specifically cover each of these topic individually.
 We only focus on the theme specific knowledge to get you started.
 So if you need additional Flexible Content Blocks, you can extend the theme accordingly.
