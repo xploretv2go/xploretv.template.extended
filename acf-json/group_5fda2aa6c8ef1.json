@@ -1622,7 +1622,22 @@
                                     "type": "repeater",
                                     "instructions": "",
                                     "required": 1,
-                                    "conditional_logic": 0,
+                                    "conditional_logic": [
+                                        [
+                                            {
+                                                "field": "field_60117ad5f3780",
+                                                "operator": "==",
+                                                "value": "radio"
+                                            }
+                                        ],
+                                        [
+                                            {
+                                                "field": "field_60117ad5f3780",
+                                                "operator": "==",
+                                                "value": "checkbox"
+                                            }
+                                        ]
+                                    ],
                                     "wrapper": {
                                         "width": "",
                                         "class": "",
@@ -1895,5 +1910,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1611851183
+    "modified": 1611853360
 }
