@@ -1349,8 +1349,8 @@
                                     "sub_fields": [
                                         {
                                             "key": "field_60072a2a40056",
-                                            "label": "Label",
-                                            "name": "label",
+                                            "label": "Value",
+                                            "name": "value",
                                             "type": "text",
                                             "instructions": "",
                                             "required": 1,
@@ -1910,5 +1910,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1611853360
+    "modified": 1611865567
 }
