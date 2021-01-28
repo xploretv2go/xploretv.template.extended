@@ -1786,6 +1786,89 @@
                     ],
                     "min": "",
                     "max": ""
+                },
+                "layout_6012e505a9903": {
+                    "key": "layout_6012e505a9903",
+                    "name": "section_j",
+                    "label": "Section J - Cheat Codes",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_6012e516a9904",
+                            "label": "Repeater",
+                            "name": "repeater",
+                            "type": "repeater",
+                            "instructions": "Bind hidden URLs to number keys 0-9.",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "collapsed": "",
+                            "min": 0,
+                            "max": 0,
+                            "layout": "table",
+                            "button_label": "",
+                            "sub_fields": [
+                                {
+                                    "key": "field_6012e52ba9905",
+                                    "label": "Key",
+                                    "name": "key",
+                                    "type": "select",
+                                    "instructions": "",
+                                    "required": 1,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": [
+                                        "0",
+                                        "1",
+                                        "2",
+                                        "3",
+                                        "4",
+                                        "5",
+                                        "6",
+                                        "7",
+                                        "8",
+                                        "9"
+                                    ],
+                                    "default_value": false,
+                                    "allow_null": 0,
+                                    "multiple": 0,
+                                    "ui": 0,
+                                    "return_format": "value",
+                                    "ajax": 0,
+                                    "placeholder": ""
+                                },
+                                {
+                                    "key": "field_6012e53ca9906",
+                                    "label": "URL",
+                                    "name": "url",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 1,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": "",
+                                    "maxlength": ""
+                                }
+                            ]
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
                 }
             },
             "button_label": "Add Row",
@@ -1812,5 +1895,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1611849715
+    "modified": 1611851183
 }
