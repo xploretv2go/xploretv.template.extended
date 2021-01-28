@@ -433,15 +433,16 @@ function content_element_section_h($all_data) {
                 ?>
                 <div class="a1xploretv-e-radio-group">
                   <p class="a1xploretv-e-radio-label"><?= $form_element['label'] ?></p>
-                  <div class="a1xploretv-e-radios">
+                  <div class="a1xploretv-e-checkboxes radio">
                     <?php
                       $num = 0;
                       foreach ($form_element['values'] as $element_value) {
                         ?>
-                        <label class="a1xploretv-e-radio ">
-                          <input type="radio" value="<?= $element_value['value'] ?>" name="<?= $form_element['name'] ?>" <?= ($num == 0) ? 'checked' : '' ?>>
-                          <span class="a1xploretv-e-radio-ui focusable" ></span>
-                          <span class="a1xploretv-e-radio-text"><?= $element_value['value'] ?></span>
+                        <label class="a1xploretv-e-checkbox focusable">
+                          <input type="checkbox" value="<?= $element_value['value'] ?>" name="<?= $form_element['name'] ?>" <?= ($num == 0) ? 'checked' : '' ?>>
+                          <span class="a1xploretv-e-checkbox-ui-bg" ></span>
+                          <span class="a1xploretv-e-checkbox-ui" ></span>
+                          <span class="a1xploretv-e-checkbox-text"><?= $element_value['value'] ?></span>
                         </label>
                         <?php
                         $num++;
