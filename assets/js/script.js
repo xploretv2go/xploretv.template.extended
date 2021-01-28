@@ -118,6 +118,12 @@
         }
     });
 
+    // Radio Buttons
+    $(".radio .a1xploretv-e-checkbox").on('sn:enter-down', function(){
+        $(this).closest('.radio').find('input').prop("checked", false);
+        $(this).find('input').prop("checked", true);
+    });
+
     // Send contact form
     $(".myForm").submit(function(e) {
       e.preventDefault();
@@ -273,6 +279,6 @@
 
 
 $(function() {
-    
+
 
 });
