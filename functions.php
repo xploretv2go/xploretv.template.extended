@@ -86,3 +86,15 @@ function seso_decrypt($data) {
 }
 
 add_action( 'wp_enqueue_scripts', 'seso_register_scripts' );
+
+// Add theme option footer content to page template
+function add_script_to_footer() {
+	echo get_field('footer_content', 'option');
+}
+add_action('wp_footer', 'add_script_to_footer');
+
+// Add theme option header content to page template
+function add_script_to_header() {
+	echo get_field('header_content', 'option');
+}
+add_action('wp_header', 'add_script_to_header');

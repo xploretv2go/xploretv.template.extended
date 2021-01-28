@@ -25,7 +25,7 @@ function content_element_section_a($all_data) {
             <div class="h1 <?= (!empty($all_data['background-image']['url'])) ? 'text-white' : '' ?> h-bold"><?= $all_data['headline'] ?></div>
             <div class="mt-1">
                 <h3 class="<?= (!empty($all_data['background-image']['url'])) ? 'text-white' : '' ?> mb-5">
-                    <?= $all_data['copytext'] ?>
+                    <?= nl2br($all_data['copytext']) ?>
                 </h3>
                 <?php if ($all_data['button-label']) { ?>
                   <a id="a1xploretv-c-btn1" href="<?= parseLink($all_data['button-href']) ?>" class="button a1xploretv-icon arrowright focusable"><?= $all_data['button-label'] ?></a>
@@ -42,7 +42,7 @@ function content_element_section_b($all_data) {
     <section class="a1xploretv-k px-0">
         <div class="d-flex flex-column justify-content-center align-items-center mb-4">
             <div class="h1 h-bold"><?= $all_data['headline'] ?></div>
-            <h3><?= $all_data['copytext'] ?></h3>
+            <h3><?= nl2br($all_data['copytext']) ?></h3>
         </div>
         <div id="js-a1xploretv-k-slider" class="a1xploretv-k-slider js-a1xploretv-k-slider">
           <?php foreach ($all_data['cards'] as $card) { ?>
@@ -99,6 +99,7 @@ function content_element_section_c($all_data) {
 
 // Section D - Full width video
 function content_element_section_d($all_data) {
+    $rand = rand(10, 99);
     ?>
     <section class="a1xploretv-d a1xploretv-video-section">
         <?php
@@ -114,23 +115,107 @@ function content_element_section_d($all_data) {
             <source src="<?= $all_data['video-stream'] ?>" type="video/mp4">
           </video>
         <?php
-          } else if ($all_data['video-provider'] == 'youtube' || $all_data['video-provider'] == 'vimeo') {
-        ?>
-            <div class="a1xploretv-video-frame">
-                <?php $base_url = ($all_data['video-provider'] == 'youtube') ? 'https://www.youtube.com/embed/' : 'https://player.vimeo.com/video/'; ?>
-                <iframe width="100%" frameborder="0" allowfullscreen allow="autoplay" data-type="<?=$all_data['video-provider']?>"  data-src="<?= $base_url . $all_data['video-id'] ?>" src="<?= $base_url . $all_data['video-id'] ?>"></iframe>
-            </div>
-        <?php
-          }
-        ?>
+    }?>
 
         <div class="js-a1xploretv-d-content position-relative d-flex flex-column justify-content-center align-items-center text-center h-100 ">
-            <div class="h1 text-white h-bold"><?= $all_data['headline'] ?></div>
+
+            <div class="h1 <?php if ($all_data['video-provider'] == 'local-video') { ?> text-white <?php } ?>h-bold"><?= $all_data['headline'] ?></div>
+
             <div class="mt-1">
-                <h3 class="text-white mb-5">
-                    <?= $all_data['copytext'] ?>
-                </h3>
-                <a href="javascript:void(0)"  class="a1xploretv-d-play mx-auto focusable js-a1xploretv-d-start"></a>
+
+                <?php if ($all_data['video-provider'] == 'youtube') { ?>
+                    <h3 class="mb-5">
+                        <?= nl2br($all_data['copytext']) ?>
+                    </h3>
+                    <div class="video-container">
+                        <div class="yt-poster" style="background-image: url('https://img.youtube.com/vi/<?= $all_data['video-id'] ?>/hqdefault.jpg')"></div>
+                        <div id="player<?= $rand; ?>" data-num="<?= $rand; ?>" data-src="<?= $all_data['video-id'] ?>" class="js-yt-video-frame a1xploretv-video-frame-yt mt-1"></div>
+                    </div>
+                    <br/>
+                    <a data-id="player<?= $rand ?>" href="javascript:void(0)" onclick="playVideoYT<?= $rand ?>(this);" class="a1xploretv-d-play mx-auto focusable js-a1xploretv-d-start"></a>
+                    <a data-id="player<?= $rand ?>" href="javascript:void(0)" onclick="pauseVideoYT<?= $rand ?>(this);" class="a1xploretv-d-pause focusable js-a1xploretv-d-pause"></a>
+                    <script>
+
+                    // var player;
+                    // var done = false;
+                    //
+                    // function onYouTubeIframeAPIReady() {
+                    //     player<?= $rand ?> = new YT.Player("player<?= $rand ?>", {
+                    //          videoId: '<?= $all_data['video-id'] ?>',
+                    //          playerVars: {
+                    //            mute: 0,
+                    //            autoplay: 0,
+                    //            controls: 0,
+                    //            autohide: 1,
+                    //            wmode: "opaque",
+                    //            showinfo: 0,
+                    //            loop: 0,
+                    //            rel: 0
+                    //          },
+                    //          events: {
+                    //            onReady: onPlayerReady,
+                    //            //onStateChange: onPlayerStateChange
+                    //          }
+                    //      });
+                    //  }
+
+
+                     // function onPlayerStateChange(event) {
+                     //   if (event.data == YT.PlayerState.PLAYING && !done) {
+                     //       // seconds to play video
+                     //       setTimeout(pauseVideo, 8000);
+                     //       done = true;
+                     //   }
+                     //
+                     // }
+                     //
+                     // function onPlayerReady(event) {
+                     //     // console.log("player ready");
+                     // }
+                     //
+                     // // Functions just to remember
+                     // function playVideoYT<?= $rand ?>() {
+                     //     player<?= $rand ?>.playVideo();
+                     // }
+                     //
+                     // function pauseVideoYT<?= $rand ?>() {
+                     //     player<?= $rand ?>.pauseVideo();
+                     // }
+
+
+                    </script>
+
+                <?php } else if ($all_data['video-provider'] == 'vimeo') { ?>
+                    <?php
+                        $imgid = $all_data['video-id'];
+                        $hash = unserialize(file_get_contents("http://vimeo.com/api/v2/video/$imgid.php"));
+                        $thumb = $hash[0]['thumbnail_medium'];
+                    ?>
+                    <div class="video-container focusable">
+                        <div class="vimeo-poster" data-player-id="<?= $rand; ?>" style="background-image: url('<?= $thumb; ?>')"></div>
+                        <iframe id="player-vimeo<?= $rand; ?>" src="https://player.vimeo.com/video/<?= $all_data['video-id'] ?>" class="a1xploretv-video-frame-yt mt-1 js-vimeo-player" allow="autoplay" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                    </div>
+                    <a href="javascript:void(0)" data-player-id="<?= $rand; ?>" onclick="playVideoVimeo<?= $rand ?>();" class="a1xploretv-d-play mx-auto focusable js-a1xploretv-d-start-vimeo"></a>
+                    <a href="javascript:void(0)" data-player-id="<?= $rand; ?>" onclick="playVideoVimeo<?= $rand ?>();" class="a1xploretv-d-pause focusable js-a1xploretv-d-pause-vimeo"></a>
+                    <script>
+                            var iframe_vimeo = document.getElementById("player-vimeo<?= $rand; ?>");
+                            var player_vimeo<?= $rand ?> = new Vimeo.Player(iframe_vimeo);
+
+                            function playVideoVimeo<?= $rand ?>(id) {
+                                player_vimeo<?= $rand ?>.play();
+                            }
+
+                            function pauseVideoVimeo<?= $rand ?>(id) {
+                                player_vimeo<?= $rand ?>.pause();
+                            }
+                        </script>
+                <?php } else { ?>
+                    <h3 class="text-white mb-5">
+                        <?= nl2br($all_data['copytext']) ?>
+                    </h3>
+                    <a href="javascript:void(0)"  id="js-a1xploretv-d-start" data-player-id="<?= $rand; ?>" class="a1xploretv-d-play mx-auto focusable js-a1xploretv-d-start"></a>
+                <?php } ?>
+
             </div>
         </div>
     </section>
@@ -190,7 +275,7 @@ function content_element_section_f($all_data) {
               <div class="h1 h-bold"><?= $all_data['headline'] ?></div>
             <?php } ?>
             <?php if ($all_data['copytext']) { ?>
-              <h3><?= $all_data['copytext'] ?></h3>
+              <h3><?= nl2br($all_data['copytext']) ?></h3>
             <?php } ?>
             <div class="a1xploretv-f-container <?= $class_div ?>">
                 <div class="d-flex justify-content-between align-items-center text-center h-100">
@@ -227,138 +312,299 @@ function content_element_section_g($all_data) {
 ?>
 <section class="a1xploretv-e">
   <div class="a1xploretv-e-textblock text-center w-75">
+    <?php if ($all_data['headline']) { ?>
       <h2 class="h1 h-bold"><?= $all_data['headline'] ?></h2>
-      <h3><?= $all_data['copytext'] ?></h3>
+    <?php } ?>
+    <?php if ($all_data['copytext']) { ?>
+      <h3><?= nl2br($all_data['copytext']) ?></h3>
+    <?php } ?>
   </div>
   <form name="a1xploretv-e-form" method="POST" action="<?= get_template_directory_uri(); ?>/ajax_form_contact.php" autocomplete="off" class="myForm">
     <input name="status_message_success" type="hidden" value="<?= $all_data['status_message_success'] ?>">
     <input name="status_message_receiver" type="hidden" value="<?= seso_encrypt($all_data['receiver']) ?>">
+    <input name="status_message_receiver_message" type="hidden" value="<?= $all_data['receiver_message'] ?>">
+    <?php
+      $receiver_subject = (!empty($all_data['receiver_subject'])) ? $all_data['receiver_subject'] : $all_data['headline'];
+    ?>
+    <input name="status_message_receiver_subject" type="hidden" value="<?= $receiver_subject ?>">
     <div class="a1xploretv-e-inner mx-auto">
+      <div class="a1xploretv-e-form">
+        <?php
+          foreach ($all_data['form_elements'] as  $form_element){
+            if ($form_element['type'] == 'input') {
+              ?>
+              <div class="form-group">
+                <input type="text" name="<?= $form_element['name'] ?>" class="form-control focusable" placeholder="<?= $form_element['label'] ?><?= ($form_element['required']) ? ' *' : ''?>" autocomplete="off" <?= ($form_element['required']) ? 'required' : ''?>>
+              </div>
+              <?php
+            } else if ($form_element['type'] == 'radio') {
+              ?>
+              <div class="a1xploretv-e-radio-group">
+                <p class="a1xploretv-e-radio-label"><?= $form_element['label'] ?></p>
+                <div class="a1xploretv-e-radios">
+                  <?php
+                    $num = 0;
+                    foreach ($form_element['values'] as $element_value) {
+                      ?>
+                      <label class="a1xploretv-e-radio ">
+                        <input type="radio" value="<?= $element_value['value'] ?>" name="<?= $form_element['name'] ?>" <?= ($num == 0) ? 'checked' : '' ?>>
+                        <span class="a1xploretv-e-radio-ui focusable" ></span>
+                        <span class="a1xploretv-e-radio-text"><?= $element_value['value'] ?></span>
+                      </label>
+                      <?php
+                      $num++;
+                    }
+                  ?>
+                </div>
+              </div>
+              <?php
+            } else if ($form_element['type'] == 'checkbox') {
+              ?>
+              <div class="a1xploretv-e-checkbox-group">
+                <p class="a1xploretv-e-radio-label"><?= $form_element['label'] ?></p>
+                <div class="a1xploretv-e-checkboxes">
+                  <?php
+                    foreach ($form_element['values'] as $element_value) {
+                      ?>
+                      <label class="a1xploretv-e-checkbox focusable" tabindex="-1">
+                        <input type="checkbox" value="<?= $element_value['value'] ?>" name="<?= $form_element['name'] ?>[]">
+                        <span class="a1xploretv-e-checkbox-ui-bg" ></span>
+                        <span class="a1xploretv-e-checkbox-ui" ></span>
+                        <span class="a1xploretv-e-checkbox-text"><?= $element_value['value'] ?></span>
+                      </label>
+                      <?php
+                    }
+                  ?>
+                </div>
+              </div>
+              <?php
+            }
+          }
+        ?>
+      </div>
+      <div class="a1xploretv-e-form-btns ">
+        <button type="submit" class="btn btn-block btn-outline-primary focusable">
+          <span><?= $all_data['submit_button_title'] ?></span>
+          <span class="a1xploretv-icon arrow-right"></span>
+        </button>
+      </div>
+    </div>
+  </form>
+  <div class="a1xploretv-e-textblock text-center response">
+
+  </div>
+</section>
+
+<?php
+}
+
+// Section H - Survey
+function content_element_section_h($all_data) {
+?>
+  <section class="a1xploretv-e">
+    <div class="a1xploretv-e-textblock text-center mb-60px w-75">
+      <?php if ($all_data['headline']) { ?>
+        <h2 class="h1 h-bold"><?= $all_data['headline'] ?></h2>
+      <?php } ?>
+      <?php if ($all_data['copytext']) { ?>
+        <h3><?= nl2br($all_data['copytext']) ?></h3>
+      <?php } ?>
+    </div>
+    <form name="a1xploretv-e-form" method="POST" action="<?= get_template_directory_uri(); ?>/ajax_form_survey.php" autocomplete="off" class="myForm">
+      <input name="status_message_success" type="hidden" value="<?= $all_data['status_message_success'] ?>">
+      <input name="status_message_receiver" type="hidden" value="<?= seso_encrypt($all_data['receiver']) ?>">
+      <input name="status_message_receiver_message" type="hidden" value="<?= $all_data['receiver_message'] ?>">
+      <?php
+        $receiver_subject = (!empty($all_data['receiver_subject'])) ? $all_data['receiver_subject'] : $all_data['headline'];
+      ?>
+      <input name="status_message_receiver_subject" type="hidden" value="<?= $receiver_subject ?>">
+      <div class="a1xploretv-e-inner mx-auto">
         <div class="a1xploretv-e-form">
-            <?php
-              foreach ($all_data['form_elements'] as  $form_element){
-                if ($form_element['form_element_type'] == 'input') {
-                  ?>
-                  <div class="form-group">
-                      <input type="text" name="<?= $form_element['form_element_name'] ?>" class="form-control focusable" placeholder="<?= $form_element['label'] ?><?= ($form_element['required']) ? ' *' : ''?>" autocomplete="off" <?= ($form_element['required']) ? 'required' : ''?>>
-                  </div>
-                  <?php
-                } else if ($form_element['form_element_type'] == 'radio') {
-                  ?>
-                  <div class="a1xploretv-e-radio-group">
-                      <p class="a1xploretv-e-radio-label"><?= $form_element['label'] ?></p>
-                      <div class="a1xploretv-e-radios">
-                        <?php
-                          $num = 0;
-                          foreach ($form_element['radio_values'] as $radio_value) {
-                            ?>
-                            <label class="a1xploretv-e-radio ">
-                                <input type="radio" value="<?= $radio_value['label'] ?>" name="<?= $form_element['form_element_name'] ?>" <?= ($num == 0) ? 'checked' : '' ?>>
-                                <span class="a1xploretv-e-radio-ui focusable" ></span>
-                                <span class="a1xploretv-e-radio-text"><?= $radio_value['label'] ?></span>
-                            </label>
-                            <?php
-                            $num++;
-                          }
+          <?php
+            foreach ($all_data['form_elements'] as  $form_element){
+              if ($form_element['type'] == 'input') {
+                ?>
+                <div class="form-group">
+                  <input type="text" name="<?= $form_element['name'] ?>" class="form-control focusable" placeholder="<?= $form_element['label'] ?><?= ($form_element['required']) ? ' *' : ''?>" autocomplete="off" <?= ($form_element['required']) ? 'required' : ''?>>
+                </div>
+                <?php
+              } else if ($form_element['type'] == 'radio') {
+                ?>
+                <div class="a1xploretv-e-radio-group">
+                  <p class="a1xploretv-e-radio-label"><?= $form_element['label'] ?></p>
+                  <div class="a1xploretv-e-radios">
+                    <?php
+                      $num = 0;
+                      foreach ($form_element['values'] as $element_value) {
                         ?>
-                      </div>
-                  </div>
-                  <?php
-                } else if ($form_element['form_element_type'] == 'checkbox') {
-                  ?>
-                  <div class="a1xploretv-e-checkbox-group">
-                      <p class="a1xploretv-e-radio-label"><?= $form_element['label'] ?></p>
-                      <div class="a1xploretv-e-checkboxes">
+                        <label class="a1xploretv-e-radio ">
+                          <input type="radio" value="<?= $element_value['value'] ?>" name="<?= $form_element['name'] ?>" <?= ($num == 0) ? 'checked' : '' ?>>
+                          <span class="a1xploretv-e-radio-ui focusable" ></span>
+                          <span class="a1xploretv-e-radio-text"><?= $element_value['value'] ?></span>
+                        </label>
                         <?php
-                          foreach ($form_element['radio_values'] as $radio_value) {
-                            ?>
-                            <label class="a1xploretv-e-checkbox focusable" tabindex="-1">
-                                <input type="checkbox" value="<?= $radio_value['label'] ?>" name="<?= $form_element['form_element_name'] ?>[]">
-                                <span class="a1xploretv-e-checkbox-ui-bg" ></span>
-                                <span class="a1xploretv-e-checkbox-ui" ></span>
-                                <span class="a1xploretv-e-checkbox-text"><?= $radio_value['label'] ?></span>
-                            </label>
-                            <?php
-                          }
-                        ?>
-                      </div>
+                        $num++;
+                      }
+                    ?>
                   </div>
-                  <?php
-                }
+                </div>
+                <?php
+              } else if ($form_element['type'] == 'checkbox') {
+                ?>
+                <div class="a1xploretv-e-checkbox-group">
+                  <p class="a1xploretv-e-radio-label"><?= $form_element['label'] ?></p>
+                  <div class="a1xploretv-e-checkboxes">
+                    <?php
+                      foreach ($form_element['values'] as $element_value) {
+                        ?>
+                        <label class="a1xploretv-e-checkbox focusable">
+                          <input type="checkbox" value="<?= $element_value['value'] ?>" name="<?= $form_element['name'] ?>[]">
+                          <span class="a1xploretv-e-checkbox-ui-bg" ></span>
+                          <span class="a1xploretv-e-checkbox-ui" ></span>
+                          <span class="a1xploretv-e-checkbox-text"><?= $element_value['value'] ?></span>
+                        </label>
+                        <?php
+                      }
+                    ?>
+                  </div>
+                </div>
+                <?php
               }
-            ?>
+            }
+          ?>
         </div>
-        <div class="a1xploretv-e-form-btns ">
-          <button type="submit" class="btn btn-block btn-outline-primary focusable">
-              <span>Absenden</span>
-              <span class="a1xploretv-icon arrow-right"></span>
+        <div class="a1xploretv-e-form-btns">
+          <button type="submit" class="btn a1xploretv-icon arrowright btn-block btn-outline-primary focusable">
+            <span><?= $all_data['submit_button_title'] ?></span>
+            <span class="a1xploretv-icon arrow-right"></span>
           </button>
-          <!--
-          <a href="#" class="btn btn-outline-primary focusable mt-0">
-              <span>Konnte nicht absenden, Daten stimmen nicht</span>
-              <span class="a1xploretv-icon arrow-right"></span>
-          </a>
-          -->
         </div>
       </div>
     </form>
     <div class="a1xploretv-e-textblock text-center response">
 
     </div>
-</section>
-
+  </section>
 <?php
 }
 
-// Section I - Survey
-function content_element_section_h($all_data) {
+// Section I - Streaming element
+function content_element_section_i($all_data) {
 ?>
-  <section class="a1xploretv-e">
-        <div class="a1xploretv-e-textblock text-center mb-60px w-75">
-            <h2 class="h1 h-bold"><?= $all_data['headline'] ?></h2>
-            <h3><?= $all_data['copytext'] ?></h3>
-        </div>
-        <div class="a1xploretv-e-inner">
-          <div class="a1xploretv-e-form">
-              <form name="a1xploretv-e-form" method="POST" action="<?= get_template_directory_uri(); ?>/ajax_form_survey.php" autocomplete="off" class="myForm">
-                  <input name="status_message_success" type="hidden" value="<?= $all_data['status_message_success'] ?>">
-                  <input name="status_message_receiver" type="hidden" value="<?= seso_encrypt($all_data['receiver']) ?>">
-                  <?php
-                    $num = 0;
-                    foreach ($all_data['question-blocks'] as $question_block) {
-                  ?>
-                      <h4 style="margin-top: 30px;"><?= $question_block['question'] ?></h4>
-                      <input name="questions[]" type="hidden" value="<?= $question_block['question'] ?>">
-                  <?php
-                    foreach ($question_block['answers'] as $answer) {
-                  ?>
-                  <div class="a1xploretv-e-checkbox-group">
-                      <div class="a1xploretv-e-checkboxes">
-                          <label class="a1xploretv-e-checkbox focusable" tabindex="-1">
-                              <input type="checkbox" value="<?= $answer['answer'] ?>" name="answers_<?= $num ?>[]">
-                              <span class="a1xploretv-e-checkbox-ui-bg" ></span>
-                              <span class="a1xploretv-e-checkbox-ui "></span>
-                              <span class="a1xploretv-e-checkbox-text "><?= $answer['answer'] ?></span>
-                          </label>
-                      </div>
-                  </div>
-                  <?php
-                      }
-                      $num++;
-                    }
-                  ?>
-                  <div class="a1xploretv-e-form-btns">
-                      <button type="submit" class="btn a1xploretv-icon arrowright btn-block btn-outline-primary focusable">
-                          <span>Absenden</span>
-                          <span class="a1xploretv-icon arrow-right"></span>
-                      </button>
-                  </div>
-              </form>
-              <div class="a1xploretv-e-textblock text-center response">
-
-              </div>
-          </div>
-      </div>
-  </section>
+  TODO
 <?php
+}
+
+function content_element_section_d_slider($all_data) {
+    ?>
+    <section class="a1xploretv-k px-0 a1xploretv-k-video-slider">
+
+        <div id="js-a1xploretv-k-slider" class="a1xploretv-k-slider js-a1xploretv-k-slider">
+           <?php
+           foreach ($all_data['videos'] as $item) {
+                $rand = rand(10,99);
+                   $imgid = $item['video_id'];
+               ?>
+               <?php if($item['video_provider'] == 'Vimeo'):?>
+               <div class="video-container focusable">
+                   <div class="h1 h-bold"><?= $item['video_headline']; ?></div>
+                   <h4><?= $item['video_content']; ?></h4>
+                   <div class="position-relative mb-3 ">
+                       <div class="vimeo-poster" data-player-id="<?= $rand; ?>" style="background-image:url('<?= $item['video_poster']['url']; ?>')"></div>
+                       <iframe id="player-vimeo<?= $rand; ?>" src="https://player.vimeo.com/video/<?= $imgid; ?>" class="a1xploretv-video-frame-yt mt-1 js-vimeo-player" allow="autoplay" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                   </div>
+                   <a href="javascript:void(0)" data-player-id="<?= $rand; ?>" onclick="playVideoVimeo<?= $rand ?>(this);" class="a1xploretv-d-play mx-auto focusable js-a1xploretv-d-start-vimeo"></a>
+                   <!-- <a href="javascript:void(0)" data-player-id="<?= $rand; ?>" onclick="pauseVideoVimeo<?= $rand ?>();" class="a1xploretv-d-pause focusable js-a1xploretv-d-pause-vimeo"></a> -->
+
+                   <script>
+                       var iframe_vimeo = document.getElementById("player-vimeo<?= $rand; ?>");
+                       var player_vimeo<?= $rand ?> = new Vimeo.Player(iframe_vimeo);
+                         function playVideoVimeo<?= $rand ?>(e) {
+
+                             if(e.classList.contains('slider-video-play')){
+                                 player_vimeo<?= $rand ?>.pause();
+                                 e.classList.remove('slider-video-play');
+                                 e.classList.remove('a1xploretv-d-pause');
+                                 e.classList.add('a1xploretv-d-play');
+                             } else {
+                                  player_vimeo<?= $rand ?>.play();
+                                  e.classList.add('slider-video-play');
+                                  e.classList.add('a1xploretv-d-pause');
+                                  e.classList.remove('a1xploretv-d-play');
+                             }
+
+                          }
+                          player_vimeo<?= $rand ?>.on('ended', function (e) {
+                             $('[data-player-id="<?= $rand; ?>"]').removeClass('slider-video-play');
+                             $('[data-player-id="<?= $rand; ?>"]').removeClass('a1xploretv-d-pause');
+                             $('[data-player-id="<?= $rand; ?>"]').addClass('a1xploretv-d-play');
+                         });
+                   </script>
+               </div>
+           <?php else :?>
+               <div class="video-container focusable">
+                   <div class="h1 h-bold"><?= $item['video_headline']; ?></div>
+                   <h4><?= $item['video_content']; ?></h4>
+                   <div class="yt-poster" style="background-image: url('<?= $item['video_poster']['url']; ?>')"></div>
+                   <div id="player<?= $rand; ?>" data-num="<?= $rand; ?>" data-src="<?= $imgid; ?>" class="js-yt-video-frame a1xploretv-video-frame-yt mt-1"></div>
+                   <a data-id="player<?= $rand ?>" href="javascript:void(0)" onclick="playVideoYT<?= $rand ?>(this);" class="js-video-slider-btn a1xploretv-d-play mx-auto focusable js-a1xploretv-d-start"></a>
+                   <!-- <a href="javascript:void(0)" onclick="pauseVideoYT<?= $rand ?>();" class="a1xploretv-d-pause focusable js-a1xploretv-d-pause"></a> -->
+                   <script>
+
+
+                   // var player;
+                   // var done = false;
+                   //
+                   // function onYouTubeIframeAPIReady() {
+                   //     player<?= $rand ?> = new YT.Player("player<?= $rand ?>", {
+                   //          videoId: '<?= $imgid ?>',
+                   //          playerVars: {
+                   //            mute: 0,
+                   //            autoplay: 0,
+                   //            controls: 0,
+                   //            autohide: 1,
+                   //            wmode: "opaque",
+                   //            showinfo: 0,
+                   //            loop: 0,
+                   //            rel: 0
+                   //          },
+                   //          events: {
+                   //            onReady: onPlayerReady
+                   //          }
+                   //      });
+                   //  }
+                   //
+                   //  function onPlayerReady(event) {
+                   //      // console.log("player ready");
+                   //  }
+
+                    // Functions just to remember
+                    // function playVideoYT<?= $rand ?>(e) {
+                    //     //player<?= $rand ?>.playVideo();
+                    //     if(e.classList.contains('slider-video-play')){
+                    //         player<?= $rand ?>.pauseVideo();
+                    //         e.classList.remove('slider-video-play');
+                    //         e.classList.remove('a1xploretv-d-pause');
+                    //         e.classList.add('a1xploretv-d-play');
+                    //     } else {
+                    //          player<?= $rand ?>.playVideo();
+                    //          e.classList.add('slider-video-play');
+                    //          e.classList.add('a1xploretv-d-pause');
+                    //          e.classList.remove('a1xploretv-d-play');
+                    //     }
+                    // }
+
+                    // function pauseVideoYT<?= $rand ?>() {
+                    //     player<?= $rand ?>.pauseVideo();
+                    // }
+
+
+                   </script>
+               </div>
+           <?php endif;?>
+           <?php } ?>
+           <?php // for each ?>
+        </div>
+    </section>
+    <?php
 }

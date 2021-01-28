@@ -303,7 +303,7 @@ section {
     height: 80px;
     background-color: #000000;
     border-radius: 100%;
-    display: block;
+    display: inline-block;
     cursor: pointer;
     position: relative; }
     .a1xploretv-d-play:after {
@@ -324,6 +324,57 @@ section {
       text-decoration: none;
       outline: none;
       background-color: #da291c; }
+  .a1xploretv-d-pause {
+    width: 80px;
+    height: 80px;
+    background-color: #000000;
+    color: #ffffff;
+    border-radius: 100%;
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+    margin-left: 24px; }
+    .a1xploretv-d-pause:after {
+      content: '';
+      height: 20px;
+      width: 20px;
+      position: absolute;
+      display: inline-block;
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translate(-50%, -50%);
+              transform: translate(-50%, -50%);
+      border-style: double;
+      border-width: 0 0 0 20px; }
+    .a1xploretv-d-pause.focusable:focus {
+      color: #ffffff;
+      text-decoration: none;
+      outline: none;
+      background-color: #da291c; }
+  .a1xploretv-d .video-container {
+    position: relative;
+    width: 720px;
+    height: 480px;
+    margin-bottom: 15px; }
+    @media (min-width: 1920px) {
+      .a1xploretv-d .video-container {
+        width: 1024px;
+        height: 576px; } }
+    .a1xploretv-d .video-container .a1xploretv-video-frame-yt {
+      width: 100%;
+      height: 100%; }
+    .a1xploretv-d .video-container .yt-poster {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position-y: 50.5%; }
+    .a1xploretv-d .video-container .vimeo-poster {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position-y: 50.5%; }
 
 .btn {
   font-size: 1.675rem;
@@ -702,15 +753,53 @@ section {
       @media (min-width: 1920px) {
         .a1xploretv-k-slider a {
           width: 1080px; } }
-      .a1xploretv-k-slider a:focus {
+      .a1xploretv-k-slider a:focus, .a1xploretv-k-slider a:hover {
         background-color: transparent !important;
         color: #000000 !important;
         border: 0; }
-        .a1xploretv-k-slider a:focus img {
+        .a1xploretv-k-slider a:focus img, .a1xploretv-k-slider a:hover img {
           border: 2px solid #da291c; }
     .a1xploretv-k-slider img {
       width: 100%;
       margin: 0 auto 30px auto; }
+  .a1xploretv-k-video-slider {
+    margin-bottom: 100px; }
+    .a1xploretv-k-video-slider .video-container {
+      position: relative;
+      width: 615px;
+      text-align: center;
+      margin: 0 15px; }
+      @media (min-width: 1920px) {
+        .a1xploretv-k-video-slider .video-container {
+          width: 1080px; } }
+      .a1xploretv-k-video-slider .video-container:focus, .a1xploretv-k-video-slider .video-container:hover {
+        background-color: transparent !important;
+        border: 0; }
+      .a1xploretv-k-video-slider .video-container .vimeo-poster {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover; }
+      .a1xploretv-k-video-slider .video-container a {
+        display: inline-block;
+        width: 80px; }
+        .a1xploretv-k-video-slider .video-container a:focus, .a1xploretv-k-video-slider .video-container a:hover {
+          background-color: #da291c !important; }
+      .a1xploretv-k-video-slider .video-container .a1xploretv-video-frame-yt {
+        width: 1280px;
+        height: 350px;
+        max-width: 100%; }
+        @media (min-width: 1920px) {
+          .a1xploretv-k-video-slider .video-container .a1xploretv-video-frame-yt {
+            height: 610px; } }
+    .a1xploretv-k-video-slider .focusable:hover .h1, .a1xploretv-k-video-slider .focusable:focus .h1 {
+      color: #000000 !important; }
+    .a1xploretv-k-video-slider .a1xploretv-d-pause:focus, .a1xploretv-k-video-slider .a1xploretv-d-pause:hover {
+      color: #ffffff !important; }
 
 .a1xploretv-l {
   margin-top: 80px;

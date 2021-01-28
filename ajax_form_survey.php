@@ -8,23 +8,30 @@ foreach ($_POST as $key => $value) {
   if (substr($key, 0, strlen("status_message_")) == "status_message_") {
     continue;
   }
+  if (is_array($value)) {
+    $message .= $key . ': ' . implode(',', $value) . "\n";
+  } else {
+    $message .= $key . ': ' . $value . "\n";
+  }
 }
 
-$num = 0;
-foreach ($_POST['questions'] as $question) {
-    $message .= $question . "\n";
-    foreach ($_POST['answers_' . $num] as $answer) {
-      $message .= '- ' . $answer . "\n";
-    }
-    $message .= "\n";
-    $num++;
+// Add receiver message
+if (!empty($_POST('status_message_receiver_message'))) {
+  $message = $_POST('status_message_receiver_message') . "\n\n" . $message;
 }
 
+// Add receivers
 $to = seso_decrypt($_POST['status_message_receiver']);
 if ($to === false) return false; // decrypt failed
-$subject = 'New survey has been sent';
-$success = wp_mail($to, $subject, $message);
+$to = preg_replace('/\s+/', '', $to);
+$to = explode(',', $to);
 
+// Add subject
+$subject = $_POST('status_message_receiver_subject');
+//$subject = 'New form was sent by ' . get_home_url();
+
+// Send mail
+$success = wp_mail($to, $subject, $message);
 if ($success === true) {
   echo $_POST['status_message_success'];
   return;
