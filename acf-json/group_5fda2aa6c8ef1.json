@@ -419,6 +419,30 @@
                             "layout": "vertical",
                             "return_format": "value",
                             "save_other_choice": 0
+                        },
+                        {
+                            "key": "field_6013448f56e8b",
+                            "label": "Mobile App Buttons",
+                            "name": "mobile_app",
+                            "type": "radio",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "yes": "yes",
+                                "no": "no"
+                            },
+                            "allow_null": 0,
+                            "other_choice": 0,
+                            "default_value": "no",
+                            "layout": "horizontal",
+                            "return_format": "value",
+                            "save_other_choice": 0
                         }
                     ],
                     "min": "",
@@ -1910,5 +1934,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1611865567
+    "modified": 1611875501
 }

@@ -183,16 +183,31 @@
 
    function scrollSmooth(section) {
        $(section).on('sn:willfocus', function() {
-       if($(this).closest( "section" ).offset().top > 720) {
-          var val = $(this).closest( "section" ).offset().top - ($(window).height() - $(this).closest( "section" ).outerHeight(true)) / 2.5;
-           $('html, body').animate({
-               scrollTop: val
-           }, 300);
-       } else {
-           $('html, body').animate({
-               scrollTop: 0
-           }, 300);
+       if($(this).hasClass('js-a1xploretv-e-form-field')){
+           if($(this).offset().top > 720) {
+              var val = $(this).offset().top - ($(window).height() - $(this).outerHeight(true)) / 2.5;
+               $('html, body').animate({
+                   scrollTop: val
+               }, 300);
+           } else {
+               $('html, body').animate({
+                   scrollTop: 0
+               }, 300);
+           }
+       }else{
+           if($(this).closest( "section" ).offset().top > 720) {
+              var val = $(this).closest( "section" ).offset().top - ($(window).height() - $(this).closest( "section" ).outerHeight(true)) / 2.5;
+               $('html, body').animate({
+                   scrollTop: val
+               }, 300);
+           } else {
+               $('html, body').animate({
+                   scrollTop: 0
+               }, 300);
+           }
        }
+
+
        });
    }
 
@@ -259,11 +274,52 @@
    // Make the *currently existing* navigable elements focusable.
    //SpatialNavigation.makeFocusable();
 
+   $.fn.ensureVisible = function(callback) {
+    var $this = $(this).first();
+    var $parent = $this.parent();
+    var scrollTop = $parent.scrollTop();
+    var scrollBottom = scrollTop + $parent.innerHeight();
+    var marginTop = parseInt($this.css('margin-top'));
+    var marginBottom = parseInt($this.css('margin-bottom'));
+    var top = $this.position().top + scrollTop + marginTop;
+    var bottom = top + $this.outerHeight();
+    var newPosition = null;
+
+    if (scrollTop > top - marginTop) {
+      newPosition = {scrollTop: top - marginTop};
+    } else if (scrollBottom < bottom + marginBottom) {
+      newPosition = {scrollTop: bottom - $parent.innerHeight() + marginBottom};
+    }
+
+    if (newPosition) {
+      $parent.animate(newPosition, {
+        duration: 200,
+        done: callback.bind(this)
+      });
+    } else {
+      setTimeout(callback.bind(this));
+    }
+
+    return this;
+  };
+
+  // Implement "ensureVisible" feature.
+    $('.a1xploretv-e-form .focusable').on('sn:willfocus', function() {
+      SpatialNavigation.pause();
+
+      $(this).ensureVisible(function() {
+        SpatialNavigation.focus(this);
+        SpatialNavigation.resume();
+      });
+
+      return false;
+    });
+
 
 
    // Focus the first navigable element.
    SpatialNavigation.focus();
-
+   SpatialNavigation.makeFocusable();
 
 
 

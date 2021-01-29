@@ -78,7 +78,10 @@ h2, .h2 {
   font-size: 2.125rem; }
 
 h3, .h3 {
-  font-size: 1.875rem; }
+  font-size: 1.5rem; }
+  @media (min-width: 1920px) {
+    h3, .h3 {
+      font-size: 1.875rem; } }
 
 h4, .h4 {
   font-size: 1.675rem; }
@@ -648,27 +651,18 @@ section {
     margin: 30px auto 0 auto; }
     .a1xploretv-f-container.full-width {
       max-width: 100%; }
+      .a1xploretv-f-container.full-width > div {
+        display: table;
+        border-collapse: separate;
+        border-spacing: 20px; }
   .a1xploretv-f-box {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    margin: 0 10px;
+    width: 340px;
     padding: 30px 25px;
     -webkit-box-shadow: 0 0 20px 0px #d0d0d0;
             box-shadow: 0 0 20px 0px #d0d0d0;
     background-color: #ffffff;
-    width: 340px;
-    min-height: 250px; }
+    display: table-cell;
+    vertical-align: middle; }
     .a1xploretv-f-box img {
       margin-bottom: 40px;
       width: 100%;
@@ -679,7 +673,8 @@ section {
   .a1xploretv-f-title {
     font-family: "A1Serif";
     font-weight: 500;
-    margin-bottom: 20px; }
+    margin-bottom: 20px;
+    word-break: break-word; }
 
 .a1xploretv-g {
   margin-top: 20px;
@@ -695,12 +690,23 @@ section {
     width: 100%;
     max-width: 60%;
     margin: 0 auto; }
+    .a1xploretv-g-left:focus {
+      background-color: transparent !important;
+      border: 0;
+      color: #000000 !important; }
+      .a1xploretv-g-left:focus .h1 {
+        color: #000000 !important; }
   .a1xploretv-g-right {
     max-width: 25%;
     margin-left: 130px; }
-  .a1xploretv-g a:focus {
+  .a1xploretv-g a:hover, .a1xploretv-g a:focus {
     background-color: transparent !important;
     border: 0; }
+  .a1xploretv-g .button {
+    font-size: 20px;
+    margin-top: 20px; }
+    .a1xploretv-g .button:hover, .a1xploretv-g .button:focus {
+      background-color: #da291c !important; }
 
 .a1xploretv-i {
   margin-top: 10px; }

@@ -61,13 +61,13 @@ function content_element_section_c($all_data) {
     ?>
     <section id="a1xploretv-g" class="a1xploretv-g bg-white">
         <div class="a1xploretv-g-container h-100">
-            <div class="d-flex align-items-center text-center h-100">
+            <div class="d-flex align-items-center text-center h-100 ">
                 <div id="a1xploretv-g-btn1" class="a1xploretv-g-left focusable">
                     <div class="h1 h-bold"><?= $all_data['headline'] ?></div>
                     <?= $all_data['copy'] ?>
 
                     <?php
-                      if ($all_data['button-href'] && false) {
+                      if ($all_data['button-label']) {
                     ?>
                     <p>
                       <a href="<?= parseLink($all_data['button-href']) ?>" class="button a1xploretv-icon arrowright focusable"><?= $all_data['button-label'] ?></a>
@@ -75,17 +75,21 @@ function content_element_section_c($all_data) {
                     <?php
                       }
                     ?>
-
+                    <?php
+                      if ($all_data['mobile_app'] == 'yes') {
+                    ?>
                     <p class="mt-5 mb-4">Finden Sie unsere App </p>
                     <div class="d-flex justify-content-center">
-                        <a id="a1xploretv-g-btn1" href="javascript:void(0)" onclick="alert('tst')" class="mr-3" alt="Google Play">
-                            <img src="/wp-content/themes/<?php echo get_template(); ?>/images/google-play-smarthome.png" alt="Google Play">
+                        <a id="a1xploretv-g-btn1" href="https://play.google.com/" class="mr-3">
+                            <img src="/wp-content/themes/<?php echo get_template(); ?>/images/google-play-smarthome.png" alt="Google Play" />
                         </a>
-                        <a id="a1xploretv-g-btn2" href="javascript:void(0)" onclick="alert('tst')" class="">
-                            <img src="/wp-content/themes/<?php echo get_template(); ?>/images/apple-app-smarthome.png" alt="">
+                        <a id="a1xploretv-g-btn2" href="https://www.apple.com/app-store/"  class="">
+                            <img src="/wp-content/themes/<?php echo get_template(); ?>/images/apple-app-smarthome.png" alt="Apple Store" />
                         </a>
                     </div>
-
+                    <?php
+                      }
+                    ?>
                 </div>
                 <div class="a1xploretv-g-right">
                     <img src="<?= $all_data['image']['url'] ?>" alt="<?= $all_data['image']['alt'] ?>">
@@ -278,7 +282,7 @@ function content_element_section_f($all_data) {
               <h3><?= nl2br($all_data['copytext']) ?></h3>
             <?php } ?>
             <div class="a1xploretv-f-container <?= $class_div ?>">
-                <div class="d-flex justify-content-between align-items-center text-center h-100">
+                <div class="text-center h-100">
                   <?php
                     $center_card = floor(count($all_data['cards']) / 2);
                     $num = 0;
@@ -334,7 +338,7 @@ function content_element_section_g($all_data) {
             if ($form_element['type'] == 'input') {
               ?>
               <div class="form-group">
-                <input type="text" name="<?= $form_element['name'] ?>" class="form-control focusable" placeholder="<?= $form_element['label'] ?><?= ($form_element['required']) ? ' *' : ''?>" autocomplete="off" <?= ($form_element['required']) ? 'required' : ''?>>
+                <input type="text" name="<?= $form_element['name'] ?>" class="js-a1xploretv-e-form-field form-control focusable" placeholder="<?= $form_element['label'] ?><?= ($form_element['required']) ? ' *' : ''?>" autocomplete="off" <?= ($form_element['required']) ? 'required' : ''?>>
               </div>
               <?php
             } else if ($form_element['type'] == 'radio') {
@@ -346,7 +350,7 @@ function content_element_section_g($all_data) {
                     $num = 0;
                     foreach ($form_element['values'] as $element_value) {
                       ?>
-                      <label class="a1xploretv-e-checkbox focusable" tabindex="-1">
+                      <label class="a1xploretv-e-checkbox js-a1xploretv-e-form-field focusable" tabindex="-1">
                         <input type="checkbox" value="<?= $element_value['value'] ?>" name="<?= $form_element['name'] ?>" <?= ($num == 0) ? 'checked' : '' ?>>
                         <span class="a1xploretv-e-checkbox-ui-bg" ></span>
                         <span class="a1xploretv-e-checkbox-ui" ></span>
@@ -367,7 +371,7 @@ function content_element_section_g($all_data) {
                   <?php
                     foreach ($form_element['values'] as $element_value) {
                       ?>
-                      <label class="a1xploretv-e-checkbox focusable" tabindex="-1">
+                      <label class="a1xploretv-e-checkbox js-a1xploretv-e-form-field focusable" tabindex="-1">
                         <input type="checkbox" value="<?= $element_value['value'] ?>" name="<?= $form_element['name'] ?>[]">
                         <span class="a1xploretv-e-checkbox-ui-bg" ></span>
                         <span class="a1xploretv-e-checkbox-ui" ></span>
@@ -384,7 +388,7 @@ function content_element_section_g($all_data) {
         ?>
       </div>
       <div class="a1xploretv-e-form-btns ">
-        <button type="submit" class="btn btn-block btn-outline-primary focusable">
+        <button type="submit" class="btn btn-block btn-outline-primary js-a1xploretv-e-form-field focusable">
           <span><?= $all_data['submit_button_title'] ?></span>
           <span class="a1xploretv-icon arrow-right"></span>
         </button>
@@ -438,7 +442,7 @@ function content_element_section_h($all_data) {
                       $num = 0;
                       foreach ($form_element['values'] as $element_value) {
                         ?>
-                        <label class="a1xploretv-e-checkbox focusable">
+                        <label class="a1xploretv-e-checkbox js-a1xploretv-e-form-field focusable" tabindex="-1">
                           <input type="checkbox" value="<?= $element_value['value'] ?>" name="<?= $form_element['name'] ?>" <?= ($num == 0) ? 'checked' : '' ?>>
                           <span class="a1xploretv-e-checkbox-ui-bg" ></span>
                           <span class="a1xploretv-e-checkbox-ui" ></span>
@@ -459,7 +463,7 @@ function content_element_section_h($all_data) {
                     <?php
                       foreach ($form_element['values'] as $element_value) {
                         ?>
-                        <label class="a1xploretv-e-checkbox focusable">
+                        <label class="a1xploretv-e-checkbox js-a1xploretv-e-form-field focusable" tabindex="-1">
                           <input type="checkbox" value="<?= $element_value['value'] ?>" name="<?= $form_element['name'] ?>[]">
                           <span class="a1xploretv-e-checkbox-ui-bg" ></span>
                           <span class="a1xploretv-e-checkbox-ui" ></span>
@@ -476,7 +480,7 @@ function content_element_section_h($all_data) {
           ?>
         </div>
         <div class="a1xploretv-e-form-btns">
-          <button type="submit" class="btn a1xploretv-icon arrowright btn-block btn-outline-primary focusable">
+          <button type="submit" class="btn a1xploretv-icon arrowright btn-block btn-outline-primary js-a1xploretv-e-form-field focusable">
             <span><?= $all_data['submit_button_title'] ?></span>
             <span class="a1xploretv-icon arrow-right"></span>
           </button>
