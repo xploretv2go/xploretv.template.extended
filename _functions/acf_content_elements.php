@@ -291,7 +291,6 @@ function content_element_section_g($all_data) {
     <?php } ?>
   </div>
   <form name="a1xploretv-e-form" method="POST" action="<?= get_template_directory_uri(); ?>/ajax_form_contact.php" autocomplete="off" class="myForm">
-    <input name="status_message_success" type="hidden" value="<?= $all_data['status_message_success'] ?>">
     <input name="status_message_receiver" type="hidden" value="<?= seso_encrypt($all_data['receiver']) ?>">
     <input name="status_message_receiver_message" type="hidden" value="<?= $all_data['receiver_message'] ?>">
     <?php
@@ -362,8 +361,13 @@ function content_element_section_g($all_data) {
       </div>
     </div>
   </form>
-  <div class="a1xploretv-e-textblock text-center response">
-
+  <div class="a1xploretv-e-textblock text-center response" style="opacity: 0;">
+    <h3><?= $all_data['status_message_success'] ?></h3>
+    <?php if (!empty($all_data['proceed_button_label'])) { ?>
+      <p class="mt-4">
+        <a href="<?= $all_data['proceed_button_link'] ?>" class="button a1xploretv-icon arrowright focusable"><?= $all_data['proceed_button_label'] ?></a>
+      </p>
+    <?php } ?>
   </div>
 </section>
 
@@ -383,7 +387,6 @@ function content_element_section_h($all_data) {
       <?php } ?>
     </div>
     <form name="a1xploretv-e-form" method="POST" action="<?= get_template_directory_uri(); ?>/ajax_form_survey.php" autocomplete="off" class="myForm">
-      <input name="status_message_success" type="hidden" value="<?= $all_data['status_message_success'] ?>">
       <input name="status_message_receiver" type="hidden" value="<?= seso_encrypt($all_data['receiver']) ?>">
       <input name="status_message_receiver_message" type="hidden" value="<?= $all_data['receiver_message'] ?>">
       <?php
@@ -454,8 +457,13 @@ function content_element_section_h($all_data) {
         </div>
       </div>
     </form>
-    <div class="a1xploretv-e-textblock text-center response">
-
+    <div class="a1xploretv-e-textblock text-center response" style="opacity: 0;">
+      <h3><?= $all_data['status_message_success'] ?></h3>
+      <?php if (!empty($all_data['proceed_button_label'])) { ?>
+        <p class="mt-4">
+          <a href="<?= $all_data['proceed_button_link'] ?>" class="button a1xploretv-icon arrowright focusable"><?= $all_data['proceed_button_label'] ?></a>
+        </p>
+      <?php } ?>
     </div>
   </section>
 <?php

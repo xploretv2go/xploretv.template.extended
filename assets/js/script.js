@@ -137,13 +137,16 @@
         url: url,
         data: form_data,
         success: function(data) {
-          //if (data === 'success') {
-              $( ".response" ).html( '<h3>' + data + '</h3>' );
+          $( ".response" ).fadeTo("fast", 1);
+          if (data === 'success') {
               $( ".myForm" ).hide();
-          //}
+          } else {
+              $( ".response" ).html('<h3>' + data + '</h3>');
+          }
         },
         error: function( jqXHR, textStatus) {
-          alert( "Request failed: " + textStatus );
+          $( ".response" ).fadeTo("fast", 1);
+          $( ".response" ).html('<h3>' + textStatus + '</h3>');
         }
       });
     });

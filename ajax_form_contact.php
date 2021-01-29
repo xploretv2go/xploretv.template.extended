@@ -33,7 +33,7 @@ $subject = $_POST['status_message_receiver_subject'];
 // Send mail
 $success = wp_mail($to, $subject, $message);
 if ($success === true) {
-  echo $_POST['status_message_success'];
+  echo 'success';
   return;
 }
-echo 'Error sending mail';
+echo 'error';
