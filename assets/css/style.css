@@ -651,13 +651,13 @@ section {
     width: 100%;
     max-width: 70%;
     margin: 30px auto 0 auto; }
+    .a1xploretv-f-container > div {
+      display: table;
+      border-collapse: separate;
+      border-spacing: 20px;
+      margin: 0 auto; }
     .a1xploretv-f-container.full-width {
       max-width: 100%; }
-      .a1xploretv-f-container.full-width > div {
-        display: table;
-        border-collapse: separate;
-        border-spacing: 20px;
-        margin: 0 auto; }
   .a1xploretv-f-box {
     width: 340px;
     padding: 30px 25px;
