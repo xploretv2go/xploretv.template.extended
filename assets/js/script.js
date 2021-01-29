@@ -213,11 +213,6 @@
 
    var sections = [
        '.focusable'
-       // '#a1xploretv-f-f-first',
-       // '#set-first',
-       // '#a1xploretv-g-btn1',
-       // '#js-a1xploretv-d-start',
-       // '#a1xploretv-h-btn'
    ]
 
    sections.forEach(function(value){
@@ -231,15 +226,11 @@
            $(this).parent().parent().parent().find('.js-a1xploretv-d-video').trigger('play');
            $(this).parent().parent().parent().find('.js-a1xploretv-d-content').fadeTo("fast", 0);
        } else {
-           // var playerId = $(this).attr('data-player-id');
-           // player + playerId.playVideo();
            $('.yt-poster').fadeTo("fast", 0);
        }
     });
 
     $('.js-a1xploretv-d-pause').on('click sn:enter-down', function() {
-        // var playerId = $(this).attr('data-player-id');
-        // pauseVideo(playerId);
         $('.yt-poster').fadeTo("fast", 1);
     });
 
@@ -247,79 +238,17 @@
     //VIMEO
     $('.js-a1xploretv-d-start-vimeo').on('click sn:enter-down', function() {
         var playerId = $(this).attr('data-player-id');
-        // playVideoVimeo();
         $('.vimeo-poster[data-player-id="'+playerId+'"]').fadeTo("fast", 0);
     });
 
     $('.js-a1xploretv-d-pause-vimeo').on('click sn:enter-down', function() {
         var playerId = $(this).attr('data-player-id');
-        // playVideoVimeo();
         $('.vimeo-poster[data-player-id="'+playerId+'"]').fadeTo("fast", 1);
     });
 
-
-    // // custom for video down
-    // if($('#a1xploretv-video-section').next().find('#set-first').length > 0){
-    //     $('#js-a1xploretv-d-start').attr('data-sn-down','#set-first');
-    // };
-    //
-    // // custom for slider up
-    // if($('.a1xploretv-l').prev().find('#js-a1xploretv-d-start').length > 0){
-    //     $('#js-a1xploretv-l-slider img').each(function(){
-    //         $(this).attr('data-sn-up','#js-a1xploretv-d-start');
-    //
-    //     });
-    // };
-
-   // Make the *currently existing* navigable elements focusable.
-   //SpatialNavigation.makeFocusable();
-
-   $.fn.ensureVisible = function(callback) {
-    var $this = $(this).first();
-    var $parent = $this.parent();
-    var scrollTop = $parent.scrollTop();
-    var scrollBottom = scrollTop + $parent.innerHeight();
-    var marginTop = parseInt($this.css('margin-top'));
-    var marginBottom = parseInt($this.css('margin-bottom'));
-    var top = $this.position().top + scrollTop + marginTop;
-    var bottom = top + $this.outerHeight();
-    var newPosition = null;
-
-    if (scrollTop > top - marginTop) {
-      newPosition = {scrollTop: top - marginTop};
-    } else if (scrollBottom < bottom + marginBottom) {
-      newPosition = {scrollTop: bottom - $parent.innerHeight() + marginBottom};
-    }
-
-    if (newPosition) {
-      $parent.animate(newPosition, {
-        duration: 200,
-        done: callback.bind(this)
-      });
-    } else {
-      setTimeout(callback.bind(this));
-    }
-
-    return this;
-  };
-
-  // Implement "ensureVisible" feature.
-    $('.a1xploretv-e-form .focusable').on('sn:willfocus', function() {
-      SpatialNavigation.pause();
-
-      $(this).ensureVisible(function() {
-        SpatialNavigation.focus(this);
-        SpatialNavigation.resume();
-      });
-
-      return false;
-    });
-
-
-
    // Focus the first navigable element.
    SpatialNavigation.focus();
-   SpatialNavigation.makeFocusable();
+   //SpatialNavigation.makeFocusable();
 
 
 

@@ -16,8 +16,8 @@ foreach ($_POST as $key => $value) {
 }
 
 // Add receiver message
-if (!empty($_POST('status_message_receiver_message'))) {
-  $message = $_POST('status_message_receiver_message') . "\n\n" . $message;
+if (!empty($_POST['status_message_receiver_message'])) {
+  $message = $_POST['status_message_receiver_message'] . "\n\n" . $message;
 }
 
 // Add receivers
@@ -27,7 +27,7 @@ $to = preg_replace('/\s+/', '', $to);
 $to = explode(',', $to);
 
 // Add subject
-$subject = $_POST('status_message_receiver_subject');
+$subject = $_POST['status_message_receiver_subject'];
 //$subject = 'New form was sent by ' . get_home_url();
 
 // Send mail
