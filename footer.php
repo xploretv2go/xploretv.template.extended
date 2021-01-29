@@ -75,21 +75,21 @@
                     window[functionPlay] = function(e) {
 
                         $(players).each(function (i) {
-                            console.log(this.h.id);
-                            console.log($(e).attr('data-id'));
                             if(this.h.id == $(e).attr('data-id')){
-                                
+
                                 if(e.classList.contains('js-video-slider-btn')){
                                     if(e.classList.contains('slider-video-play')){
                                         this.pauseVideo();
                                         e.classList.remove('slider-video-play');
                                         e.classList.remove('a1xploretv-d-pause');
                                         e.classList.add('a1xploretv-d-play');
+                                        $('.yt-poster[data-id="'+this.h.id+'"]').fadeTo("fast", 1);
                                     } else {
                                          this.playVideo();
                                          e.classList.add('slider-video-play');
                                          e.classList.add('a1xploretv-d-pause');
                                          e.classList.remove('a1xploretv-d-play');
+                                         $('.yt-poster[data-id="'+this.h.id+'"]').fadeTo("fast", 0);
                                     }
                                 }else {
 
@@ -109,6 +109,9 @@
                     };
                 }
             },500);
+
+
+                 
 
 
         </script>

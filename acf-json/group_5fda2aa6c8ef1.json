@@ -648,8 +648,8 @@
                 },
                 "layout_6011608b770fc": {
                     "key": "layout_6011608b770fc",
-                    "name": "section_d_slider",
-                    "label": "Section D - Full width Video - Slider",
+                    "name": "section_k",
+                    "label": "Section K - Full width Video - Slider",
                     "display": "block",
                     "sub_fields": [
                         {
@@ -1934,5 +1934,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1611875501
+    "modified": 1611906468
 }

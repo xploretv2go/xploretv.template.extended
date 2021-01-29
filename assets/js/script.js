@@ -170,8 +170,21 @@
        ];
 
    var eventHandler = function(evt) {
+        // paise video on change focus Youtube/Vimeo
+        if(evt.type == 'sn:focused'){
+            $('.js-video-global-pause').each(function(){
+                if($(this).hasClass('slider-video-play') || $(this).hasClass('vimeo-video-play')) {
+                    $(this).trigger('click');
+                }
+            });
 
-        //console.log(evt);
+            $('video').each(function(){
+                $(this).trigger('pause');
+                $(this).attr('currentTime',0);
+                $(this).trigger('load');
+                $('.js-a1xploretv-d-content').fadeTo("fast",1);
+            })
+        };
 
    };
 
@@ -219,42 +232,25 @@
        scrollSmooth(value);
    });
 
-   // YOUTUBE & Default Video
-    $('.js-a1xploretv-d-start').on('click sn:enter-down', function() {
-
-       if($(this).parent().parent().parent().find('.js-a1xploretv-d-video').length > 0) {
-           $(this).parent().parent().parent().find('.js-a1xploretv-d-video').trigger('play');
-           $(this).parent().parent().parent().find('.js-a1xploretv-d-content').fadeTo("fast", 0);
-       } else {
-           $('.yt-poster').fadeTo("fast", 0);
-       }
-    });
-
-    $('.js-a1xploretv-d-pause').on('click sn:enter-down', function() {
-        $('.yt-poster').fadeTo("fast", 1);
-    });
-
-
-    //VIMEO
-    $('.js-a1xploretv-d-start-vimeo').on('click sn:enter-down', function() {
-        var playerId = $(this).attr('data-player-id');
-        $('.vimeo-poster[data-player-id="'+playerId+'"]').fadeTo("fast", 0);
-    });
-
-    $('.js-a1xploretv-d-pause-vimeo').on('click sn:enter-down', function() {
-        var playerId = $(this).attr('data-player-id');
-        $('.vimeo-poster[data-player-id="'+playerId+'"]').fadeTo("fast", 1);
-    });
 
    // Focus the first navigable element.
    SpatialNavigation.focus();
    //SpatialNavigation.makeFocusable();
 
+   //  Default Video
+    $('.js-a1xploretv-d-start.loc-video').on('click sn:enter-down', function() {
+
+       if($(this).parent().parent().parent().find('.js-a1xploretv-d-video.loc-video').length > 0) {
+           $(this).parent().parent().parent().find('.js-a1xploretv-d-video.loc-video').trigger('play');
+           $(this).parent().parent('.js-a1xploretv-d-content').fadeTo('fast',0);
 
 
+       }
+    });
 
-   $('.js-a1xploretv-d-video').on('ended', function(){
+   $('.js-a1xploretv-d-video.loc-video').on('ended', function(){
       $('.js-a1xploretv-d-content').fadeTo("fast",1);
+      $(this).trigger('load');
    });
 
    window.addEventListener("keyup", function(e){ if(e.keyCode == 27) history.back(); }, false);

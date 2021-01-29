@@ -21,7 +21,7 @@ function content_element_section_a($all_data) {
     $class = $all_data['full-height'] ? 'a1xploretv-c' : 'a1xploretv-a';
     ?>
     <section id="a1xploretv-c" class="<?= $class ?> " style="background-image:url('<?= $all_data['background-image']['url'] ?>');">
-        <div class="w-50 mx-auto d-flex flex-column justify-content-center align-items-center text-center h-100">
+        <div class="w-50 mx-auto d-flex flex-column justify-content-center align-items-center text-center h-100 pt-5 pb-2">
             <div class="h1 <?= (!empty($all_data['background-image']['url'])) ? 'text-white' : '' ?> h-bold"><?= $all_data['headline'] ?></div>
             <div class="mt-1">
                 <h3 class="<?= (!empty($all_data['background-image']['url'])) ? 'text-white' : '' ?> mb-5">
@@ -109,13 +109,13 @@ function content_element_section_d($all_data) {
         <?php
           if ($all_data['video-provider'] == 'local-video') {
         ?>
-          <video class="js-a1xploretv-d-video" playsinline  poster="<?= $all_data['video-poster']['url'] ?>" id="bgvid">
+          <video class="js-a1xploretv-d-video loc-video" playsinline  poster="<?= $all_data['video-poster']['url'] ?>" id="bgvid">
             <source src="<?= $all_data['video-source'] ?>" type="video/mp4">
           </video>
         <?php
           } else if ($all_data['video-provider'] == 'stream') {
         ?>
-          <video class="js-a1xploretv-d-video" playsinline  poster="<?= $all_data['video-poster']['url'] ?>" id="bgvid">
+          <video class="js-a1xploretv-d-video loc-video" playsinline  poster="<?= $all_data['video-poster']['url'] ?>" id="bgvid">
             <source src="<?= $all_data['video-stream'] ?>" type="video/mp4">
           </video>
         <?php
@@ -123,7 +123,7 @@ function content_element_section_d($all_data) {
 
         <div class="js-a1xploretv-d-content position-relative d-flex flex-column justify-content-center align-items-center text-center h-100 ">
 
-            <div class="h1 <?php if ($all_data['video-provider'] == 'local-video') { ?> text-white <?php } ?>h-bold"><?= $all_data['headline'] ?></div>
+            <div class="h1 <?php if ($all_data['video-provider'] == 'local-video' || $all_data['video-provider'] == 'stream') { ?> text-white <?php } ?>h-bold"><?= $all_data['headline'] ?></div>
 
             <div class="mt-1">
 
@@ -132,62 +132,12 @@ function content_element_section_d($all_data) {
                         <?= nl2br($all_data['copytext']) ?>
                     </h3>
                     <div class="video-container">
-                        <div class="yt-poster" style="background-image: url('https://img.youtube.com/vi/<?= $all_data['video-id'] ?>/hqdefault.jpg')"></div>
-                        <div id="player<?= $rand; ?>" data-num="<?= $rand; ?>" data-src="<?= $all_data['video-id'] ?>" class="js-yt-video-frame a1xploretv-video-frame-yt mt-1"></div>
+                        <div class="yt-poster" data-id="player<?= $rand ?>" style="background-image: url('https://img.youtube.com/vi/<?= $all_data['video-id'] ?>/hqdefault.jpg')"></div>
+                        <div id="player<?= $rand; ?>" id="player<?= $rand; ?>" data-num="<?= $rand; ?>" data-src="<?= $all_data['video-id'] ?>" class="js-yt-video-frame a1xploretv-video-frame-yt mt-1"></div>
                     </div>
                     <br/>
-                    <a data-id="player<?= $rand ?>" href="javascript:void(0)" onclick="playVideoYT<?= $rand ?>(this);" class="a1xploretv-d-play mx-auto focusable js-a1xploretv-d-start"></a>
-                    <a data-id="player<?= $rand ?>" href="javascript:void(0)" onclick="pauseVideoYT<?= $rand ?>(this);" class="a1xploretv-d-pause focusable js-a1xploretv-d-pause"></a>
-                    <script>
+                    <a data-id="player<?= $rand ?>" id="player<?= $rand ?>" href="javascript:void(0)" onclick="playVideoYT<?= $rand ?>(this);" class="js-video-global-pause js-video-slider-btn a1xploretv-d-play mx-auto focusable js-a1xploretv-d-start"></a>
 
-                    // var player;
-                    // var done = false;
-                    //
-                    // function onYouTubeIframeAPIReady() {
-                    //     player<?= $rand ?> = new YT.Player("player<?= $rand ?>", {
-                    //          videoId: '<?= $all_data['video-id'] ?>',
-                    //          playerVars: {
-                    //            mute: 0,
-                    //            autoplay: 0,
-                    //            controls: 0,
-                    //            autohide: 1,
-                    //            wmode: "opaque",
-                    //            showinfo: 0,
-                    //            loop: 0,
-                    //            rel: 0
-                    //          },
-                    //          events: {
-                    //            onReady: onPlayerReady,
-                    //            //onStateChange: onPlayerStateChange
-                    //          }
-                    //      });
-                    //  }
-
-
-                     // function onPlayerStateChange(event) {
-                     //   if (event.data == YT.PlayerState.PLAYING && !done) {
-                     //       // seconds to play video
-                     //       setTimeout(pauseVideo, 8000);
-                     //       done = true;
-                     //   }
-                     //
-                     // }
-                     //
-                     // function onPlayerReady(event) {
-                     //     // console.log("player ready");
-                     // }
-                     //
-                     // // Functions just to remember
-                     // function playVideoYT<?= $rand ?>() {
-                     //     player<?= $rand ?>.playVideo();
-                     // }
-                     //
-                     // function pauseVideoYT<?= $rand ?>() {
-                     //     player<?= $rand ?>.pauseVideo();
-                     // }
-
-
-                    </script>
 
                 <?php } else if ($all_data['video-provider'] == 'vimeo') { ?>
                     <?php
@@ -199,25 +149,42 @@ function content_element_section_d($all_data) {
                         <div class="vimeo-poster" data-player-id="<?= $rand; ?>" style="background-image: url('<?= $thumb; ?>')"></div>
                         <iframe id="player-vimeo<?= $rand; ?>" src="https://player.vimeo.com/video/<?= $all_data['video-id'] ?>" class="a1xploretv-video-frame-yt mt-1 js-vimeo-player" allow="autoplay" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
                     </div>
-                    <a href="javascript:void(0)" data-player-id="<?= $rand; ?>" onclick="playVideoVimeo<?= $rand ?>();" class="a1xploretv-d-play mx-auto focusable js-a1xploretv-d-start-vimeo"></a>
-                    <a href="javascript:void(0)" data-player-id="<?= $rand; ?>" onclick="playVideoVimeo<?= $rand ?>();" class="a1xploretv-d-pause focusable js-a1xploretv-d-pause-vimeo"></a>
+                    <a href="javascript:void(0)" data-player-id="<?= $rand; ?>" onclick="playVideoVimeo<?= $rand ?>(this);" class="js-video-global-pause a1xploretv-d-play mx-auto focusable js-a1xploretv-d-start-vimeo"></a>
                     <script>
                             var iframe_vimeo = document.getElementById("player-vimeo<?= $rand; ?>");
                             var player_vimeo<?= $rand ?> = new Vimeo.Player(iframe_vimeo);
 
-                            function playVideoVimeo<?= $rand ?>(id) {
-                                player_vimeo<?= $rand ?>.play();
+                            function playVideoVimeo<?= $rand ?>(e) {
+                                if(e.classList.contains('vimeo-video-play')){
+                                    player_vimeo<?= $rand ?>.pause();
+                                    e.classList.remove('vimeo-video-play');
+                                    e.classList.remove('a1xploretv-d-pause');
+                                    e.classList.add('a1xploretv-d-play');
+                                    $('.vimeo-poster[data-player-id="<?= $rand; ?>"]').fadeTo("fast", 1);
+                                } else {
+                                     player_vimeo<?= $rand ?>.play();
+                                     e.classList.add('vimeo-video-play');
+                                     e.classList.add('a1xploretv-d-pause');
+                                     e.classList.remove('a1xploretv-d-play');
+                                     $('.vimeo-poster[data-player-id="<?= $rand; ?>"]').fadeTo("fast", 0);
+                                }
+
                             }
 
-                            function pauseVideoVimeo<?= $rand ?>(id) {
-                                player_vimeo<?= $rand ?>.pause();
-                            }
-                        </script>
+                            player_vimeo<?= $rand ?>.on('ended', function (e) {
+                               $('.js-a1xploretv-d-start-vimeo[data-player-id="<?= $rand; ?>"]').removeClass('slider-video-play');
+                               $('.js-a1xploretv-d-start-vimeo[data-player-id="<?= $rand; ?>"]').removeClass('a1xploretv-d-pause');
+                               $('.js-a1xploretv-d-start-vimeo[data-player-id="<?= $rand; ?>"]').addClass('a1xploretv-d-play');
+                               $('.vimeo-poster[data-player-id="<?= $rand; ?>"]').fadeTo("fast", 1);
+                           });
+
+
+                    </script>
                 <?php } else { ?>
                     <h3 class="text-white mb-5">
                         <?= nl2br($all_data['copytext']) ?>
                     </h3>
-                    <a href="javascript:void(0)"  id="js-a1xploretv-d-start" data-player-id="<?= $rand; ?>" class="a1xploretv-d-play mx-auto focusable js-a1xploretv-d-start"></a>
+                    <a href="javascript:void(0)"  id="js-a1xploretv-d-start" data-player-id="<?= $rand; ?>" class="a1xploretv-d-play mx-auto focusable js-a1xploretv-d-start loc-video"></a>
                 <?php } ?>
 
             </div>
@@ -501,120 +468,6 @@ function content_element_section_i($all_data) {
 <?php
 }
 
-function content_element_section_d_slider($all_data) {
-    ?>
-    <section class="a1xploretv-k px-0 a1xploretv-k-video-slider">
-
-        <div id="js-a1xploretv-k-slider" class="a1xploretv-k-slider js-a1xploretv-k-slider">
-           <?php
-           foreach ($all_data['videos'] as $item) {
-                $rand = rand(10,99);
-                   $imgid = $item['video_id'];
-               ?>
-               <?php if($item['video_provider'] == 'Vimeo'):?>
-               <div class="video-container focusable">
-                   <div class="h1 h-bold"><?= $item['video_headline']; ?></div>
-                   <h4><?= $item['video_content']; ?></h4>
-                   <div class="position-relative mb-3 ">
-                       <div class="vimeo-poster" data-player-id="<?= $rand; ?>" style="background-image:url('<?= $item['video_poster']['url']; ?>')"></div>
-                       <iframe id="player-vimeo<?= $rand; ?>" src="https://player.vimeo.com/video/<?= $imgid; ?>" class="a1xploretv-video-frame-yt mt-1 js-vimeo-player" allow="autoplay" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-                   </div>
-                   <a href="javascript:void(0)" data-player-id="<?= $rand; ?>" onclick="playVideoVimeo<?= $rand ?>(this);" class="a1xploretv-d-play mx-auto focusable js-a1xploretv-d-start-vimeo"></a>
-                   <!-- <a href="javascript:void(0)" data-player-id="<?= $rand; ?>" onclick="pauseVideoVimeo<?= $rand ?>();" class="a1xploretv-d-pause focusable js-a1xploretv-d-pause-vimeo"></a> -->
-
-                   <script>
-                       var iframe_vimeo = document.getElementById("player-vimeo<?= $rand; ?>");
-                       var player_vimeo<?= $rand ?> = new Vimeo.Player(iframe_vimeo);
-                         function playVideoVimeo<?= $rand ?>(e) {
-
-                             if(e.classList.contains('slider-video-play')){
-                                 player_vimeo<?= $rand ?>.pause();
-                                 e.classList.remove('slider-video-play');
-                                 e.classList.remove('a1xploretv-d-pause');
-                                 e.classList.add('a1xploretv-d-play');
-                             } else {
-                                  player_vimeo<?= $rand ?>.play();
-                                  e.classList.add('slider-video-play');
-                                  e.classList.add('a1xploretv-d-pause');
-                                  e.classList.remove('a1xploretv-d-play');
-                             }
-
-                          }
-                          player_vimeo<?= $rand ?>.on('ended', function (e) {
-                             $('[data-player-id="<?= $rand; ?>"]').removeClass('slider-video-play');
-                             $('[data-player-id="<?= $rand; ?>"]').removeClass('a1xploretv-d-pause');
-                             $('[data-player-id="<?= $rand; ?>"]').addClass('a1xploretv-d-play');
-                         });
-                   </script>
-               </div>
-           <?php else :?>
-               <div class="video-container focusable">
-                   <div class="h1 h-bold"><?= $item['video_headline']; ?></div>
-                   <h4><?= $item['video_content']; ?></h4>
-                   <div class="yt-poster" style="background-image: url('<?= $item['video_poster']['url']; ?>')"></div>
-                   <div id="player<?= $rand; ?>" data-num="<?= $rand; ?>" data-src="<?= $imgid; ?>" class="js-yt-video-frame a1xploretv-video-frame-yt mt-1"></div>
-                   <a data-id="player<?= $rand ?>" href="javascript:void(0)" onclick="playVideoYT<?= $rand ?>(this);" class="js-video-slider-btn a1xploretv-d-play mx-auto focusable js-a1xploretv-d-start"></a>
-                   <!-- <a href="javascript:void(0)" onclick="pauseVideoYT<?= $rand ?>();" class="a1xploretv-d-pause focusable js-a1xploretv-d-pause"></a> -->
-                   <script>
-
-
-                   // var player;
-                   // var done = false;
-                   //
-                   // function onYouTubeIframeAPIReady() {
-                   //     player<?= $rand ?> = new YT.Player("player<?= $rand ?>", {
-                   //          videoId: '<?= $imgid ?>',
-                   //          playerVars: {
-                   //            mute: 0,
-                   //            autoplay: 0,
-                   //            controls: 0,
-                   //            autohide: 1,
-                   //            wmode: "opaque",
-                   //            showinfo: 0,
-                   //            loop: 0,
-                   //            rel: 0
-                   //          },
-                   //          events: {
-                   //            onReady: onPlayerReady
-                   //          }
-                   //      });
-                   //  }
-                   //
-                   //  function onPlayerReady(event) {
-                   //      // console.log("player ready");
-                   //  }
-
-                    // Functions just to remember
-                    // function playVideoYT<?= $rand ?>(e) {
-                    //     //player<?= $rand ?>.playVideo();
-                    //     if(e.classList.contains('slider-video-play')){
-                    //         player<?= $rand ?>.pauseVideo();
-                    //         e.classList.remove('slider-video-play');
-                    //         e.classList.remove('a1xploretv-d-pause');
-                    //         e.classList.add('a1xploretv-d-play');
-                    //     } else {
-                    //          player<?= $rand ?>.playVideo();
-                    //          e.classList.add('slider-video-play');
-                    //          e.classList.add('a1xploretv-d-pause');
-                    //          e.classList.remove('a1xploretv-d-play');
-                    //     }
-                    // }
-
-                    // function pauseVideoYT<?= $rand ?>() {
-                    //     player<?= $rand ?>.pauseVideo();
-                    // }
-
-
-                   </script>
-               </div>
-           <?php endif;?>
-           <?php } ?>
-           <?php // for each ?>
-        </div>
-    </section>
-    <?php
-}
-
 // Section J - Cheat Codes
 function content_element_section_j($all_data) {
 ?>
@@ -644,4 +497,75 @@ function content_element_section_j($all_data) {
     }
   </script>
 <?php
+}
+
+
+// Section K - Youtube/Vimeo video slider
+function content_element_section_k($all_data) {
+    ?>
+    <section class="a1xploretv-k px-0 a1xploretv-k-video-slider">
+
+        <div id="js-a1xploretv-k-slider" class="a1xploretv-k-slider js-a1xploretv-k-slider">
+           <?php
+           foreach ($all_data['videos'] as $item) {
+                $rand = rand(10,99);
+                   $imgid = $item['video_id'];
+               ?>
+               <?php if($item['video_provider'] == 'Vimeo'):?>
+               <div class="video-container focusable">
+                   <div class="h1 h-bold"><?= $item['video_headline']; ?></div>
+                   <h4><?= $item['video_content']; ?></h4>
+                   <div class="position-relative mb-3 ">
+                       <div class="vimeo-poster" data-player-id="<?= $rand; ?>" style="background-image:url('<?= $item['video_poster']['url']; ?>')"></div>
+                       <iframe id="player-vimeo<?= $rand; ?>" src="https://player.vimeo.com/video/<?= $imgid; ?>" class="a1xploretv-video-frame-yt mt-1 js-vimeo-player" allow="autoplay" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                   </div>
+                   <a href="javascript:void(0)" data-player-id="<?= $rand; ?>" onclick="playVideoVimeo<?= $rand ?>(this);" class="js-video-global-pause a1xploretv-d-play mx-auto focusable js-a1xploretv-d-start-vimeo"></a>
+                   <!-- <a href="javascript:void(0)" data-player-id="<?= $rand; ?>" onclick="pauseVideoVimeo<?= $rand ?>();" class="a1xploretv-d-pause focusable js-a1xploretv-d-pause-vimeo"></a> -->
+
+                   <script>
+                       var iframe_vimeo = document.getElementById("player-vimeo<?= $rand; ?>");
+                       var player_vimeo<?= $rand ?> = new Vimeo.Player(iframe_vimeo);
+                         function playVideoVimeo<?= $rand ?>(e) {
+
+                             if(e.classList.contains('slider-video-play')){
+                                 player_vimeo<?= $rand ?>.pause();
+                                 e.classList.remove('slider-video-play');
+                                 e.classList.remove('a1xploretv-d-pause');
+                                 e.classList.add('a1xploretv-d-play');
+                                 $('.vimeo-poster[data-player-id="<?= $rand; ?>"]').fadeTo("fast", 1);
+
+                             } else {
+                                  player_vimeo<?= $rand ?>.play();
+                                  e.classList.add('slider-video-play');
+                                  e.classList.add('a1xploretv-d-pause');
+                                  e.classList.remove('a1xploretv-d-play');
+                                  $('.vimeo-poster[data-player-id="<?= $rand; ?>"]').fadeTo("fast", 0);
+
+                             }
+
+                          }
+                          player_vimeo<?= $rand ?>.on('ended', function (e) {
+                             $('.js-a1xploretv-d-start-vimeo[data-player-id="<?= $rand; ?>"]').removeClass('slider-video-play');
+                             $('.js-a1xploretv-d-start-vimeo[data-player-id="<?= $rand; ?>"]').removeClass('a1xploretv-d-pause');
+                             $('.js-a1xploretv-d-start-vimeo[data-player-id="<?= $rand; ?>"]').addClass('a1xploretv-d-play');
+                             $('.vimeo-poster[data-player-id="<?= $rand; ?>"]').fadeTo("fast", 1);
+                         });
+                   </script>
+               </div>
+           <?php else :?>
+               <div class="video-container focusable">
+                   <div class="h1 h-bold"><?= $item['video_headline']; ?></div>
+                   <h4><?= $item['video_content']; ?></h4>
+                   <div class="position-relative mb-3 ">
+                       <div class="yt-poster" data-id="player<?= $rand ?>" style="background-image: url('<?= $item['video_poster']['url']; ?>')"></div>
+                       <div id="player<?= $rand; ?>" data-num="<?= $rand; ?>" data-src="<?= $imgid; ?>" class="js-yt-video-frame a1xploretv-video-frame-yt mt-1"></div>
+                   </div>
+                   <a data-id="player<?= $rand ?>" href="javascript:void(0)" onclick="playVideoYT<?= $rand ?>(this);" class="js-video-global-pause js-video-slider-btn a1xploretv-d-play mx-auto focusable js-a1xploretv-d-start"></a>
+               </div>
+           <?php endif;?>
+           <?php } ?>
+           <?php // for each ?>
+        </div>
+    </section>
+    <?php
 }

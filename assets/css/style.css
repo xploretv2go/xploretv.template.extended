@@ -255,12 +255,7 @@ section {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  height: 300px;
-  min-height: 300px; }
-  @media (min-width: 1920px) {
-    .a1xploretv-a {
-      height: 450px;
-      min-height: 450px; } }
+  min-height: 200px; }
 
 .a1xploretv-b > div {
   margin-top: 30px; }
@@ -357,7 +352,7 @@ section {
   .a1xploretv-d .video-container {
     position: relative;
     width: 720px;
-    height: 480px;
+    height: 420px;
     margin-bottom: 15px; }
     @media (min-width: 1920px) {
       .a1xploretv-d .video-container {
@@ -480,6 +475,13 @@ section {
       border-color: #da291c; }
   .a1xploretv-e-radio-group {
     margin: 34px 0 37px 0; }
+    .a1xploretv-e-radio-group .radio .focusable:focus input:checked ~ .a1xploretv-e-checkbox-ui {
+      border-color: #ffffff; }
+    .a1xploretv-e-radio-group .radio .a1xploretv-e-checkbox-ui {
+      border-radius: 100%; }
+      .a1xploretv-e-radio-group .radio .a1xploretv-e-checkbox-ui:before {
+        border-bottom: 2px solid #efefef;
+        border-right: 2px solid #efefef; }
   .a1xploretv-e-radio-label {
     font-size: 21px;
     text-align: center;
@@ -654,7 +656,8 @@ section {
       .a1xploretv-f-container.full-width > div {
         display: table;
         border-collapse: separate;
-        border-spacing: 20px; }
+        border-spacing: 20px;
+        margin: 0 auto; }
   .a1xploretv-f-box {
     width: 340px;
     padding: 30px 25px;
@@ -781,6 +784,15 @@ section {
       .a1xploretv-k-video-slider .video-container:focus, .a1xploretv-k-video-slider .video-container:hover {
         background-color: transparent !important;
         border: 0; }
+      .a1xploretv-k-video-slider .video-container .yt-poster {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover; }
       .a1xploretv-k-video-slider .video-container .vimeo-poster {
         position: absolute;
         top: 0;
