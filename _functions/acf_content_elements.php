@@ -64,32 +64,27 @@ function content_element_section_c($all_data) {
             <div class="d-flex align-items-center text-center h-100 ">
                 <div id="a1xploretv-g-btn1" class="a1xploretv-g-left focusable">
                     <div class="h1 h-bold"><?= $all_data['headline'] ?></div>
-                    <?= $all_data['copy'] ?>
-
-                    <?php
-                      if ($all_data['button-label']) {
-                    ?>
                     <p>
-                      <a href="<?= parseLink($all_data['button-href']) ?>" class="button a1xploretv-icon arrowright focusable"><?= $all_data['button-label'] ?></a>
+                      <?= nl2br($all_data['copy']) ?>
                     </p>
-                    <?php
-                      }
-                    ?>
-                    <?php
-                      if ($all_data['mobile_app'] == 'yes') {
-                    ?>
-                    <p class="mt-5 mb-4">Finden Sie unsere App </p>
-                    <div class="d-flex justify-content-center">
-                        <a id="a1xploretv-g-btn1" href="https://play.google.com/" class="mr-3">
-                            <img src="/wp-content/themes/<?php echo get_template(); ?>/images/google-play-smarthome.png" alt="Google Play" />
-                        </a>
-                        <a id="a1xploretv-g-btn2" href="https://www.apple.com/app-store/"  class="">
-                            <img src="/wp-content/themes/<?php echo get_template(); ?>/images/apple-app-smarthome.png" alt="Apple Store" />
-                        </a>
-                    </div>
-                    <?php
-                      }
-                    ?>
+
+                    <?php if ($all_data['button-label']) { ?>
+                      <p>
+                        <a href="<?= parseLink($all_data['button-href']) ?>" class="button a1xploretv-icon arrowright focusable"><?= $all_data['button-label'] ?></a>
+                      </p>
+                    <?php } ?>
+
+                    <?php if ($all_data['mobile_app'] == 'yes') { ?>
+                      <p class="mt-5 mb-4">Finden Sie unsere App </p>
+                      <div class="d-flex justify-content-center">
+                          <a id="a1xploretv-g-btn1" href="https://play.google.com/" class="mr-3">
+                              <img src="/wp-content/themes/<?php echo get_template(); ?>/images/google-play-smarthome.png" alt="Google Play" />
+                          </a>
+                          <a id="a1xploretv-g-btn2" href="https://www.apple.com/app-store/"  class="">
+                              <img src="/wp-content/themes/<?php echo get_template(); ?>/images/apple-app-smarthome.png" alt="Apple Store" />
+                          </a>
+                      </div>
+                    <?php } ?>
                 </div>
                 <div class="a1xploretv-g-right">
                     <img src="<?= $all_data['image']['url'] ?>" alt="<?= $all_data['image']['alt'] ?>">
