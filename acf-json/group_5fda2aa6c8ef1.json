@@ -259,6 +259,25 @@
                                     "new_lines": ""
                                 },
                                 {
+                                    "key": "field_60253a08611a6",
+                                    "label": "Headline",
+                                    "name": "subheadline",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": "",
+                                    "maxlength": ""
+                                },
+                                {
                                     "key": "field_5fda3e33e8fef",
                                     "label": "Card HREF",
                                     "name": "card-href",
@@ -812,7 +831,7 @@
                             "label": "Cards",
                             "name": "cards",
                             "type": "repeater",
-                            "instructions": "",
+                            "instructions": "minimum cards 4",
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
@@ -821,7 +840,7 @@
                                 "id": ""
                             },
                             "collapsed": "",
-                            "min": 0,
+                            "min": 4,
                             "max": 0,
                             "layout": "block",
                             "button_label": "",
@@ -1101,6 +1120,32 @@
                                     "prepend": "",
                                     "append": "",
                                     "maxlength": ""
+                                },
+                                {
+                                    "key": "field_6023b5fd52791",
+                                    "label": "Alignment",
+                                    "name": "alignment",
+                                    "type": "select",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "top": "Top",
+                                        "middle": "Middle",
+                                        "bottom": "Bottom"
+                                    },
+                                    "default_value": false,
+                                    "allow_null": 0,
+                                    "multiple": 0,
+                                    "ui": 0,
+                                    "return_format": "value",
+                                    "ajax": 0,
+                                    "placeholder": ""
                                 }
                             ]
                         }
@@ -2024,5 +2069,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1611928398
+    "modified": 1613052446
 }

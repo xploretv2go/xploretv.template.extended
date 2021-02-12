@@ -21,15 +21,17 @@ function content_element_section_a($all_data) {
     $class = $all_data['full-height'] ? 'a1xploretv-c' : 'a1xploretv-a';
     ?>
     <section id="a1xploretv-c" class="<?= $class ?> " style="background-image:url('<?= $all_data['background-image']['url'] ?>');">
-        <div class="w-50 mx-auto d-flex flex-column justify-content-center align-items-center text-center h-100 pt-5 pb-2">
-            <div class="h1 <?= (!empty($all_data['background-image']['url'])) ? 'text-white' : '' ?> h-bold"><?= $all_data['headline'] ?></div>
-            <div class="mt-1">
-                <h3 class="<?= (!empty($all_data['background-image']['url'])) ? 'text-white' : '' ?> mb-5">
-                    <?= nl2br($all_data['copytext']) ?>
-                </h3>
-                <?php if ($all_data['button-label']) { ?>
-                  <a id="a1xploretv-c-btn1" href="<?= parseLink($all_data['button-href']) ?>" class="button a1xploretv-icon arrowright focusable"><?= $all_data['button-label'] ?></a>
-                <?php } ?>
+        <div class="mx-auto d-flex flex-column justify-content-center align-items-center text-center h-100 pt-5 pb-2">
+            <div class="a1xploretv-main-wrapper-inner">
+                <div class="h1 <?= (!empty($all_data['background-image']['url'])) ? 'text-white' : '' ?> h-bold"><?= $all_data['headline'] ?></div>
+                <div class="mt-1">
+                    <h3 class="<?= (!empty($all_data['background-image']['url'])) ? 'text-white' : '' ?> mb-5">
+                        <?= nl2br($all_data['copytext']) ?>
+                    </h3>
+                    <?php if ($all_data['button-label']) { ?>
+                      <a id="a1xploretv-c-btn1" href="<?= parseLink($all_data['button-href']) ?>" class="button a1xploretv-icon arrowright focusable"><?= $all_data['button-label'] ?></a>
+                    <?php } ?>
+                </div>
             </div>
         </div>
     </section>
@@ -41,13 +43,16 @@ function content_element_section_b($all_data) {
     ?>
     <section class="a1xploretv-k px-0">
         <div class="d-flex flex-column justify-content-center align-items-center mb-4">
-            <div class="h1 h-bold"><?= $all_data['headline'] ?></div>
-            <h3><?= nl2br($all_data['copytext']) ?></h3>
+            <div class="a1xploretv-main-wrapper-inner text-center">
+                <div class="h1 h-bold"><?= $all_data['headline'] ?></div>
+                <h3><?= nl2br($all_data['copytext']) ?></h3>
+            </div>
         </div>
         <div id="js-a1xploretv-k-slider" class="a1xploretv-k-slider js-a1xploretv-k-slider">
           <?php foreach ($all_data['cards'] as $card) { ?>
             <a href="<?= parseLink($card['card-href']) ?>" class="focusable">
                 <img src="<?= $card['image']['url'] ?>" alt="<?= $card['image']['alt'] ?>">
+                <h3><?= nl2br($card['subheadline']) ?></h3>
                 <?= $card['copytext'] ?>
             </a>
           <?php } ?>
@@ -61,8 +66,9 @@ function content_element_section_c($all_data) {
     ?>
     <section id="a1xploretv-g" class="a1xploretv-g bg-white">
         <div class="a1xploretv-g-container h-100">
-            <div class="d-flex align-items-center text-center h-100 ">
-                <div id="a1xploretv-g-btn1" class="a1xploretv-g-left focusable">
+          <div class="d-flex align-items-center text-center h-100 <?php if (empty($all_data['button-href'])) { ?>focusable<?php } ?>">
+                <?php if ($all_data['image-left-or-right'] == 'right') { ?>
+                  <div id="a1xploretv-g-btn1" class="a1xploretv-g-left">
                     <div class="h1 h-bold"><?= $all_data['headline'] ?></div>
                     <p>
                       <?= nl2br($all_data['copy']) ?>
@@ -85,10 +91,39 @@ function content_element_section_c($all_data) {
                           </a>
                       </div>
                     <?php } ?>
-                </div>
-                <div class="a1xploretv-g-right">
-                    <img src="<?= $all_data['image']['url'] ?>" alt="<?= $all_data['image']['alt'] ?>">
-                </div>
+                  </div>
+                  <div class="a1xploretv-g-right">
+                      <img src="<?= $all_data['image']['url'] ?>" alt="<?= $all_data['image']['alt'] ?>">
+                  </div>
+                <?php } else { ?>
+                  <div id="a1xploretv-g-btn1" class="a1xploretv-g-left order-2">
+                    <div class="h1 h-bold"><?= $all_data['headline'] ?></div>
+                    <p>
+                      <?= nl2br($all_data['copy']) ?>
+                    </p>
+
+                    <?php if ($all_data['button-label']) { ?>
+                      <p>
+                        <a href="<?= parseLink($all_data['button-href']) ?>" class="button a1xploretv-icon arrowright focusable"><?= $all_data['button-label'] ?></a>
+                      </p>
+                    <?php } ?>
+
+                    <?php if ($all_data['mobile_app'] == 'yes') { ?>
+                      <p class="mt-5 mb-4">Finden Sie unsere App </p>
+                      <div class="d-flex justify-content-center">
+                          <a id="a1xploretv-g-btn1" href="https://play.google.com/" class="mr-3">
+                              <img src="/wp-content/themes/<?php echo get_template(); ?>/images/google-play-smarthome.png" alt="Google Play" />
+                          </a>
+                          <a id="a1xploretv-g-btn2" href="https://www.apple.com/app-store/"  class="">
+                              <img src="/wp-content/themes/<?php echo get_template(); ?>/images/apple-app-smarthome.png" alt="Apple Store" />
+                          </a>
+                      </div>
+                    <?php } ?>
+                  </div>
+                  <div class="a1xploretv-g-right order-1">
+                      <img src="<?= $all_data['image']['url'] ?>" alt="<?= $all_data['image']['alt'] ?>">
+                  </div>
+                <?php } ?>
             </div>
         </div>
     </section>
@@ -100,7 +135,7 @@ function content_element_section_c($all_data) {
 function content_element_section_d($all_data) {
     $rand = rand(10, 99);
     ?>
-    <section class="a1xploretv-d a1xploretv-video-section">
+    <section class="a1xploretv-d a1xploretv-video-section <?php if ($all_data['video-provider'] == 'youtube' || $all_data['video-provider'] == 'vimeo') : ?> you-vim-video <?php endif;  ?>">
         <?php
           if ($all_data['video-provider'] == 'local-video') {
         ?>
@@ -118,15 +153,18 @@ function content_element_section_d($all_data) {
 
         <div class="js-a1xploretv-d-content position-relative d-flex flex-column justify-content-center align-items-center text-center h-100 ">
 
-            <div class="h1 <?php if ($all_data['video-provider'] == 'local-video' || $all_data['video-provider'] == 'stream') { ?> text-white <?php } ?>h-bold"><?= $all_data['headline'] ?></div>
 
             <div class="mt-1">
 
                 <?php if ($all_data['video-provider'] == 'youtube') { ?>
-                    <h3 class="mb-5">
-                        <?= nl2br($all_data['copytext']) ?>
-                    </h3>
-                    <div class="video-container">
+                    <div class="a1xploretv-main-wrapper-inner">
+                        <div class="h1 h-bold"><?= $all_data['headline'] ?></div>
+                        <h3 class="mb-5">
+                            <?= nl2br($all_data['copytext']) ?>
+                        </h3>
+                    </div>
+                    <div class="video-container mx-auto focusable">
+
                         <div class="yt-poster" data-id="player<?= $rand ?>" style="background-image: url('https://img.youtube.com/vi/<?= $all_data['video-id'] ?>/hqdefault.jpg')"></div>
                         <div id="player<?= $rand; ?>" id="player<?= $rand; ?>" data-num="<?= $rand; ?>" data-src="<?= $all_data['video-id'] ?>" class="js-yt-video-frame a1xploretv-video-frame-yt mt-1"></div>
                     </div>
@@ -140,7 +178,14 @@ function content_element_section_d($all_data) {
                         $hash = unserialize(file_get_contents("http://vimeo.com/api/v2/video/$imgid.php"));
                         $thumb = $hash[0]['thumbnail_medium'];
                     ?>
-                    <div class="video-container focusable">
+                    <div class="a1xploretv-main-wrapper-inner">
+                        <div class="h1 h-bold"><?= $all_data['headline'] ?></div>
+                        <h3 class="mb-5">
+                            <?= nl2br($all_data['copytext']) ?>
+                        </h3>
+                    </div>
+                    <div class="video-container mx-auto">
+
                         <div class="vimeo-poster" data-player-id="<?= $rand; ?>" style="background-image: url('<?= $thumb; ?>')"></div>
                         <iframe id="player-vimeo<?= $rand; ?>" src="https://player.vimeo.com/video/<?= $all_data['video-id'] ?>" class="a1xploretv-video-frame-yt mt-1 js-vimeo-player" allow="autoplay" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
                     </div>
@@ -176,10 +221,13 @@ function content_element_section_d($all_data) {
 
                     </script>
                 <?php } else { ?>
-                    <h3 class="text-white mb-5">
-                        <?= nl2br($all_data['copytext']) ?>
-                    </h3>
-                    <a href="javascript:void(0)"  id="js-a1xploretv-d-start" data-player-id="<?= $rand; ?>" class="a1xploretv-d-play mx-auto focusable js-a1xploretv-d-start loc-video"></a>
+                    <div class="a1xploretv-main-wrapper-inner">
+                        <div class="h1 text-white h-bold"><?= $all_data['headline'] ?></div>
+                        <h3 class="text-white mb-5">
+                            <?= nl2br($all_data['copytext']) ?>
+                        </h3>
+                        <a href="javascript:void(0)"  id="js-a1xploretv-d-start" data-player-id="<?= $rand; ?>" class="a1xploretv-d-play mx-auto focusable js-a1xploretv-d-start loc-video"></a>
+                    </div>
                 <?php } ?>
 
             </div>
@@ -236,37 +284,60 @@ function content_element_section_f($all_data) {
     $class_section = $all_data['full-width'] ? '' : 'h-auto';
     ?>
     <section id="a1xploretv-f" class="a1xploretv-f <?= $class_section ?>">
-        <div class="d-flex flex-column justify-content-center align-items-center text-center h-100">
+        <div class="d-flex flex-column justify-content-center align-items-center text-center w-100 h-100">
+            <div class="a1xploretv-main-wrapper-inner">
             <?php if ($all_data['headline']) { ?>
               <div class="h1 h-bold"><?= $all_data['headline'] ?></div>
             <?php } ?>
             <?php if ($all_data['copytext']) { ?>
               <h3><?= nl2br($all_data['copytext']) ?></h3>
             <?php } ?>
+            </div>
             <div class="a1xploretv-f-container <?= $class_div ?>">
-                <div class="text-center h-100">
+
+
+
+                <div class="text-center">
                   <?php
                     $center_card = floor(count($all_data['cards']) / 2);
-                    $num = 0;
+                    $num = 1;
                   ?>
                   <?php foreach ($all_data['cards'] as $card) { ?>
                     <?php
                       $my_id = '';
-                      if ($num == $center_card) $my_id = 'a1xploretv-f-f-first';
+                      //if ($num == $center_card) $my_id = 'a1xploretv-f-f-first';
                     ?>
 
-                    <a id="<?= $my_id ?>" href="<?= parseLink($card['href']) ?>" class="a1xploretv-f-box focusable h-100">
+                    <a id="<?= $my_id ?>" href="<?= parseLink($card['href']) ?>" class="a1xploretv-f-box focusable h-100" style="vertical-align: <?= $card['alignment'] ?>">
                       <span>
-                        <?php if (isset($card['image'])) { ?>
-                          <img src="<?= $card['image']['url'] ?>" alt="<?= $card['image']['url'] ?>">
+                        <?php if ($card['image'] !== false) { ?>
+                          <img src="<?= $card['image']['url'] ?>" alt="<?= $card['image']['alt'] ?>">
                         <?php } ?>
-                        <span class="a1xploretv-f-title h3"><?= $card['headline'] ?></span>
+                        <div class="a1xploretv-f-title h3"><?= $card['headline'] ?></div>
                         <p><?= $card['copytext'] ?></p>
                       </span>
                     </a>
-                    <?php $num++; ?>
+                    <?php
+                    if($num % 4 == 0) {
+                        echo '</div><div class="text-center">';
+                    }
+
+                    $num++;
+
+
+                    ?>
+
+
+
+
                   <?php } ?>
+
+
                 </div>
+
+
+
+
             </div>
         </div>
     </section>
@@ -299,7 +370,8 @@ function content_element_section_g($all_data) {
             if ($form_element['type'] == 'input') {
               ?>
               <div class="form-group">
-                <input type="text" name="<?= $form_element['name'] ?>" class="js-a1xploretv-e-form-field form-control focusable" placeholder="<?= $form_element['label'] ?><?= ($form_element['required']) ? ' *' : ''?>" autocomplete="off" <?= ($form_element['required']) ? 'required' : ''?>>
+                 <label><?= $form_element['label'] ?><?= ($form_element['required']) ? ' *' : ''?></label>
+                <input type="text" name="<?= $form_element['name'] ?>" class="js-a1xploretv-e-form-field form-control focusable" placeholder="" autocomplete="off" <?= ($form_element['required']) ? 'required' : ''?>>
               </div>
               <?php
             } else if ($form_element['type'] == 'radio') {
@@ -357,6 +429,9 @@ function content_element_section_g($all_data) {
     </div>
   </form>
   <div class="a1xploretv-e-textblock text-center response" style="opacity: 0;">
+    <div class="a1xploretv-e-textblock-checkicon py-5">
+        <img src="/wp-content/themes/<?php echo get_template(); ?>/images/icon_checksmarthome.png"/>
+    </div>
     <h3><?= $all_data['status_message_success'] ?></h3>
     <?php if (!empty($all_data['proceed_button_label'])) { ?>
       <p class="mt-4">
@@ -395,7 +470,8 @@ function content_element_section_h($all_data) {
               if ($form_element['type'] == 'input') {
                 ?>
                 <div class="form-group">
-                  <input type="text" name="<?= $form_element['name'] ?>" class="form-control focusable" placeholder="<?= $form_element['label'] ?><?= ($form_element['required']) ? ' *' : ''?>" autocomplete="off" <?= ($form_element['required']) ? 'required' : ''?>>
+                    <label><?= $form_element['label'] ?><?= ($form_element['required']) ? ' *' : ''?></label>
+                  <input type="text" name="<?= $form_element['name'] ?>" class="form-control focusable" placeholder="" autocomplete="off" <?= ($form_element['required']) ? 'required' : ''?>>
                 </div>
                 <?php
               } else if ($form_element['type'] == 'radio') {
@@ -453,6 +529,9 @@ function content_element_section_h($all_data) {
       </div>
     </form>
     <div class="a1xploretv-e-textblock text-center response" style="opacity: 0;">
+        <div class="a1xploretv-e-textblock-checkicon py-5">
+            <img src="/wp-content/themes/<?php echo get_template(); ?>/images/icon_checksmarthome.png"/>
+        </div>
       <h3><?= $all_data['status_message_success'] ?></h3>
       <?php if (!empty($all_data['proceed_button_label'])) { ?>
         <p class="mt-4">

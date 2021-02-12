@@ -60,7 +60,8 @@
                        showinfo: 0,
                        loop: 0,
                        rel: 0,
-                       origin: 'http://xploretv-smarthome.apptank.at'
+                       //origin: 'http://xploretv-smarthome.apptank.at'
+											 origin: '<?php echo WP_HOME ?>'
                      }
                 });
              }
@@ -111,7 +112,7 @@
             },500);
 
 
-                 
+
 
 
         </script>
