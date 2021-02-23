@@ -18,15 +18,21 @@ get_header();
 ?>
 
 <main role="main">
-  <?php
-  $content_elements = get_field('content_elements', get_the_ID());
-  if ( isset( $content_elements ) ) {
-      foreach ( $content_elements as $single_element ) {
-      	$call_f_name = "content_element_" . $single_element['acf_fc_layout'];
-      	$call_f_name( $single_element );
-      }
-  }
-  ?>
+    <?php
+    $content_elements = get_field('content_elements', get_the_ID());
+    if ( isset( $content_elements ) ) {
+        $section_index = 0;
+        foreach ( $content_elements as $single_element ) {
+            // Fallback
+            if ($single_element['acf_fc_layout'] == 'section_h') {
+                $single_element['acf_fc_layout'] = 'section_g';
+            }
+            $call_f_name = "content_element_" . $single_element['acf_fc_layout'];
+            $call_f_name( $single_element, $section_index );
+            $section_index++;
+        }
+    }
+    ?>
 </main><!-- #site-content -->
 
 <?php

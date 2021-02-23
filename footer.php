@@ -10,20 +10,18 @@
  */
 
 ?>
-			<!--
-			<footer>
-				Footer content goes here
-			</footer>
-			-->
+    	<!--
+    	<footer>
+    		Footer content goes here
+    	</footer>
+    	-->
 
 		<?php wp_footer(); ?>
         <script>
-
-
-        var tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/iframe_api";
-        var firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+            var tag = document.createElement('script');
+            tag.src = "https://www.youtube.com/iframe_api";
+            var firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
             var playerInfoList = [];
             var players = [];
@@ -38,15 +36,13 @@
             });
 
             function onYouTubeIframeAPIReady() {
-                if (typeof playerInfoList === 'undefined'){return};
+                if (typeof playerInfoList === 'undefined') { return };
 
                 for (var i = 0; i < playerInfoList.length; i++) {
                     var curplayer = createPlayer(playerInfoList[i]);
                     players[i] = curplayer;
                 }
             }
-
-
 
             function createPlayer(playerInfoList) {
                 return new YT.Player(playerInfoList.id, {
@@ -61,7 +57,7 @@
                        loop: 0,
                        rel: 0,
                        //origin: 'http://xploretv-smarthome.apptank.at'
-											 origin: '<?php echo WP_HOME ?>'
+                       origin: '<?php echo WP_HOME ?>'
                      }
                 });
              }
@@ -69,12 +65,8 @@
             // Functions
             setTimeout(function(){
                 for (var i = 0; i < playerInfoList.length; i++) {
-
-
-
                     var functionPlay = "playVideoYT"+playerInfoList[i].num;
                     window[functionPlay] = function(e) {
-
                         $(players).each(function (i) {
                             if(this.h.id == $(e).attr('data-id')){
 
@@ -93,7 +85,6 @@
                                          $('.yt-poster[data-id="'+this.h.id+'"]').fadeTo("fast", 0);
                                     }
                                 }else {
-
                                     this.playVideo();
                                 }
                             }
@@ -109,12 +100,7 @@
                         });
                     };
                 }
-            },500);
-
-
-
-
-
+            }, 500);
         </script>
 	</body>
 </html>

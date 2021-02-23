@@ -10,28 +10,21 @@
  */
 
 ?><!DOCTYPE html>
-
 <html class="no-js" <?php language_attributes(); ?>>
-
 	<head>
-
 		<meta charset="<?php bloginfo( 'charset' ); ?>">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" >
         <script src="https://player.vimeo.com/api/player.js"></script>
 		<?php wp_head(); ?>
-
 	</head>
 
 	<body <?php body_class(); ?>>
-
 		<?php
 		wp_body_open();
 		?>
-
-
-    <header class="a1xploretv-homepage">
-      <div class="d-flex justify-content-between align-items-center">
-          <h1 class=""><?=get_the_title()?></h1>
-          <div id="js-a1xploretv-date-time" class="a1xploretv-date-time"><span class="js-a1xploretv-date"></span><span class="a1xploretv-line mx-1"> | </span><span class="js-a1xploretv-time"></span></div>
-      </div>
-    </header>
+        <header class="a1xploretv-homepage">
+          <div class="d-flex justify-content-between align-items-center">
+              <h1 class=""><?=get_the_title()?></h1>
+              <div id="js-a1xploretv-date-time" class="a1xploretv-date-time"><span class="js-a1xploretv-date"></span><span class="a1xploretv-line mx-1"> | </span><span class="js-a1xploretv-time"></span></div>
+          </div>
+        </header>

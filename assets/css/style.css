@@ -3,15 +3,18 @@ header {
   top: 0;
   left: 0;
   width: 100%;
-  padding: 45px 60px 15px 60px;
+  padding: 5vh 60px 15px 60px;
   background-color: transparent;
   z-index: 99;
   color: #888888; }
   header h1 {
     font-family: A1Sans;
-    font-size: 1rem;
+    font-size: 18px;
     color: #888888;
     margin: 0 !important; }
+    @media (min-width: 1920px) {
+      header h1 {
+        font-size: 24px; } }
   header.a1xploretv-homepage, header.package-smarthome, header.header-position-relative {
     position: relative;
     background-color: #efefef; }
@@ -24,7 +27,7 @@ header {
     top: -2px; }
   @media (min-width: 1920px) {
     header {
-      padding: 10px 100px; } }
+      padding: 5vh 100px 10px 100px; } }
   header .a1xploretv-logo {
     max-width: 70px; }
     @media (min-width: 1920px) {
@@ -84,10 +87,10 @@ h2, .h2 {
   font-size: 2.125rem; }
 
 h3, .h3 {
-  font-size: 1.5rem; }
+  font-size: 24px; }
   @media (min-width: 1920px) {
     h3, .h3 {
-      font-size: 1.875rem; } }
+      font-size: 32px; } }
 
 h4, .h4 {
   font-size: 1.675rem; }
@@ -100,10 +103,10 @@ h6, .h6 {
 
 p {
   font-family: inherit;
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 400;
   line-height: 1.5;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   text-rendering: optimizeLegibility; }
   @media (min-width: 1920px) {
     p {
@@ -129,7 +132,7 @@ a.button, .button {
   border-width: 1px;
   cursor: pointer;
   font-family: "A1Sans", Verdana, sans-serif;
-  font-weight: 700;
+  font-weight: 400;
   line-height: normal;
   margin: 0 0 20px;
   position: relative;
@@ -138,17 +141,16 @@ a.button, .button {
   display: inline-block;
   padding: 7px 14px 8px 14px;
   font-size: 18px;
-  background-color: #da291c;
+  background-color: #ffffff;
   border-color: #da291c;
-  color: #ffffff;
-  -webkit-transition: background-color .5s ease-out;
-  transition: background-color .5s ease-out; }
+  color: #da291c;
+  -webkit-transition: background-color .5s ease-out, color .5s ease-out;
+  transition: background-color .5s ease-out, color .5s ease-out; }
   @media (min-width: 1920px) {
     a.button, .button {
       font-size: 24px; } }
   a.button:focus, a.button:hover, .button:focus, .button:hover {
-    background-color: #ae2116;
-    border-color: #ae2116;
+    background-color: #da291c;
     color: #ffffff; }
   a.button.arrowright, .button.arrowright {
     padding-left: 20px;
@@ -225,6 +227,12 @@ section {
   height: 100%;
   width: 100%; }
 
+.hidden {
+  display: none; }
+
+.has-error {
+  color: #da291c; }
+
 @font-face {
   font-family: 'A1Serif';
   src: local("?"), url("../fonts/a1serif/A1Serif-Regular.woff") format("woff"), url("../fonts/a1serif/A1Serif-Regular.ttf") format("truetype"), url("../fonts/a1serif/A1Serif-Regular.svg") format("svg");
@@ -274,6 +282,11 @@ section {
   background-position: center;
   background-size: cover;
   min-height: 200px; }
+  .a1xploretv-a a {
+    font-size: 24px; }
+    @media (min-width: 1920px) {
+      .a1xploretv-a a {
+        font-size: 32px; } }
 
 .a1xploretv-b > div {
   margin-top: 30px; }
@@ -300,7 +313,12 @@ section {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  height: 96vh; }
+  height: 100vh; }
+  .a1xploretv-c a {
+    font-size: 24px; }
+    @media (min-width: 1920px) {
+      .a1xploretv-c a {
+        font-size: 32px; } }
 
 .a1xploretv-d {
   height: 96vh;
@@ -396,7 +414,6 @@ section {
 
 .btn {
   font-size: 1.675rem;
-  font-weight: 700;
   font-family: "A1Serif";
   border-radius: 0;
   padding: 8px 44px;
@@ -664,9 +681,11 @@ section {
 
 .a1xploretv-f {
   margin-top: 20px;
-  min-height: 100vh;
   padding-left: 0;
-  padding-right: 0; }
+  padding-right: 0;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto; }
   @media (min-width: 1920px) {
     .a1xploretv-f {
       margin-top: 40px; } }
@@ -688,7 +707,7 @@ section {
     .a1xploretv-f-container.full-width {
       max-width: 100%; }
   .a1xploretv-f-box {
-    width: 260px;
+    width: 263px;
     padding: 30px 25px;
     -webkit-box-shadow: 0 0 20px 0px #d0d0d0;
             box-shadow: 0 0 20px 0px #d0d0d0;
@@ -697,7 +716,7 @@ section {
     vertical-align: middle; }
     @media (min-width: 1920px) {
       .a1xploretv-f-box {
-        width: 340px; } }
+        width: 407px; } }
     .a1xploretv-f-box img {
       width: 100%;
       max-width: 170px;
@@ -744,14 +763,14 @@ section {
   .a1xploretv-g a:hover, .a1xploretv-g a:focus {
     background-color: transparent !important;
     border: 0; }
-  .a1xploretv-g .button {
+  .a1xploretv-g a.button {
     font-size: 18px;
     margin-top: 20px; }
     @media (min-width: 1920px) {
-      .a1xploretv-g .button {
+      .a1xploretv-g a.button {
         font-size: 24px; } }
-    .a1xploretv-g .button:hover, .a1xploretv-g .button:focus {
-      background-color: #ae2116 !important; }
+    .a1xploretv-g a.button:hover, .a1xploretv-g a.button:focus {
+      background-color: #da291c !important; }
 
 .a1xploretv-i {
   margin-top: 10px; }
@@ -798,18 +817,20 @@ section {
   .a1xploretv-k-slider {
     overflow: hidden; }
     .a1xploretv-k-slider a {
-      width: 615px;
+      width: 640px;
       text-align: center;
       margin: 0 15px; }
       @media (min-width: 1920px) {
         .a1xploretv-k-slider a {
-          width: 1080px; } }
-      .a1xploretv-k-slider a:focus, .a1xploretv-k-slider a:hover {
-        background-color: transparent !important;
-        color: #000000 !important;
-        border: 0; }
-        .a1xploretv-k-slider a:focus img, .a1xploretv-k-slider a:hover img {
-          border: 2px solid #da291c; }
+          width: 920px; } }
+      .a1xploretv-k-slider a.slick-current, .a1xploretv-k-slider a:hover, .a1xploretv-k-slider a:focus {
+        border: 0;
+        background-color: #da291c;
+        color: #ffffff; }
+        .a1xploretv-k-slider a.slick-current h3, .a1xploretv-k-slider a:hover h3, .a1xploretv-k-slider a:focus h3 {
+          color: #ffffff !important; }
+      .a1xploretv-k-slider a p {
+        padding: 0 15px; }
     .a1xploretv-k-slider img {
       width: 100%;
       margin: 0 auto 30px auto; }
@@ -899,8 +920,8 @@ section {
       font-weight: 700;
       margin-bottom: 10px; }
     .a1xploretv-l #productInfo ul {
-      font-size: 18px; }
+      font-size: 17px; }
       @media (min-width: 1920px) {
         .a1xploretv-l #productInfo ul {
-          font-size: 21px; } }
+          font-size: 24px; } }
 /*# sourceMappingURL=style.css.map */
