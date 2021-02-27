@@ -20,22 +20,21 @@ function content_element_section_a($all_data, $section_index) {
                 </div>
             </div>
         </div>
-    </section>
-
-    <script>
-        window.addEventListener('load', function() {
-            // Add section to SN
-            SpatialNavigation.add('section_<?= $section_index ?>', {
-                selector: '#section_<?= $section_index ?> .focusable',
-                leaveFor: {
-                    up: '@section_<?= $section_index - 1 ?>',
-                    down: '@section_<?= $section_index + 1 ?>',
-                    left: '',
-                    right: ''
-                }
+        <script>
+            window.addEventListener('load', function() {
+                // Add section to SN
+                SpatialNavigation.add('section_<?= $section_index ?>', {
+                    selector: '#section_<?= $section_index ?> .focusable',
+                    leaveFor: {
+                        up: '@section_<?= $section_index - 1 ?>',
+                        down: '@section_<?= $section_index + 1 ?>',
+                        left: '',
+                        right: ''
+                    }
+                });
             });
-        });
-    </script>
+        </script>
+    </section>
 
     <?php
 }

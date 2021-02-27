@@ -5,7 +5,7 @@ function content_element_section_c($all_data, $section_index) {
     <!-- section_c -->
     <section id="section_<?= $section_index ?>" class="a1xploretv-g bg-white">
         <div class="a1xploretv-g-container h-100">
-          <div class="d-flex align-items-center text-center h-100 <?php if (empty($all_data['button-href'])) { ?>focusable<?php } ?>">
+          <div class="d-flex align-items-center text-center h-100 <?php if (empty($all_data['button-label'])) { ?>focusable<?php } ?>">
                 <?php if ($all_data['image-left-or-right'] == 'right') { ?>
                   <div class="a1xploretv-g-left">
                     <div class="h1 h-bold"><?= $all_data['headline'] ?></div>
@@ -65,22 +65,21 @@ function content_element_section_c($all_data, $section_index) {
                 <?php } ?>
             </div>
         </div>
-    </section>
-
-    <script>
-        window.addEventListener('load', function() {
-            // Add section to SN
-            SpatialNavigation.add('section_<?= $section_index ?>', {
-                selector: '#section_<?= $section_index ?> .focusable',
-                leaveFor: {
-                    up: '@section_<?= $section_index - 1 ?>',
-                    down: '@section_<?= $section_index + 1 ?>',
-                    left: '',
-                    right: ''
-                }
+        <script>
+            window.addEventListener('load', function() {
+                // Add section to SN
+                SpatialNavigation.add('section_<?= $section_index ?>', {
+                    selector: '#section_<?= $section_index ?> .focusable',
+                    leaveFor: {
+                        up: '@section_<?= $section_index - 1 ?>',
+                        down: '@section_<?= $section_index + 1 ?>',
+                        left: '',
+                        right: ''
+                    }
+                });
             });
-        });
-    </script>
+        </script>
+    </section>
 
     <?php
 }

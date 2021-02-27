@@ -80,7 +80,7 @@
                                     } else {
                                          this.playVideo();
                                          e.classList.add('slider-video-play');
-                                         e.classList.add('a1xploretv-d-pause');
+                                         //e.classList.add('a1xploretv-d-pause');
                                          e.classList.remove('a1xploretv-d-play');
                                          $('.yt-poster[data-id="'+this.h.id+'"]').fadeTo("fast", 0);
                                     }

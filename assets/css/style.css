@@ -3,7 +3,7 @@ header {
   top: 0;
   left: 0;
   width: 100%;
-  padding: 5vh 60px 15px 60px;
+  padding: 5vh 60px 25px 60px;
   background-color: transparent;
   z-index: 99;
   color: #888888; }
@@ -27,7 +27,7 @@ header {
     top: -2px; }
   @media (min-width: 1920px) {
     header {
-      padding: 5vh 100px 10px 100px; } }
+      padding: 5vh 100px 20px 100px; } }
   header .a1xploretv-logo {
     max-width: 70px; }
     @media (min-width: 1920px) {
@@ -119,10 +119,13 @@ a {
     a {
       font-size: 24px; } }
   a:hover, a:focus {
+    background-color: #da291c;
     color: #ffffff;
     text-decoration: none;
-    outline: none;
-    background-color: #da291c; }
+    outline: none; }
+  a[href=""]:focus, a[href=""]:hover {
+    background-color: #d7d7d7;
+    color: #000000; }
 
 a.button, .button {
   -webkit-appearance: none;
@@ -172,16 +175,31 @@ a.button, .button {
 .h-bold {
   font-weight: 700; }
 
-.focusable:focus {
-  border: 1px solid #da291c;
+.focusable:focus, .focusable:hover {
   background-color: #da291c;
   outline: none;
   color: #ffffff !important; }
-  .focusable:focus .h1, .focusable:focus .h2, .focusable:focus .h3, .focusable:focus .h4, .focusable:focus .h5, .focusable:focus .h5 {
+  .focusable:focus .h1, .focusable:focus .h2, .focusable:focus .h3, .focusable:focus .h4, .focusable:focus .h5, .focusable:focus .h5, .focusable:hover .h1, .focusable:hover .h2, .focusable:hover .h3, .focusable:hover .h4, .focusable:hover .h5, .focusable:hover .h5 {
     color: #ffffff !important; }
 
-input.focusable:focus {
+.focusable[href=""]:focus, .focusable[href=""]:hover {
+  background-color: #d7d7d7;
+  color: #000000 !important; }
+  .focusable[href=""]:focus .h1, .focusable[href=""]:focus .h2, .focusable[href=""]:focus .h3, .focusable[href=""]:focus .h4, .focusable[href=""]:focus .h5, .focusable[href=""]:focus .h5, .focusable[href=""]:hover .h1, .focusable[href=""]:hover .h2, .focusable[href=""]:hover .h3, .focusable[href=""]:hover .h4, .focusable[href=""]:hover .h5, .focusable[href=""]:hover .h5 {
+    color: #000000 !important; }
+
+input.focusable:focus, input.focusable:hover {
   border: 1px solid #da291c; }
+
+a.input-wrapper {
+  border: 1px solid #d7d7d7;
+  width: 100%;
+  height: 70px;
+  position: absolute;
+  display: block; }
+  a.input-wrapper:hover, a.input-wrapper:focus {
+    background-color: transparent;
+    border-color: #da291c; }
 
 main {
   display: -webkit-box;
@@ -232,6 +250,10 @@ section {
 
 .has-error {
   color: #da291c; }
+
+.background-red {
+  background-color: #da291c;
+  color: #ffffff; }
 
 @font-face {
   font-family: 'A1Serif';
@@ -335,19 +357,30 @@ section {
     top: 0;
     left: 0; }
   .a1xploretv-d-play {
-    width: 80px;
-    height: 80px;
-    background-color: #000000;
-    border-radius: 100%;
-    display: inline-block;
-    cursor: pointer;
     position: relative; }
+    .a1xploretv-d-play:before {
+      content: '';
+      position: absolute;
+      z-index: 7;
+      display: inline-block;
+      bottom: 124px;
+      left: 50%;
+      -webkit-transform: translate(-50%, -50%);
+              transform: translate(-50%, -50%);
+      width: 80px;
+      height: 80px;
+      background: #000000;
+      border-radius: 100%; }
+      @media (min-width: 1920px) {
+        .a1xploretv-d-play:before {
+          bottom: 254px; } }
     .a1xploretv-d-play:after {
       content: '';
       position: absolute;
+      z-index: 8;
       display: inline-block;
-      top: 50%;
-      left: 56%;
+      bottom: 174px;
+      left: 50.5%;
       -webkit-transform: translate(-50%, -50%);
               transform: translate(-50%, -50%);
       width: 0;
@@ -355,6 +388,38 @@ section {
       border-top: 15px solid transparent;
       border-bottom: 15px solid transparent;
       border-left: 25px solid #ffffff; }
+      @media (min-width: 1920px) {
+        .a1xploretv-d-play:after {
+          bottom: 304px; } }
+    .a1xploretv-d-play.single-video {
+      width: 80px;
+      height: 80px;
+      background-color: #000000;
+      border-radius: 100%;
+      display: inline-block;
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translate(-50%, -50%);
+              transform: translate(-50%, -50%); }
+      .a1xploretv-d-play.single-video:before {
+        display: none; }
+      .a1xploretv-d-play.single-video:after {
+        content: '';
+        position: absolute;
+        display: inline-block;
+        top: 50%;
+        left: 56%;
+        -webkit-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%);
+        width: 0;
+        height: 0;
+        border-top: 15px solid transparent;
+        border-bottom: 15px solid transparent;
+        border-left: 25px solid #ffffff; }
+      .a1xploretv-d-play.single-video.loc-video {
+        top: 66%; }
     .a1xploretv-d-play.focusable:focus {
       color: #ffffff;
       text-decoration: none;
@@ -492,7 +557,8 @@ section {
     .a1xploretv-e-textblock p {
       font-size: 21px; }
   .a1xploretv-e .form-group {
-    margin-bottom: 12px; }
+    margin-bottom: 12px;
+    position: relative; }
   .a1xploretv-e .form-control {
     font-size: 21px;
     height: 70px;
@@ -816,34 +882,40 @@ section {
       margin-top: 40px; } }
   .a1xploretv-k-slider {
     overflow: hidden; }
-    .a1xploretv-k-slider a {
+    .a1xploretv-k-slider a.slick-slide {
       width: 640px;
       text-align: center;
       margin: 0 15px; }
       @media (min-width: 1920px) {
-        .a1xploretv-k-slider a {
-          width: 920px; } }
-      .a1xploretv-k-slider a.slick-current, .a1xploretv-k-slider a:hover, .a1xploretv-k-slider a:focus {
+        .a1xploretv-k-slider a.slick-slide {
+          width: 980px; } }
+      .a1xploretv-k-slider a.slick-slide.slick-current:focus, .a1xploretv-k-slider a.slick-slide:hover {
         border: 0;
         background-color: #da291c;
-        color: #ffffff; }
-        .a1xploretv-k-slider a.slick-current h3, .a1xploretv-k-slider a:hover h3, .a1xploretv-k-slider a:focus h3 {
+        color: #ffffff !important; }
+        .a1xploretv-k-slider a.slick-slide.slick-current:focus h3, .a1xploretv-k-slider a.slick-slide:hover h3 {
           color: #ffffff !important; }
-      .a1xploretv-k-slider a p {
-        padding: 0 15px; }
+      .a1xploretv-k-slider a.slick-slide:focus {
+        background: transparent; }
+      .a1xploretv-k-slider a.slick-slide.js-video-global-pause {
+        background-color: transparent !important;
+        color: #000000; }
+        .a1xploretv-k-slider a.slick-slide.js-video-global-pause.slick-current, .a1xploretv-k-slider a.slick-slide.js-video-global-pause:hover, .a1xploretv-k-slider a.slick-slide.js-video-global-pause:focus {
+          background-color: transparent !important;
+          color: #000000 !important; }
+          .a1xploretv-k-slider a.slick-slide.js-video-global-pause.slick-current:before, .a1xploretv-k-slider a.slick-slide.js-video-global-pause:hover:before, .a1xploretv-k-slider a.slick-slide.js-video-global-pause:focus:before {
+            background: #da291c; }
+      .a1xploretv-k-slider a.slick-slide.slick-slide > div {
+        padding: 30px 30px 10px 30px; }
     .a1xploretv-k-slider img {
       width: 100%;
-      margin: 0 auto 30px auto; }
+      margin: 0 auto; }
   .a1xploretv-k-video-slider {
     margin-bottom: 100px; }
     .a1xploretv-k-video-slider .video-container {
       position: relative;
-      width: 615px;
       text-align: center;
       margin: 0 15px; }
-      @media (min-width: 1920px) {
-        .a1xploretv-k-video-slider .video-container {
-          width: 1080px; } }
       .a1xploretv-k-video-slider .video-container:focus, .a1xploretv-k-video-slider .video-container:hover {
         background-color: transparent !important;
         border: 0; }
@@ -867,7 +939,15 @@ section {
         background-size: cover; }
       .a1xploretv-k-video-slider .video-container a {
         display: inline-block;
-        width: 80px; }
+        width: 80px;
+        position: absolute;
+        bottom: 23%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%); }
+        @media (min-width: 1920px) {
+          .a1xploretv-k-video-slider .video-container a {
+            bottom: 30%; } }
         .a1xploretv-k-video-slider .video-container a:focus, .a1xploretv-k-video-slider .video-container a:hover {
           background-color: #da291c !important; }
       .a1xploretv-k-video-slider .video-container .a1xploretv-video-frame-yt {

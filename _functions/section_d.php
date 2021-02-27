@@ -32,13 +32,14 @@ function content_element_section_d($all_data, $section_index) {
                             <?= nl2br($all_data['copytext']) ?>
                         </h3>
                     </div>
-                    <div class="video-container mx-auto focusable">
+                    <div class="video-container mx-auto">
 
                         <div class="yt-poster" data-id="player<?= $rand ?>" style="background-image: url('https://img.youtube.com/vi/<?= $all_data['video-id'] ?>/hqdefault.jpg')"></div>
                         <div id="player<?= $rand; ?>" id="player<?= $rand; ?>" data-num="<?= $rand; ?>" data-src="<?= $all_data['video-id'] ?>" class="js-yt-video-frame a1xploretv-video-frame-yt mt-1"></div>
+
+                        <a data-id="player<?= $rand ?>" id="player<?= $rand ?>" href="javascript:void(0)" onclick="playVideoYT<?= $rand ?>(this);" class="js-video-global-pause js-video-slider-btn a1xploretv-d-play mx-auto focusable js-a1xploretv-d-start single-video"></a>
                     </div>
-                    <br/>
-                    <a data-id="player<?= $rand ?>" id="player<?= $rand ?>" href="javascript:void(0)" onclick="playVideoYT<?= $rand ?>(this);" class="js-video-global-pause js-video-slider-btn a1xploretv-d-play mx-auto focusable js-a1xploretv-d-start"></a>
+
 
 
                 <?php } else if ($all_data['video-provider'] == 'vimeo') { ?>
@@ -57,8 +58,10 @@ function content_element_section_d($all_data, $section_index) {
 
                         <div class="vimeo-poster" data-player-id="<?= $rand; ?>" style="background-image: url('<?= $thumb; ?>')"></div>
                         <iframe id="player-vimeo<?= $rand; ?>" src="https://player.vimeo.com/video/<?= $all_data['video-id'] ?>" class="a1xploretv-video-frame-yt mt-1 js-vimeo-player" allow="autoplay" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
+                        <a href="javascript:void(0)" data-player-id="<?= $rand; ?>" onclick="playVideoVimeo<?= $rand ?>(this);" class="js-video-global-pause a1xploretv-d-play mx-auto focusable js-a1xploretv-d-start-vimeo single-video"></a>
                     </div>
-                    <a href="javascript:void(0)" data-player-id="<?= $rand; ?>" onclick="playVideoVimeo<?= $rand ?>(this);" class="js-video-global-pause a1xploretv-d-play mx-auto focusable js-a1xploretv-d-start-vimeo"></a>
+
                     <script>
                             var iframe_vimeo = document.getElementById("player-vimeo<?= $rand; ?>");
                             var player_vimeo<?= $rand ?> = new Vimeo.Player(iframe_vimeo);
@@ -73,7 +76,7 @@ function content_element_section_d($all_data, $section_index) {
                                 } else {
                                      player_vimeo<?= $rand ?>.play();
                                      e.classList.add('vimeo-video-play');
-                                     e.classList.add('a1xploretv-d-pause');
+                                     //e.classList.add('a1xploretv-d-pause');
                                      e.classList.remove('a1xploretv-d-play');
                                      $('.vimeo-poster[data-player-id="<?= $rand; ?>"]').fadeTo("fast", 0);
                                 }
@@ -95,27 +98,27 @@ function content_element_section_d($all_data, $section_index) {
                         <h3 class="text-white mb-5">
                             <?= nl2br($all_data['copytext']) ?>
                         </h3>
-                        <a href="javascript:void(0)"  id="js-a1xploretv-d-start" data-player-id="<?= $rand; ?>" class="a1xploretv-d-play mx-auto focusable js-a1xploretv-d-start loc-video"></a>
+                        <a href="javascript:void(0)"  id="js-a1xploretv-d-start" data-player-id="<?= $rand; ?>" class="a1xploretv-d-play mx-auto focusable js-a1xploretv-d-start loc-video single-video"></a>
                     </div>
                 <?php } ?>
 
             </div>
         </div>
+        <script>
+            window.addEventListener('load', function() {
+                // Add section to SN
+                SpatialNavigation.add('section_<?= $section_index ?>', {
+                    selector: '#section_<?= $section_index ?> .focusable',
+                    leaveFor: {
+                        up: '@section_<?= $section_index - 1 ?>',
+                        down: '@section_<?= $section_index + 1 ?>',
+                        left: '',
+                        right: ''
+                    }
+                });
+            });
+        </script>
     </section>
 
-    <script>
-        window.addEventListener('load', function() {
-            // Add section to SN
-            SpatialNavigation.add('section_<?= $section_index ?>', {
-                selector: '#section_<?= $section_index ?> .focusable',
-                leaveFor: {
-                    up: '@section_<?= $section_index - 1 ?>',
-                    down: '@section_<?= $section_index + 1 ?>',
-                    left: '',
-                    right: ''
-                }
-            });
-        });
-    </script>
     <?php
 }

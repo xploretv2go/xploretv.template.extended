@@ -22,17 +22,20 @@ function content_element_section_g($all_data, $section_index) {
         <div class="a1xploretv-e-inner mx-auto">
             <div class="a1xploretv-e-form">
                 <?php
+                $input_index = 0;
                 foreach ($all_data['form_elements'] as  $form_element) {
                     if ($form_element['type'] == 'input') {
                 ?>
                 <div class="form-group">
                     <label><?= $form_element['label'] ?><?= ($form_element['required']) ? ' *' : ''?></label>
+                    <a class="input-wrapper focusable" href="#"></a>
                     <input
                         type="text"
                         name="<?= $form_element['name'] ?>"
-                        class="js-a1xploretv-e-form-field form-control focusable"
+                        class="js-a1xploretv-e-form-field form-control"
                         placeholder=""
                         autocomplete="off"
+                        id="input_<?= $section_index ?>_<?= $input_index ++ ?>"
                         <?= ($form_element['required']) ? 'required' : '' ?>
                         <?= (isset($form_element['placeholder']) && isset($GLOBALS['ASMP'][$form_element['placeholder']])) ? 'value="' . $GLOBALS['ASMP'][$form_element['placeholder']] . '"' : '' ?>
                         >
@@ -84,22 +87,21 @@ function content_element_section_g($all_data, $section_index) {
         </p>
         <?php } ?>
     </div>
-</section>
-
-<script>
-    window.addEventListener('load', function() {
-        // Add section to SN
-        SpatialNavigation.add('section_<?= $section_index ?>', {
-            selector: '#section_<?= $section_index ?> .focusable',
-            leaveFor: {
-                up: '@section_<?= $section_index - 1 ?>',
-                down: '@section_<?= $section_index + 1 ?>',
-                left: '',
-                right: ''
-            }
+    <script>
+        window.addEventListener('load', function() {
+            // Add section to SN
+            SpatialNavigation.add('section_<?= $section_index ?>', {
+                selector: '#section_<?= $section_index ?> .focusable',
+                leaveFor: {
+                    up: '@section_<?= $section_index - 1 ?>',
+                    down: '@section_<?= $section_index + 1 ?>',
+                    left: '',
+                    right: ''
+                }
+            });
         });
-    });
-</script>
+    </script>
+</section>
 
 <?php
 }

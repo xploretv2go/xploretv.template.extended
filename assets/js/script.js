@@ -1,6 +1,10 @@
 ;(function($) {
     "use strict";
 
+    // Set a fallback element to first element.
+    var fallback_element = $('#section_0 .focusable:first');
+    var keepinfocus_interval = null;
+
     // Initialize.
     SpatialNavigation.init();
 
@@ -12,9 +16,36 @@
     // Focus the first navigable element.
     SpatialNavigation.pause();
     setTimeout(function(){
-        SpatialNavigation.focus('#section_0 .focusable')[0];
+        //SpatialNavigation.focus(fallback_element);
+        fallback_element.focus();
         SpatialNavigation.resume();
-    }, 500);
+        keepinfocus_interval = setInterval(keepInFocus, 100);
+    }, 250);
+
+    function keepInFocus() {
+        if ($(document.activeElement).hasClass('focusable')) {
+            // Set active element as fallback.
+            fallback_element = $(document.activeElement);
+        } else {
+            SpatialNavigation.focus(fallback_element);
+            fallback_element.focus();
+        }
+        // Check if focused element is in the viewport.
+        var screenHeight = $(window).height();
+        var windowOffset = $(window).scrollTop();
+        var elementHeight = fallback_element.outerHeight();
+        var elementOffset = fallback_element.offset().top;
+        var targetScrollTop = 0;
+        if ((elementOffset + elementHeight + 60) >= (windowOffset + screenHeight) || elementOffset < windowOffset) {
+            targetScrollTop = elementOffset - (screenHeight - elementHeight) + 60;
+            // Always scroll to absolute top if there is only a very small distance.
+            if (targetScrollTop < 100) {
+                targetScrollTop = 0;
+            }
+            // All done!
+            $('html, body').scrollTop(targetScrollTop);
+        }
+    }
 
     // All valid events.
     var validEvents = [
@@ -25,13 +56,14 @@
         'sn:focused',
         'sn:enter-down',
         'sn:enter-up',
-        'sn:navigatefailed'
+        'sn:navigatefailed',
+        'keypress',
+        'keydown',
+        'keyup',
+        'onblur'
      ];
 
     var eventHandler = function(evt) {
-        if (evt.type == 'sn:focused') {
-            //console.log(evt.type, evt.target, evt.detail);
-        }
 
         if (evt.type == 'sn:willfocus') {
             // Scroll to active section.
@@ -60,30 +92,44 @@
             // All done!
             $('html, body').animate({
                 scrollTop: targetScrollTop
+            }, {
+                queue: false
             }, 500);
 
-            if ($(evt.target).is('input:text')) {
-                //$(evt.target).prop('disabled', true);
-                var esc = $.Event("keydown", { keyCode: 27 });
-                $(evt.target).trigger(esc);
-                console.log($(evt.target));
+        }
+
+        // Focus on input type text via helper element.
+        if ($(evt.target).is('a.input-wrapper')) {
+            if (evt.type == 'sn:enter-up') {
+                evt.preventDefault();
+                if ($(evt.target).hasClass('just-exited')) {
+                    $(evt.target).removeClass('just-exited')
+                    return false;
+                }
+                $(evt.target).hide();
+                SpatialNavigation.focus($(evt.target).next('input'));
+                $(evt.target).next('input').focus();
+                $(evt.target).next('input').get(0).setSelectionRange(0, 0); // Set cursor to the beginning.
+                SpatialNavigation.pause();
                 return false;
             }
         }
 
-        // Input field.
-        if ($(evt.target).is('input:text')) {
-            if (evt.type == 'sn:focused') {
-                $(evt.target).prop('disabled', true);
-            }
-            if (evt.type == 'sn:unfocused') {
-                $(evt.target).prop('disabled', false);
-            }
-            if (evt.type == 'sn:willunfocus') {
-                $(evt.target).prop('disabled', false);
+        // Leave input type text and reactivate helper element.
+        if ($(evt.target).is('input[type="text"]')) {
+            if (evt.key == 'ArrowDown' || evt.key == 'ArrowUp' || evt.key == 'Escape' || evt.key == 'Enter') {
+                evt.preventDefault();
+                $(evt.target).blur();
+                $(evt.target).prev().show();
+                $(evt.target).prev().addClass('just-exited');
+                $(evt.target).prev().focus();
+                SpatialNavigation.focus($(evt.target).prev());
+                SpatialNavigation.resume();
+                return false;
             }
         }
 
+        // Follow links.
         if (evt.type == 'sn:enter-down') {
             if (evt.srcElement.href) {
                 window.location.href = evt.srcElement.href;
@@ -140,13 +186,11 @@
                 dots: false,
                 arrows: false
             });
-
-            slider.on('beforeChange', function(event, slick, currentSlide, nextSlide){
-                slider.find('a.slick-current').focus();
-            });
-            slider.on('afterChange', function(event, slick, currentSlide){
-                slider.find('a.slick-current').focus();
-            });
+            //
+            // $(this).on('afterChange', function(event, slick, currentSlide){
+            //   var current = $(this).find('.slick-current');
+            //   current.focus();
+            // });
         });
     }
 
@@ -253,7 +297,7 @@
     }
 
     // History back on [ESC].
-    window.addEventListener("keyup", function(e){ if(e.keyCode == 27) history.back(); }, false);
+    //window.addEventListener("keyup", function(e){ if(e.keyCode == 27) history.back(); }, false);
 
     $('.a1xploretv-e-radio-ui').on('sn:focused',function(){
        $('.a1xploretv-e-radio').find('input').each(function(){
@@ -271,7 +315,7 @@
         }
     });
 
-    // Radio Buttons
+    // Radio buttons.
     $(".radio .a1xploretv-e-checkbox").on('sn:enter-down', function(){
         $(this).closest('.radio').find('input').prop("checked", false);
         $(this).find('input').prop("checked", true);
@@ -319,3 +363,22 @@
     });
 
 }(jQuery));
+
+function getCookie(name) {
+    var dc = document.cookie;
+    var prefix = name + "=";
+    var begin = dc.indexOf("; " + prefix);
+    if (begin == -1) {
+        begin = dc.indexOf(prefix);
+        if (begin != 0) return null;
+    }
+    else
+    {
+        begin += 2;
+        var end = document.cookie.indexOf(";", begin);
+        if (end == -1) {
+            end = dc.length;
+        }
+    }
+    return decodeURI(dc.substring(begin + prefix.length, end));
+}
