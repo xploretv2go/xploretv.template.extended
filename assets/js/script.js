@@ -16,7 +16,7 @@
     // Focus the first navigable element.
     SpatialNavigation.pause();
     setTimeout(function(){
-        //SpatialNavigation.focus(fallback_element);
+        SpatialNavigation.focus(fallback_element);
         fallback_element.focus();
         SpatialNavigation.resume();
         keepinfocus_interval = setInterval(keepInFocus, 100);

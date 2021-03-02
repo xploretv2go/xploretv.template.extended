@@ -23,6 +23,7 @@ require_once('section_d.php');
 require_once('section_e.php');
 require_once('section_f.php');
 require_once('section_g.php');
+require_once('section_h.php');
 require_once('section_i.php');
 require_once('section_j.php');
 require_once('section_k.php');
