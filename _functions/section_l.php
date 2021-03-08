@@ -1,28 +1,28 @@
 <?php
-// Section H - Zerconf Debugger
-function content_element_section_h($all_data, $section_index) {
+// Section L - Nuki Debugger
+function content_element_section_l($all_data, $section_index) {
     ?>
-    <!-- section_h -->
-    <section id="section_<?= $section_index ?>" class="a1xploretv-h">
-        <h3>Zerconf API</h3>
-        <p>Showing response from <a href="https://localhost/a1/xploretv/v1/zeroconf" class="focusable">https://localhost/a1/xploretv/v1/zeroconf</a></p>
-        <textarea style="width: 100%; height: 50vh; font-size: 13px; background-color: white; color: black !important;" class="focusable" id="zeroconf_debug"></textarea>
+    <!-- section_l -->
+    <section id="section_<?= $section_index ?>" class="a1xploretv-l">
+        <h3>NUKI API</h3>
+        <p>Showing response from <a href="https://api.nuki.io/discover/bridges" class="focusable">https://api.nuki.io/discover/bridges</a></p>
+        <textarea style="width: 100%; height: 50vh; font-size: 13px; background-color: white; color: black !important;" class="focusable" id="debug_nuki"></textarea>
 
         <script>
             window.addEventListener('load', function() {
 
-                const detection_url = 'https://localhost/a1/xploretv/v1/zeroconf';
+                const detection_url = 'https://api.nuki.io/discover/bridges';
                 var request = $.ajax({
                     url: detection_url,
                     method: "GET"
                 });
 
                 request.done(function( msg ) {
-                    $('#zeroconf_debug').val(JSON.stringify(msg));
+                    $('#debug_nuki').val(JSON.stringify(msg));
                 });
 
                 request.fail(function( jqXHR, textStatus ) {
-                    $('#zeroconf_debug').val( "Request failed: " + textStatus );
+                    $('#debug_nuki').val( "Request failed: " + textStatus );
                 });
 
                 // Add section to SN

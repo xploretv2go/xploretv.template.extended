@@ -1706,6 +1706,15 @@
                     ],
                     "min": "",
                     "max": ""
+                },
+                "layout_60466ad53a5e9": {
+                    "key": "layout_60466ad53a5e9",
+                    "name": "section_l",
+                    "label": "Section L - NUKI Debug",
+                    "display": "block",
+                    "sub_fields": [],
+                    "min": "",
+                    "max": ""
                 }
             },
             "button_label": "Add Row",
@@ -1732,5 +1741,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1614696336
+    "modified": 1615227627
 }
