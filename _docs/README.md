@@ -74,6 +74,12 @@ Make sure to give it a proper name starting with section_NAME and replace NAME w
 Please consult the documentation of ACF to use the full capacity of the plugin.
 Hit Update when you are done.
 
+<h3>Adding additional CSS and Javascript</h3>
+
+Never work directly in the core files. If you need additional CSS or Javascript, please put them directly in your section_x.php file or put them in /assets. Take care to name them according to the section you add. For example if you add an additional CSS file for your custom section_x, please add your code to /assets/css/section_x.css and add it to the header in function seso_register_styles().
+
+If you need additional asset files, please put them in a subfolder in /images, for example /images/section_x
+
 <h3>Connecting the dots</h3>
 
 Now it's time to connect the ACF data within the variable $all_data as mentioned above.

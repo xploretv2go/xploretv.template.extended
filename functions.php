@@ -13,10 +13,12 @@ function seso_register_styles() {
     wp_register_style('a1xploretv-css-bootstrap', get_template_directory_uri() . '/lib/css/bootstrap.min.css', array(), $theme_version);
     wp_register_style('a1xploretv-css-slick', get_template_directory_uri() . '/lib/css/slick.css', array(), $theme_version);
     wp_register_style('a1xploretv-style', get_template_directory_uri() . '/assets/css/style.min.css', array(), $theme_version);
+    // Register additional CSS files here
 
     wp_enqueue_style( 'a1xploretv-css-bootstrap');
     wp_enqueue_style( 'a1xploretv-css-slick');
     wp_enqueue_style( 'a1xploretv-style');
+    // Enqueue additional CSS files here
 }
 
 add_action( 'wp_enqueue_scripts', 'seso_register_styles' );
@@ -38,6 +40,7 @@ function seso_register_scripts() {
     wp_register_script('a1xploretv-js-validate', get_template_directory_uri() . '/lib/js/jquery.validate.min.js', array(), $theme_version, true);
     wp_register_script('a1xploretv-js-spatial-navigation', get_template_directory_uri() . '/lib/js/spatial_navigation.js', array(), $theme_version, true);
     wp_register_script('a1xploretv-js', get_template_directory_uri() . '/assets/js/script.min.js', array(), $theme_version, true);
+    // Register additional JS files here
 
     wp_enqueue_script( 'a1xploretv-js-jquery');
     wp_enqueue_script( 'a1xploretv-js-bootstrap');
@@ -45,6 +48,7 @@ function seso_register_scripts() {
     wp_enqueue_script( 'a1xploretv-js-validate');
     wp_enqueue_script( 'a1xploretv-js-spatial-navigation');
     wp_enqueue_script( 'a1xploretv-js');
+    // Enqueue additional JS files here
 
     wp_script_add_data( 'a1xploretv-js', 'async', true );
 }
