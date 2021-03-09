@@ -341,6 +341,16 @@
             }
         });
 
+        $('.a1xploretv-e-radio-group.required').each(function( index, value ){
+            var is_checked = $(this).find('input:checkbox:checked').length;
+            if (is_checked == 0) {
+                $(this).find('p.has-error').removeClass('hidden');
+                form_valid = false;
+            } else {
+                $(this).find('p.has-error').addClass('hidden');
+            }
+        });
+
         if (form_valid) {
             $.ajax({
                 method: method,

@@ -4,22 +4,19 @@ header {
   left: 0;
   width: 100%;
   padding: 5vh 60px 25px 60px;
-  background-color: transparent;
+  background-color: #70707012;
   z-index: 99;
-  color: #888888; }
+  color: #121212; }
   header h1 {
     font-family: A1Sans;
     font-size: 18px;
-    color: #888888;
+    color: #121212;
     margin: 0 !important; }
     @media (min-width: 1920px) {
       header h1 {
         font-size: 24px; } }
   header.a1xploretv-homepage, header.package-smarthome, header.header-position-relative {
-    position: relative;
-    background-color: #efefef; }
-    header.a1xploretv-homepage .a1xploretv-date-time, header.package-smarthome .a1xploretv-date-time, header.header-position-relative .a1xploretv-date-time {
-      color: #888888; }
+    position: relative; }
   header.package-smarthome, header.header-position-relative {
     padding: 35px 60px 10px 60px; }
   header .a1xploretv-line {
@@ -167,7 +164,7 @@ a.button, .button {
             transform: translateY(-50%); }
 
 .text-gray {
-  color: #888888 !important; }
+  color: #121212 !important; }
 
 .text-white {
   color: #ffffff !important; }
@@ -192,7 +189,7 @@ input.focusable:focus, input.focusable:hover {
   border: 1px solid #da291c; }
 
 a.input-wrapper {
-  border: 1px solid #d7d7d7;
+  border: 2px solid #70707012;
   width: 100%;
   height: 70px;
   position: absolute;
@@ -531,7 +528,8 @@ section {
           align-items: center;
   height: auto;
   min-height: calc(100vh - 90px);
-  padding: 60px 0; }
+  padding: 60px 0;
+  background-color: #fafafa; }
   .a1xploretv-e form {
     width: 100%; }
   .a1xploretv-e label {
@@ -562,8 +560,8 @@ section {
   .a1xploretv-e .form-control {
     font-size: 21px;
     height: 70px;
-    background-color: #ffffff;
-    border: 1px solid #d7d7d7;
+    background-color: #70707012;
+    border: 2px solid #70707012;
     border-radius: 0;
     outline: none;
     -webkit-box-shadow: none !important;
@@ -661,8 +659,7 @@ section {
     position: relative;
     margin: 12px 0 0 0;
     padding: 14px 60px 14px 24px;
-    border: 1px solid #d7d7d7;
-    background-color: #ffffff; }
+    background-color: #70707012; }
     .a1xploretv-e-checkbox input {
       width: 0;
       height: 0;

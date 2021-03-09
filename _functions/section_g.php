@@ -48,17 +48,15 @@ function content_element_section_g($all_data, $section_index) {
                     <p class="has-error hidden">Dieses Feld ist ein Pflichtfeld.</p>
                     <div class="a1xploretv-e-checkboxes <?= ($form_element['type'] == 'radio') ? 'radio': '' ?>">
                         <?php
-                            $num = 0;
                             foreach ($form_element['values'] as $element_value) {
                         ?>
                         <label class="a1xploretv-e-checkbox js-a1xploretv-e-form-field focusable" tabindex="-1">
-                            <input type="checkbox" value="<?= $element_value['value'] ?>" name="<?= $form_element['name'] ?><?= $form_element['type'] == 'checkbox' ? '[]' : '' ?>" <?= ($num == 0 && $form_element['type'] !== 'checkbox') ? 'checked' : '' ?>>
+                            <input type="checkbox" value="<?= $element_value['value'] ?>" name="<?= $form_element['name'] ?><?= $form_element['type'] == 'checkbox' ? '[]' : '' ?>">
                             <span class="a1xploretv-e-checkbox-ui-bg" ></span>
                             <span class="a1xploretv-e-checkbox-ui" ></span>
                             <span class="a1xploretv-e-checkbox-text"><?= $element_value['value'] ?></span>
                         </label>
                         <?php
-                                $num++;
                             }
                         ?>
                     </div>
