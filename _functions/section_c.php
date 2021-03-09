@@ -1,13 +1,13 @@
 <?php
-// Section C - 2 Column Text an Image
+// Section C - 2 Column Text and Image
 function content_element_section_c($all_data, $section_index) {
     ?>
     <!-- section_c -->
-    <section id="section_<?= $section_index ?>" class="a1xploretv-g bg-white">
-        <div class="a1xploretv-g-container h-100">
+    <section id="section_<?= $section_index ?>" class="xploretv-c bg-white">
+        <div class="xploretv-c-container h-100">
           <div class="d-flex align-items-center text-center h-100 <?php if (empty($all_data['button-label'])) { ?>focusable<?php } ?>">
                 <?php if ($all_data['image-left-or-right'] == 'right') { ?>
-                  <div class="a1xploretv-g-left">
+                  <div class="xploretv-c-left">
                     <div class="h1 h-bold"><?= $all_data['headline'] ?></div>
                     <p>
                       <?= nl2br($all_data['copy']) ?>
@@ -15,7 +15,7 @@ function content_element_section_c($all_data, $section_index) {
 
                     <?php if ($all_data['button-label']) { ?>
                       <p>
-                        <a href="<?= parseLink($all_data['button-href']) ?>" class="button a1xploretv-icon arrowright focusable"><?= $all_data['button-label'] ?></a>
+                        <a href="<?= parseLink($all_data['button-href']) ?>" class="button xploretv-icon arrowright focusable"><?= $all_data['button-label'] ?></a>
                       </p>
                     <?php } ?>
 
@@ -31,11 +31,11 @@ function content_element_section_c($all_data, $section_index) {
                       </div>
                     <?php } ?>
                   </div>
-                  <div class="a1xploretv-g-right">
+                  <div class="xploretv-c-right">
                       <img src="<?= $all_data['image']['url'] ?>" alt="<?= $all_data['image']['alt'] ?>">
                   </div>
                 <?php } else { ?>
-                  <div class="a1xploretv-g-left order-2">
+                  <div class="xploretv-c-left order-2">
                     <div class="h1 h-bold"><?= $all_data['headline'] ?></div>
                     <p>
                       <?= nl2br($all_data['copy']) ?>
@@ -43,7 +43,7 @@ function content_element_section_c($all_data, $section_index) {
 
                     <?php if ($all_data['button-label']) { ?>
                       <p>
-                        <a href="<?= parseLink($all_data['button-href']) ?>" class="button a1xploretv-icon arrowright focusable"><?= $all_data['button-label'] ?></a>
+                        <a href="<?= parseLink($all_data['button-href']) ?>" class="button xploretv-icon arrowright focusable"><?= $all_data['button-label'] ?></a>
                       </p>
                     <?php } ?>
 
@@ -59,7 +59,7 @@ function content_element_section_c($all_data, $section_index) {
                       </div>
                     <?php } ?>
                   </div>
-                  <div class="a1xploretv-g-right order-1">
+                  <div class="xploretv-c-right order-1">
                       <img src="<?= $all_data['image']['url'] ?>" alt="<?= $all_data['image']['alt'] ?>">
                   </div>
                 <?php } ?>

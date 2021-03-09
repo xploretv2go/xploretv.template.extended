@@ -19,7 +19,7 @@
         SpatialNavigation.focus(fallback_element);
         fallback_element.focus();
         SpatialNavigation.resume();
-        keepinfocus_interval = setInterval(keepInFocus, 100);
+        //keepinfocus_interval = setInterval(keepInFocus, 100);
     }, 250);
 
     function keepInFocus() {
@@ -131,8 +131,11 @@
 
         // Follow links.
         if (evt.type == 'sn:enter-down') {
-            if (evt.srcElement.href) {
+            if (evt.srcElement.href && $(evt.srcElement).attr('href') != '') {
                 window.location.href = evt.srcElement.href;
+            } else {
+                evt.preventDefault();
+                return false;
             }
         }
 
@@ -171,6 +174,24 @@
     });
 
     // Slider
+    if ($('.js-xploretv-b-slider').length > 0) {
+        var slider = $('.js-xploretv-b-slider');
+        $(slider).each(function(){
+            slider.not('.slick-initialized').slick({
+                infinite: false,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                centerMode: true,
+                centerPadding: '25px',
+                initialSlide: 0,
+                focusOnSelect: true,
+                variableWidth: true,
+                dots: false,
+                arrows: false
+            });
+        });
+    }
+
     if ($('.js-a1xploretv-k-slider').length > 0) {
         var slider = $('.js-a1xploretv-k-slider');
         $(slider).each(function(){
@@ -271,29 +292,29 @@
     }
 
     // Time
-    function a1xploretvTime() {
+    function xploretvTime() {
         var currentdate = new Date();
         var minutes = currentdate.getMinutes();
         minutes = minutes > 9 ? minutes : '0' + minutes;
         var time = currentdate.getHours() + ":" + minutes;
 
-        $('#js-a1xploretv-date-time .js-a1xploretv-time').text(time);
+        $('#js-xploretv-date-time .js-xploretv-time').text(time);
 
-        setTimeout(a1xploretvTime, 1000);
+        setTimeout(xploretvTime, 1000);
     };
 
     // Date
-    function a1xploretvDate() {
+    function xploretvDate() {
         var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
         var currentdate = new Date();
         var day = currentdate.toLocaleDateString("de-AT", options);
 
-        $('#js-a1xploretv-date-time .js-a1xploretv-date').text(day);
+        $('#js-xploretv-date-time .js-xploretv-date').text(day);
     }
 
-    if($('#js-a1xploretv-date-time').length > 0) {
-        a1xploretvTime();
-        a1xploretvDate();
+    if($('#js-xploretv-date-time').length > 0) {
+        xploretvTime();
+        xploretvDate();
     }
 
     // History back on [ESC].

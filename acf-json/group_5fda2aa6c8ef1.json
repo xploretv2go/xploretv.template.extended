@@ -147,6 +147,25 @@
                             "prepend": "",
                             "append": "",
                             "maxlength": ""
+                        },
+                        {
+                            "key": "field_60474e19439bc",
+                            "label": "Scroll Indicator",
+                            "name": "scroll_indicator",
+                            "type": "true_false",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "",
+                            "default_value": 0,
+                            "ui": 0,
+                            "ui_on_text": "",
+                            "ui_off_text": ""
                         }
                     ],
                     "min": "",
@@ -1741,5 +1760,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1615227627
+    "modified": 1615285831
 }

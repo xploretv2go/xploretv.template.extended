@@ -1,10 +1,10 @@
 <?php
 // Section A - Full width card with optional background image
 function content_element_section_a($all_data, $section_index) {
-    $class = $all_data['full-height'] ? 'a1xploretv-c' : 'a1xploretv-a';
+    $class = $all_data['full-height'] ? 'full-height' : '';
     ?>
     <!-- section_a -->
-    <section id="section_<?= $section_index ?>" class="<?= $class ?>" style="background-image:url('<?= $all_data['background-image']['url'] ?>');">
+    <section id="section_<?= $section_index ?>" class="xploretv-a <?= $class ?>" style="background-image:url('<?= $all_data['background-image']['url'] ?>');">
         <div class="mx-auto d-flex flex-column justify-content-center align-items-center text-center h-100">
             <div class="a1xploretv-main-wrapper-inner">
                 <div class="h1 <?= (!empty($all_data['background-image']['url'])) ? 'text-white' : '' ?> h-bold"><?= $all_data['headline'] ?></div>
@@ -16,7 +16,10 @@ function content_element_section_a($all_data, $section_index) {
                     <?php if ($all_data['button-label']) { ?>
                       <a
                         href="<?= parseLink($all_data['button-href']) ?>"
-                        class="button a1xploretv-icon arrowright focusable"><?= $all_data['button-label'] ?></a>
+                        class="button xploretv-icon arrowright focusable"><?= $all_data['button-label'] ?></a>
+                    <?php } ?>
+                    <?php if ($all_data['scroll_indicator']) { ?>
+                        <img src="/wp-content/themes/<?php echo get_template(); ?>/images/arrow.png" alt="" class="scroll-indicator jump" />
                     <?php } ?>
                 </div>
             </div>

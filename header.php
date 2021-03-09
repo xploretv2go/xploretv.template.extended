@@ -22,7 +22,7 @@
 		<?php
 		wp_body_open();
 		?>
-        <header id="section_header" class="a1xploretv-homepage">
+        <header id="section_header" class="xploretv-homepage">
           <div class="d-flex justify-content-between align-items-center">
               <h1><?=get_the_title()?></h1>
               <div id="device_container" class="d-flex align-items-center">
@@ -99,6 +99,10 @@
                     });
                 </script>
 
-              <div id="js-a1xploretv-date-time" class="a1xploretv-date-time"><span class="js-a1xploretv-date"></span><span class="a1xploretv-line mx-1"> | </span><span class="js-a1xploretv-time"></span></div>
+              <div id="js-xploretv-date-time" class="xploretv-date-time">
+                  <span class="js-xploretv-date"></span>
+                  <span class="xploretv-line mx-1">|</span>
+                  <span class="js-xploretv-time"></span>
+              </div>
           </div>
         </header>

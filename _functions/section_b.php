@@ -3,19 +3,19 @@
 function content_element_section_b($all_data, $section_index) {
     ?>
     <!-- section_b -->
-    <section id="section_<?= $section_index ?>" class="a1xploretv-k px-0">
+    <section id="section_<?= $section_index ?>" class="xploretv-b px-0">
         <div class="d-flex flex-column justify-content-center align-items-center mb-4">
             <div class="a1xploretv-main-wrapper-inner text-center">
                 <div class="h1 h-bold"><?= $all_data['headline'] ?></div>
                 <h3><?= $all_data['copytext'] ?></h3>
             </div>
         </div>
-        <div class="a1xploretv-k-slider js-a1xploretv-k-slider">
+        <div class="xploretv-b-slider js-xploretv-b-slider">
           <?php foreach ($all_data['cards'] as $card) { ?>
             <a href="<?= parseLink($card['card-href']) ?>" class="focusable">
                 <img src="<?= $card['image']['url'] ?>" alt="<?= $card['image']['alt'] ?>">
                 <div>
-                    <?php if (!empty($card['subheadline'])) { ?><h3><?= $card['subheadline'] ?></h3><?php } ?>
+                    <?php if (!empty($card['subheadline'])) { ?><h3 class="h3"><?= $card['subheadline'] ?></h3><?php } ?>
                     <?php if (!empty($card['copytext'])) { ?><?= $card['copytext'] ?><?php } ?>
                 </div>
             </a>

@@ -15,20 +15,20 @@ header {
     @media (min-width: 1920px) {
       header h1 {
         font-size: 24px; } }
-  header.a1xploretv-homepage, header.package-smarthome, header.header-position-relative {
+  header.xploretv-homepage, header.package-smarthome, header.header-position-relative {
     position: relative; }
   header.package-smarthome, header.header-position-relative {
     padding: 35px 60px 10px 60px; }
-  header .a1xploretv-line {
+  header .xploretv-line {
     position: relative;
     top: -2px; }
   @media (min-width: 1920px) {
     header {
       padding: 5vh 100px 20px 100px; } }
-  header .a1xploretv-logo {
+  header .xploretv-logo {
     max-width: 70px; }
     @media (min-width: 1920px) {
-      header .a1xploretv-logo {
+      header .xploretv-logo {
         max-width: 100px; } }
 
 body {
@@ -283,7 +283,7 @@ section {
   font-weight: normal;
   font-style: normal; }
 
-.a1xploretv-icon::after {
+.xploretv-icon::after {
   display: inline;
   font-family: "A1iconfont";
   font-style: normal;
@@ -293,51 +293,103 @@ section {
   speak: none;
   text-transform: none; }
 
-.a1xploretv-icon.arrowright::after {
+.xploretv-icon.arrowright::after {
   content: "\e607"; }
 
-.a1xploretv-a {
+.xploretv-a {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   min-height: 200px; }
-  .a1xploretv-a a {
+  .xploretv-a.full-height {
+    height: 100vh; }
+  .xploretv-a a {
     font-size: 24px; }
     @media (min-width: 1920px) {
-      .a1xploretv-a a {
+      .xploretv-a a {
         font-size: 32px; } }
+  .xploretv-a .scroll-indicator {
+    width: 40px;
+    height: auto; }
 
-.a1xploretv-b > div {
-  margin-top: 30px; }
+@-webkit-keyframes jump {
+  0% {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0); }
+  100% {
+    -webkit-transform: translate3d(0, 100%, 0);
+            transform: translate3d(0, 100%, 0); } }
+
+@keyframes jump {
+  0% {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0); }
+  100% {
+    -webkit-transform: translate3d(0, 100%, 0);
+            transform: translate3d(0, 100%, 0); } }
+  .xploretv-a .jump {
+    -webkit-transform-origin: 50% 50%;
+            transform-origin: 50% 50%;
+    -webkit-animation: jump 2s ease-in alternate infinite;
+            animation: jump 2s ease-in alternate infinite; }
+
+.xploretv-b {
+  margin-top: 20px; }
   @media (min-width: 1920px) {
-    .a1xploretv-b > div {
-      margin-top: 100px; } }
+    .xploretv-b {
+      margin-top: 40px; } }
+  .xploretv-b-slider {
+    overflow: hidden; }
+    .xploretv-b-slider a.slick-slide {
+      width: 640px;
+      text-align: center;
+      margin: 0 15px; }
+      @media (min-width: 1920px) {
+        .xploretv-b-slider a.slick-slide {
+          width: 980px; } }
+      .xploretv-b-slider a.slick-slide > div {
+        padding: 30px 30px 10px 30px; }
+    .xploretv-b-slider img {
+      width: 100%;
+      margin: 0 auto; }
 
-.a1xploretv-b-box {
-  background-color: #ffffff;
-  width: 23%;
-  height: 240px;
-  -webkit-box-shadow: 0 0 20px 0px #d0d0d0;
-          box-shadow: 0 0 20px 0px #d0d0d0; }
+.xploretv-c {
+  margin-top: 20px;
+  padding-top: 60px;
+  padding-bottom: 60px; }
   @media (min-width: 1920px) {
-    .a1xploretv-b-box {
-      height: 350px; } }
-  .a1xploretv-b-box a {
-    padding: 0 20px; }
+    .xploretv-c {
+      margin-top: 40px; } }
+  .xploretv-c-container {
+    width: 100%;
+    max-width: 88%;
+    margin: 0 auto; }
+  .xploretv-c-left {
+    width: 100%;
+    max-width: 60%;
+    margin: 0 auto; }
+    .xploretv-c-left:focus {
+      background-color: transparent !important;
+      border: 0;
+      color: #000000 !important; }
+      .xploretv-c-left:focus .h1 {
+        color: #000000 !important; }
+  .xploretv-c-right {
+    max-width: 25%;
+    margin-left: 130px; }
+    .xploretv-c-right.order-1 {
+      margin-left: 0; }
+  .xploretv-c a:hover, .xploretv-c a:focus {
+    background-color: transparent !important;
+    border: 0; }
+  .xploretv-c a.button {
+    font-size: 18px;
+    margin-top: 20px; }
     @media (min-width: 1920px) {
-      .a1xploretv-b-box a {
-        padding: 0 40px; } }
-
-.a1xploretv-c {
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  height: 100vh; }
-  .a1xploretv-c a {
-    font-size: 24px; }
-    @media (min-width: 1920px) {
-      .a1xploretv-c a {
-        font-size: 32px; } }
+      .xploretv-c a.button {
+        font-size: 24px; } }
+    .xploretv-c a.button:hover, .xploretv-c a.button:focus {
+      background-color: #da291c !important; }
 
 .a1xploretv-d {
   height: 96vh;
@@ -483,7 +535,7 @@ section {
           box-shadow: none !important;
   outline: none !important;
   position: relative; }
-  .btn .a1xploretv-icon {
+  .btn .xploretv-icon {
     position: absolute;
     top: 50%;
     right: 18px;
@@ -886,14 +938,16 @@ section {
       @media (min-width: 1920px) {
         .a1xploretv-k-slider a.slick-slide {
           width: 980px; } }
-      .a1xploretv-k-slider a.slick-slide.slick-current:focus, .a1xploretv-k-slider a.slick-slide:hover {
+      .a1xploretv-k-slider a.slick-slide.slick-current:focus, .a1xploretv-k-slider a.slick-slide.slick-current:hover {
         border: 0;
         background-color: #da291c;
         color: #ffffff !important; }
-        .a1xploretv-k-slider a.slick-slide.slick-current:focus h3, .a1xploretv-k-slider a.slick-slide:hover h3 {
+        .a1xploretv-k-slider a.slick-slide.slick-current:focus h3, .a1xploretv-k-slider a.slick-slide.slick-current:hover h3 {
           color: #ffffff !important; }
       .a1xploretv-k-slider a.slick-slide:focus {
         background: transparent; }
+      .a1xploretv-k-slider a.slick-slide > div {
+        padding: 30px 30px 10px 30px; }
       .a1xploretv-k-slider a.slick-slide.js-video-global-pause {
         background-color: transparent !important;
         color: #000000; }
@@ -902,8 +956,6 @@ section {
           color: #000000 !important; }
           .a1xploretv-k-slider a.slick-slide.js-video-global-pause.slick-current:before, .a1xploretv-k-slider a.slick-slide.js-video-global-pause:hover:before, .a1xploretv-k-slider a.slick-slide.js-video-global-pause:focus:before {
             background: #da291c; }
-      .a1xploretv-k-slider a.slick-slide.slick-slide > div {
-        padding: 30px 30px 10px 30px; }
     .a1xploretv-k-slider img {
       width: 100%;
       margin: 0 auto; }
@@ -949,8 +1001,8 @@ section {
           background-color: #da291c !important; }
       .a1xploretv-k-video-slider .video-container .a1xploretv-video-frame-yt {
         width: 1280px;
-        height: 350px;
-        max-width: 100%; }
+        max-width: 100%;
+        height: 350px; }
         @media (min-width: 1920px) {
           .a1xploretv-k-video-slider .video-container .a1xploretv-video-frame-yt {
             height: 610px; } }
