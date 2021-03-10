@@ -19,7 +19,7 @@ function content_element_section_a($all_data, $section_index) {
                         class="button xploretv-icon arrowright focusable"><?= $all_data['button-label'] ?></a>
                     <?php } ?>
                     <?php if ($all_data['scroll_indicator']) { ?>
-                        <img src="/wp-content/themes/<?php echo get_template(); ?>/images/arrow.png" alt="" class="scroll-indicator jump" />
+                        <img src="<?php echo get_theme_file_uri() ?>/images/arrow.png" alt="" class="scroll-indicator jump" />
                     <?php } ?>
                 </div>
             </div>

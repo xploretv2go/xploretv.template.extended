@@ -23,10 +23,10 @@ function content_element_section_c($all_data, $section_index) {
                       <p class="mt-5 mb-4">Finden Sie unsere App </p>
                       <div class="d-flex justify-content-center">
                           <a href="https://play.google.com/" class="mr-3">
-                              <img src="/wp-content/themes/<?php echo get_template(); ?>/images/google-play-smarthome.png" alt="Google Play" />
+                              <img src="<?php echo get_theme_file_uri() ?>/images/google-play-smarthome.png" alt="Google Play" />
                           </a>
                           <a href="https://www.apple.com/app-store/"  class="">
-                              <img src="/wp-content/themes/<?php echo get_template(); ?>/images/apple-app-smarthome.png" alt="Apple Store" />
+                              <img src="<?php echo get_theme_file_uri() ?>/images/apple-app-smarthome.png" alt="Apple Store" />
                           </a>
                       </div>
                     <?php } ?>
@@ -51,10 +51,10 @@ function content_element_section_c($all_data, $section_index) {
                       <p class="mt-5 mb-4">Finden Sie unsere App </p>
                       <div class="d-flex justify-content-center">
                           <a href="https://play.google.com/" class="mr-3">
-                              <img src="/wp-content/themes/<?php echo get_template(); ?>/images/google-play-smarthome.png" alt="Google Play" />
+                              <img src="<?php echo get_theme_file_uri() ?>/images/google-play-smarthome.png" alt="Google Play" />
                           </a>
                           <a href="https://www.apple.com/app-store/"  class="">
-                              <img src="/wp-content/themes/<?php echo get_template(); ?>/images/apple-app-smarthome.png" alt="Apple Store" />
+                              <img src="<?php echo get_theme_file_uri() ?>/images/apple-app-smarthome.png" alt="Apple Store" />
                           </a>
                       </div>
                     <?php } ?>

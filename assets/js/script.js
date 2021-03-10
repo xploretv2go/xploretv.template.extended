@@ -131,9 +131,7 @@
 
         // Prevent opening a link if attribute href is empty.
         if (evt.type == 'sn:enter-down') {
-            if (evt.srcElement.href && $(evt.srcElement).attr('href') != '') {
-                window.location.href = evt.srcElement.href;
-            } else {
+            if ($(evt.srcElement).attr('href') && $(evt.srcElement).attr('href') == '') {
                 evt.preventDefault();
                 return false;
             }
