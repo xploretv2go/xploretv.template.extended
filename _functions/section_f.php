@@ -5,9 +5,9 @@ function content_element_section_f($all_data, $section_index) {
     $class_section = $all_data['full-width'] ? '' : 'h-auto';
     ?>
     <!-- section_f -->
-    <section id="section_<?= $section_index ?>" class="a1xploretv-f <?= $class_section ?>">
+    <section id="section_<?= $section_index ?>" class="xploretv-f <?= $class_section ?>">
         <div class="d-flex flex-column justify-content-center align-items-center text-center w-100 h-100">
-            <div class="a1xploretv-main-wrapper-inner">
+            <div class="xploretv-main-wrapper-inner">
               <?php if ($all_data['headline']) { ?>
                 <div class="h1 h-bold"><?= $all_data['headline'] ?></div>
               <?php } ?>
@@ -15,7 +15,7 @@ function content_element_section_f($all_data, $section_index) {
                 <h3><?= $all_data['copytext'] ?></h3>
               <?php } ?>
             </div>
-            <div class="a1xploretv-f-container <?= $class_div ?>">
+            <div class="xploretv-f-container <?= $class_div ?>">
                 <div class="text-center">
                   <?php
                     $center_card = floor(count($all_data['cards']) / 2);
@@ -24,13 +24,13 @@ function content_element_section_f($all_data, $section_index) {
                   <?php foreach ($all_data['cards'] as $card) { ?>
                     <a
                       href="<?= parseLink($card['href']) ?>"
-                      class="a1xploretv-f-box focusable h-100 <?= ($num == 1) ? 'first' : '' ?>"
+                      class="xploretv-f-box focusable h-100 <?= ($num == 1) ? 'first' : '' ?>"
                       style="vertical-align: <?= $card['alignment'] ?>">
                       <span>
                         <?php if ($card['image'] !== false) { ?>
                           <img src="<?= $card['image']['url'] ?>" alt="<?= $card['image']['alt'] ?>">
                         <?php } ?>
-                        <div class="a1xploretv-f-title h3"><?= $card['headline'] ?></div>
+                        <div class="xploretv-f-title h3"><?= $card['headline'] ?></div>
                         <div><?= $card['copytext'] ?></div>
                       </span>
                     </a>

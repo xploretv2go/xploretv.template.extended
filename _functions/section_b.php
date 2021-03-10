@@ -5,7 +5,7 @@ function content_element_section_b($all_data, $section_index) {
     <!-- section_b -->
     <section id="section_<?= $section_index ?>" class="xploretv-b px-0">
         <div class="d-flex flex-column justify-content-center align-items-center mb-4">
-            <div class="a1xploretv-main-wrapper-inner text-center">
+            <div class="xploretv-main-wrapper-inner text-center">
                 <div class="h1 h-bold"><?= $all_data['headline'] ?></div>
                 <h3><?= $all_data['copytext'] ?></h3>
             </div>

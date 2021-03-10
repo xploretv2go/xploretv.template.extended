@@ -3,7 +3,7 @@
 function content_element_section_l($all_data, $section_index) {
     ?>
     <!-- section_l -->
-    <section id="section_<?= $section_index ?>" class="a1xploretv-l">
+    <section id="section_<?= $section_index ?>" class="xploretv-l">
         <h3>NUKI API</h3>
         <p>Showing response from <a href="https://api.nuki.io/discover/bridges" class="focusable">https://api.nuki.io/discover/bridges</a></p>
         <textarea style="width: 100%; height: 50vh; font-size: 13px; background-color: white; color: black !important;" class="focusable" id="debug_nuki"></textarea>

@@ -74,14 +74,14 @@
                                     if(e.classList.contains('slider-video-play')){
                                         this.pauseVideo();
                                         e.classList.remove('slider-video-play');
-                                        e.classList.remove('a1xploretv-d-pause');
-                                        e.classList.add('a1xploretv-d-play');
+                                        e.classList.remove('xploretv-d-pause');
+                                        e.classList.add('xploretv-d-play');
                                         $('.yt-poster[data-id="'+this.h.id+'"]').fadeTo("fast", 1);
                                     } else {
                                          this.playVideo();
                                          e.classList.add('slider-video-play');
                                          //e.classList.add('a1xploretv-d-pause');
-                                         e.classList.remove('a1xploretv-d-play');
+                                         e.classList.remove('xploretv-d-play');
                                          $('.yt-poster[data-id="'+this.h.id+'"]').fadeTo("fast", 0);
                                     }
                                 }else {

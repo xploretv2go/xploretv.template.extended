@@ -3,18 +3,18 @@
 function content_element_section_e($all_data, $section_index) {
     ?>
     <!-- section_e -->
-    <section  id="section_<?= $section_index ?>" class="a1xploretv-l px-0">
+    <section  id="section_<?= $section_index ?>" class="xploretv-e px-0">
         <div class="d-flex flex-column justify-content-center align-items-center mb-4">
             <div class="h1 h-bold"><?= $all_data['headline'] ?></div>
         </div>
-        <div id="js-a1xploretv-l-slider" class="a1xploretv-l-slider js-a1xploretv-l-slider">
+        <div id="js-xploretv-e-slider" class="xploretv-e-slider js-xploretv-e-slider">
             <?php
               $num = 0;
               foreach ($all_data['cards'] as $card) {
             ?>
 
             <div class="product" id="<?= $num ?>" >
-                <img <?php if ($num === 0) { ?> id="set-first"<?php } ?> class="focusable" src="<?= $card['image']['url'] ?>" alt="<?= $card['image']['alt'] ?>">
+                <img <?php if ($num === 0) { ?> id="set-first"<?php } ?> class="focusable img-fluid" src="<?= $card['image']['url'] ?>" alt="<?= $card['image']['alt'] ?>">
             </div>
 
             <?php
@@ -22,13 +22,13 @@ function content_element_section_e($all_data, $section_index) {
               }
             ?>
         </div>
-        <div id="productInfo" class="productInfo">
+        <div class="product-info">
             <?php
               $num = 0;
               foreach ($all_data['cards'] as $card) {
             ?>
             <div id='<?= $num ?>'>
-                <div class="productInfo-title"><?= $card['headline'] ?></div>
+                <div class="product-info-title"><?= $card['headline'] ?></div>
                 <?= $card['copytext'] ?>
             </div>
             <?php
