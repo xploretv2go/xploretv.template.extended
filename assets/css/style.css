@@ -381,11 +381,19 @@ section {
       width: 640px;
       text-align: center;
       margin: 0 15px; }
+      .xploretv-b-slider a.slick-slide.focusable:focus h3 {
+        color: #000 !important; }
       @media (min-width: 1920px) {
         .xploretv-b-slider a.slick-slide {
           width: 980px; } }
       .xploretv-b-slider a.slick-slide > div {
         padding: 30px 30px 10px 30px; }
+      .xploretv-b-slider a.slick-slide.slick-current {
+        background-color: #d7d7d7 !important;
+        color: #000 !important; }
+      .xploretv-b-slider a.slick-slide:focus, .xploretv-b-slider a.slick-slide:hover {
+        background-color: transparent;
+        color: #000 !important; }
     .xploretv-b-slider img {
       width: 100%;
       margin: 0 auto; }

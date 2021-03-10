@@ -216,8 +216,9 @@ function getCookie(name) {
 
     if ($('.js-xploretv-b-slider').length > 0) {
         var slider = $('.js-xploretv-b-slider');
-        $(slider).each(function(){
-            slider.not('.slick-initialized').slick({
+        $(slider).each(function(index){
+            $(this).addClass('xploretv-b-slider_'+index);
+            $(this).not('.slick-initialized').slick({
                 infinite: false,
                 slidesToShow: 1,
                 slidesToScroll: 1,
@@ -229,10 +230,23 @@ function getCookie(name) {
                 dots: false,
                 arrows: false
             });
+
+            $('.xploretv-b-slider_'+index).each(function(){
+                $(this).on('beforeChange',function(event){
+                    SpatialNavigation.pause();
+                });
+                $(this).on('afterChange',function(event){
+                    SpatialNavigation.resume();
+                    SpatialNavigation.focus($(this).find('.slick-current'));
+                });
+            });
+
         });
     }
-}(jQuery));;;(function($) {
-    "use strict"; 
+}(jQuery));
+;;(function($) {
+    "use strict";
+    
     //  Default Video
     $('.js-xploretv-d-start.loc-video').on('click sn:enter-down', function() {
         if ($(this).parent().parent().parent().parent().find('.js-xploretv-d-video.loc-video').length > 0) {
@@ -245,7 +259,8 @@ function getCookie(name) {
         $('.js-xploretv-d-content').fadeTo("fast", 1);
         $(this).trigger('load');
     });
-}(jQuery));;;(function($) {
+}(jQuery));
+;;(function($) {
     "use strict";
 
     if($('.js-xploretv-e-slider').length > 0) {
@@ -332,8 +347,7 @@ function getCookie(name) {
         })
         $(this).parent().find('input').prop('checked', true);
      });
- 
- 
+
      $('.xploretv-g-checkbox').on('sn:enter-down',function(){
          if($(this).find('input').prop('checked') == true) {
              $(this).find('input').prop('checked', false);
@@ -341,13 +355,13 @@ function getCookie(name) {
              $(this).find('input').prop('checked', true);
          }
      });
- 
+
      // Radio buttons.
      $(".radio .xploretv-g-checkbox").on('sn:enter-down', function(){
          $(this).closest('.radio').find('input').prop("checked", false);
          $(this).find('input').prop("checked", true);
      });
- 
+
      // Send form.
      $(".myForm").submit(function(e) {
          e.preventDefault();
@@ -356,7 +370,7 @@ function getCookie(name) {
          var method = form.attr('method');
          var url = form.attr('action');
          var form_valid = true;
- 
+
          // Form validation.
          $('.xploretv-g-checkbox-group.required').each(function( index, value ){
              var is_checked = $(this).find('input:checkbox:checked').length;
@@ -367,7 +381,7 @@ function getCookie(name) {
                  $(this).find('p.has-error').addClass('hidden');
              }
          });
- 
+
          $('.xploretv-g-radio-group.required').each(function( index, value ){
              var is_checked = $(this).find('input:checkbox:checked').length;
              if (is_checked == 0) {
@@ -377,7 +391,7 @@ function getCookie(name) {
                  $(this).find('p.has-error').addClass('hidden');
              }
          });
- 
+
          if (form_valid) {
              $.ajax({
                  method: method,
@@ -398,7 +412,8 @@ function getCookie(name) {
              });
          }
      });
-}(jQuery));;;(function($) {
+}(jQuery));
+;;(function($) {
     "use strict";
 
     if ($('.js-xploretv-k-slider').length > 0) {
@@ -416,7 +431,6 @@ function getCookie(name) {
                 dots: false,
                 arrows: false
             });
-            
         });
     }
 }(jQuery));
