@@ -18,7 +18,7 @@ function content_element_section_a($all_data, $section_index) {
                         href="<?= parseLink($all_data['button-href']) ?>"
                         class="button xploretv-icon arrowright focusable"><?= $all_data['button-label'] ?></a>
                     <?php } ?>
-                    <?php if ($all_data['scroll_indicator']) { ?>
+                    <?php if ($all_data['scroll_indicator'] && $all_data['full-height'] === true) { ?>
                         <img src="<?php echo get_theme_file_uri() ?>/images/arrow.png" alt="" class="scroll-indicator jump" />
                     <?php } ?>
                 </div>

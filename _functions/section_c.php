@@ -3,7 +3,7 @@
 function content_element_section_c($all_data, $section_index) {
     ?>
     <!-- section_c -->
-    <section id="section_<?= $section_index ?>" class="xploretv-c bg-white">
+    <section id="section_<?= $section_index ?>" class="xploretv-c">
         <div class="xploretv-c-container h-100">
           <div class="d-flex align-items-center text-center h-100 <?php if (empty($all_data['button-label'])) { ?>focusable<?php } ?>">
                 <?php if ($all_data['image-left-or-right'] == 'right') { ?>

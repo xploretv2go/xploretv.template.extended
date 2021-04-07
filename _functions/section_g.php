@@ -67,7 +67,7 @@ function content_element_section_g($all_data, $section_index) {
                     ?>
                 </div>
                 <div class="xploretv-g-form-btns">
-                    <button type="submit" class="btn btn-block btn-outline-primary js-xploretv-g-form-field focusable">
+                    <button type="submit" class="btn btn-block btn-primary js-xploretv-g-form-field focusable">
                         <span><?= $all_data['submit_button_title'] ?></span>
                         <span class="xploretv-icon arrow-right"></span>
                     </button>
