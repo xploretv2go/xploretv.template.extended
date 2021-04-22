@@ -134,6 +134,8 @@
             if ($(evt.srcElement).attr('href') && $(evt.srcElement).attr('href') == '') {
                 evt.preventDefault();
                 return false;
+            } else {
+                window.location.href = evt.srcElement.href;
             }
         }
 
