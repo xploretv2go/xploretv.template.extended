@@ -1,9 +1,9 @@
 <?php
 // Section O - Philips Hue Debugger
-function content_element_section_l($all_data, $section_index) {
+function content_element_section_o($all_data, $section_index) {
     ?>
     <!-- section_l -->
-    <section id="section_<?= $section_index ?>" class="xploretv-l">
+    <section id="section_<?= $section_index ?>" class="xploretv-o">
         <h3>Philips Hue API</h3>
         <p>Showing response from <a href="https://discovery.meethue.com/" class="focusable">https://discovery.meethue.com/</a></p>
         <textarea style="width: 100%; height: 50vh; font-size: 13px; background-color: white; color: black !important;" class="focusable" id="debug_philips_hue"></textarea>
