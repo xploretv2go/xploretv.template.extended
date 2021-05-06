@@ -1299,7 +1299,7 @@
                                     "label": "Placeholder",
                                     "name": "placeholder",
                                     "type": "text",
-                                    "instructions": "",
+                                    "instructions": "Please use the placeholder strings from the <a href=\"options-general.php?page=seso-asmp.php\">ASMP settings page<\/a>",
                                     "required": 0,
                                     "conditional_logic": [
                                         [
@@ -1743,6 +1743,15 @@
                     "sub_fields": [],
                     "min": "",
                     "max": ""
+                },
+                "layout_609412e7da54a": {
+                    "key": "layout_609412e7da54a",
+                    "name": "section_o",
+                    "label": "Section O - Philips Hue Debug",
+                    "display": "block",
+                    "sub_fields": [],
+                    "min": "",
+                    "max": ""
                 }
             },
             "button_label": "Add Content Block",
@@ -1769,5 +1778,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1618997303
+    "modified": 1620316938
 }
