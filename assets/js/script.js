@@ -131,11 +131,14 @@
 
         // Prevent opening a link if attribute href is empty.
         if (evt.type == 'sn:enter-down') {
+            if (!(evt.target instanceof HTMLAnchorElement)) {
+                // Element is not a link
+                evt.preventDefault();
+                return false;
+            }
             if ($(evt.srcElement).attr('href') && $(evt.srcElement).attr('href') == '') {
                 evt.preventDefault();
                 return false;
-            } else {
-                window.location.href = evt.srcElement.href;
             }
         }
 
@@ -340,7 +343,7 @@ function getCookie(name) {
 ;;(function($) {
     "use strict";
 
-    //Checkboxes
+    // Checkboxes
     $('.xploretv-g-radio-ui').on('sn:focused',function(){
         $('.xploretv-g-radio').find('input').each(function(){
             $(this).prop('checked', false);
@@ -356,7 +359,7 @@ function getCookie(name) {
          }
      });
 
-     // Radio buttons.
+     // Radio buttons
      $(".radio .xploretv-g-checkbox").on('sn:enter-down', function(){
          $(this).closest('.radio').find('input').prop("checked", false);
          $(this).find('input').prop("checked", true);
