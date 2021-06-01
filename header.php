@@ -63,7 +63,7 @@
                                 now.setTime(expireTime);
                                 var cookie_content = [];
                                 if (msg.bridges.length !== 0) {
-                                    cookie_content = [{name: 'Nuki', href: '/devices/nuki'}];
+                                    cookie_content = [{name: 'Nuki', href: '<?php echo home_url('/devices/nuki/'); ?>'}];
                                 }
                                 document.cookie = 'devices=' + JSON.stringify(cookie_content) + ';expires=' + now.toUTCString() + ';path=/';
                             }

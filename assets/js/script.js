@@ -130,15 +130,14 @@
         }
 
         // Prevent opening a link if attribute href is empty.
-        if (evt.type == 'sn:enter-down') {
-            if (!(evt.target instanceof HTMLAnchorElement)) {
-                // Element is not a link
-                evt.preventDefault();
-                return false;
-            }
-            if ($(evt.srcElement).attr('href') && $(evt.srcElement).attr('href') == '') {
-                evt.preventDefault();
-                return false;
+        if (evt.target instanceof HTMLAnchorElement) {
+            if (evt.type == 'sn:enter-down') {
+                if ($(evt.srcElement).attr('href') && $(evt.srcElement).attr('href') == '') {
+                    evt.preventDefault();
+                    return false;
+                } else {
+                    window.location.href = evt.srcElement.href;
+                }
             }
         }
 
