@@ -268,50 +268,26 @@ function getCookie(name) {
     if($('.js-xploretv-e-slider').length > 0) {
         $('.js-xploretv-e-slider').each(function(index) {
             $(this).addClass('xploretv-e-slider_'+index);
-            var childs = $(this).find('.product').length;
-            if (childs > 4) {
-                $(this).not('.slick-initialized').slick({
-                      accessibility: false,
-                      infinite: true,
-                      slidesToShow: 4,
-                      slidesToScroll: 1,
-                      centerMode: true,
-                      speed: 300,
-                      asNavFor: '.product-info',
-                      initialSlide: 0,
-                      centerPadding: '225px',
-                      focusOnSelect: true,
-                      dots: false,
-                      arrows: false,
-                      responsive: [{
-                           breakpoint: 1300,
-                           settings: {
-                               centerPadding: '125px',
-                           }
-                       }]
-                })
-            } else {
-                $(this).not('.slick-initialized').slick({
-                      accessibility: false,
-                      infinite: true,
-                      slidesToShow: 3,
-                      slidesToScroll: 1,
-                      centerMode: true,
-                      speed: 300,
-                      asNavFor: '.product-info',
-                      initialSlide: 0,
-                      centerPadding: '225px',
-                      focusOnSelect: true,
-                      dots: false,
-                      arrows: false,
-                      responsive: [{
-                          breakpoint: 1300,
-                          settings: {
-                              centerPadding: '125px',
-                          }
-                      }]
-                })
-            }
+            $(this).not('.slick-initialized').slick({
+                  accessibility: false,
+                  infinite: true,
+                  slidesToShow: 3,
+                  slidesToScroll: 1,
+                  centerMode: true,
+                  speed: 300,
+                  asNavFor: '.product-info',
+                  initialSlide: 0,
+                  centerPadding: '525px',
+                  focusOnSelect: true,
+                  dots: false,
+                  arrows: false,
+                  responsive: [{
+                       breakpoint: 1300,
+                       settings: {
+                           centerPadding: '222px',
+                       }
+                   }]
+            });
 
             $('.xploretv-e-slider_'+index+' .slick-slide').each(function(){
                 $(this).on('sn:willmove', function(evt){
