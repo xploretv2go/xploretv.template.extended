@@ -402,7 +402,7 @@ main {
     margin: 0 auto;
     opacity: .8;
     position: absolute;
-    bottom: 10vh;
+    bottom: 20vh;
     left: calc(50% - 20px); }
     .xploretv-a .scroll-indicator.jump {
       -webkit-transform-origin: 50% 50%;
