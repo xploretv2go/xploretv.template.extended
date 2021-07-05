@@ -76,7 +76,7 @@ function content_element_section_g($all_data, $section_index) {
         </form>
         <div class="xploretv-g-textblock text-center response" style="display: none;">
             <div class="xploretv-g-textblock-checkicon py-5">
-                <img src="<?php echo get_theme_file_uri() ?>/images/icon_checksmarthome.png"/>
+                <img src="<?php echo get_theme_file_uri() ?>/images/icon_checksmarthome.png" class="focusable" />
             </div>
             <h3><?= $all_data['status_message_success'] ?></h3>
             <?php if (!empty($all_data['proceed_button_label'])) { ?>

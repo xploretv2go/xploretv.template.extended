@@ -381,8 +381,11 @@ function getCookie(name) {
                      form.next( ".response" ).fadeIn();
                      if (returnData.status === 'success') {
                          form.hide();
+                         location.href = "#" + form.closest('section').attr('id');
+                         SpatialNavigation.focus(form.find('.focusable:first'));
+                         form.find('.focusable:first').focus();
                      } else {
-                         form.next( ".response" ).html('<h3>' + returnData.status + '</h3>');
+                         form.next( ".response" ).html('<h3>' + returnData.message + '</h3>');
                      }
                  },
                  error: function( xhr, textStatus) {
