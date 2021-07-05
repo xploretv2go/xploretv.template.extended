@@ -22,7 +22,6 @@ function content_element_section_d($all_data, $section_index) {
 
         <div class="js-xploretv-d-content position-relative d-flex flex-column justify-content-center align-items-center text-center h-100 ">
 
-
             <div class="mt-1">
 
                 <?php if ($all_data['video-provider'] == 'youtube') { ?>
@@ -39,8 +38,6 @@ function content_element_section_d($all_data, $section_index) {
 
                         <a data-id="player<?= $rand ?>" id="player<?= $rand ?>" href="javascript:void(0)" onclick="playVideoYT<?= $rand ?>(this);" class="js-video-global-pause js-video-slider-btn xploretv-d-play mx-auto focusable js-xploretv-d-start single-video"></a>
                     </div>
-
-
 
                 <?php } else if ($all_data['video-provider'] == 'vimeo') { ?>
                     <?php

@@ -33,7 +33,7 @@ $subject = $_POST['status_message_receiver_subject'];
 // Send mail
 $success = wp_mail($to, $subject, $message);
 if ($success === true) {
-  echo 'success';
+  echo "{'status': 'success'}";
   return;
 }
-echo 'error';
+echo "{'status': 'error', 'message': 'Das Formular konnte nicht versendet werden. Der Mailversand hat fehlgeschlagen.'}";

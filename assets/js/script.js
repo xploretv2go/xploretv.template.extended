@@ -248,9 +248,10 @@ function getCookie(name) {
 }(jQuery));
 ;;(function($) {
     "use strict";
-    
+
     //  Default Video
     $('.js-xploretv-d-start.loc-video').on('click sn:enter-down', function() {
+        location.href = "#" + $(this).closest('section').attr('id');
         if ($(this).parent().parent().parent().parent().find('.js-xploretv-d-video.loc-video').length > 0) {
             $(this).parent().parent().parent().parent().find('.js-xploretv-d-video.loc-video').trigger('play');
             $(this).parent().parent().parent('.js-xploretv-d-content').fadeTo('fast', 0);
@@ -376,16 +377,18 @@ function getCookie(name) {
                  url: url,
                  data: form_data,
                  success: function(data) {
+                     var returnData = JSON.parse(data);
                      form.next( ".response" ).fadeIn();
-                     if (data === 'success') {
+                     if (returnData.status === 'success') {
                          form.hide();
                      } else {
-                         form.next( ".response" ).html('<h3>' + data + '</h3>');
+                         form.next( ".response" ).html('<h3>' + returnData.status + '</h3>');
                      }
                  },
-                 error: function( jqXHR, textStatus) {
+                 error: function( xhr, textStatus) {
+                     var errorMessage = xhr.status + ' - ' + xhr.statusText;
                      form.next( ".response" ).fadeIn();
-                     form.next( ".response" ).html('<h3>' + textStatus + '</h3>');
+                     form.next( ".response" ).html('<h3>Fehler: ' + errorMessage + '</h3>');
                  }
              });
          }

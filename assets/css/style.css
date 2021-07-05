@@ -493,17 +493,18 @@ main {
         font-size: 24px; } }
 
 .xploretv-d {
-  height: 96vh;
   position: relative;
-  overflow: hidden; }
+  padding: 0; }
   .xploretv-d.you-vim-video {
     height: auto; }
+    .xploretv-d.you-vim-video .js-xploretv-d-content {
+      position: relative !important; }
   .xploretv-d video {
-    -o-object-fit: cover;
-       object-fit: cover;
-    width: 100vw;
-    height: 100vh;
-    position: absolute;
+    width: 100%;
+    height: auto; }
+  .xploretv-d .js-xploretv-d-content {
+    width: 100%;
+    position: absolute !important;
     top: 0;
     left: 0; }
   .xploretv-d-play {
