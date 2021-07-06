@@ -1,51 +1,33 @@
 ;(function($) {
     "use strict";
 
-    // Set a fallback element to first element.
-    var fallback_element = $('#section_0 .focusable:first');
-    var keepinfocus_interval = null;
+    window.addEventListener("load", function(){
+        // Navigable elements are initialized in _functions/section_X.php
+        // Initialize.
+        SpatialNavigation.init();
 
-    // Initialize.
-    SpatialNavigation.init();
+        // Make the *currently existing* navigable elements focusable.
+        SpatialNavigation.makeFocusable();
 
-    // Navigable elements are initialized in _functions/section_X.php
-
-    // Make the *currently existing* navigable elements focusable.
-    SpatialNavigation.makeFocusable();
-
-    // Focus the first navigable element.
-    SpatialNavigation.pause();
-    setTimeout(function(){
-        SpatialNavigation.focus(fallback_element);
-        fallback_element.focus();
-        SpatialNavigation.resume();
-        //keepinfocus_interval = setInterval(keepInFocus, 100);
-    }, 250);
-
-    function keepInFocus() {
-        if ($(document.activeElement).hasClass('focusable')) {
-            // Set active element as fallback.
-            fallback_element = $(document.activeElement);
-        } else {
-            SpatialNavigation.focus(fallback_element);
-            fallback_element.focus();
-        }
-        // Check if focused element is in the viewport.
-        var screenHeight = $(window).height();
-        var windowOffset = $(window).scrollTop();
-        var elementHeight = fallback_element.outerHeight();
-        var elementOffset = fallback_element.offset().top;
-        var targetScrollTop = 0;
-        if ((elementOffset + elementHeight + 60) >= (windowOffset + screenHeight) || elementOffset < windowOffset) {
-            targetScrollTop = elementOffset - (screenHeight - elementHeight) + 60;
-            // Always scroll to absolute top if there is only a very small distance.
-            if (targetScrollTop < 100) {
-                targetScrollTop = 0;
+        // Focus the first focusable element of the section in viewport.
+        SpatialNavigation.pause();
+        
+        var visibleSection = $('#section_0');
+        $('section').each(function(index, value) {
+            if ($(this).offset().top > $(window).scrollTop()) {
+                visibleSection = $(this);
+                return false;
             }
-            // All done!
-            $('html, body').scrollTop(targetScrollTop);
-        }
-    }
+        });
+
+        var searchString = '#' + visibleSection.attr('id') + ' .focusable:first';
+        var waitForSpatialNavigation = setInterval(function(){
+            if (SpatialNavigation.focus(searchString) === true) {
+                clearInterval(waitForSpatialNavigation);
+            }
+        });
+        SpatialNavigation.resume();
+    }, false);
 
     // All valid events.
     var validEvents = [
