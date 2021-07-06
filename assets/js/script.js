@@ -344,10 +344,11 @@ function getCookie(name) {
      // Send form.
      $(".myForm").submit(function(e) {
          e.preventDefault();
-         var form = $(this);
+         var formElement = $(this);
+         var sectionElement = formElement.closest('section');
          var form_data = $(this).serializeArray();
-         var method = form.attr('method');
-         var url = form.attr('action');
+         var method = formElement.attr('method');
+         var url = formElement.attr('action');
          var form_valid = true;
 
          // Form validation.
@@ -372,26 +373,34 @@ function getCookie(name) {
          });
 
          if (form_valid) {
+             var statusElement = sectionElement.find('.status');
+             var responseElement = sectionElement.find('.response');
              $.ajax({
                  method: method,
                  url: url,
                  data: form_data,
                  success: function(data) {
                      var returnData = JSON.parse(data);
-                     form.next( ".response" ).fadeIn();
                      if (returnData.status === 'success') {
-                         form.hide();
-                         location.href = "#" + form.closest('section').attr('id');
-                         SpatialNavigation.focus(form.find('.focusable:first'));
-                         form.find('.focusable:first').focus();
+                         formElement.hide(); // Hide form
+                         statusElement.hide(); // Hide status
+                         responseElement.fadeIn();
+                         location.href = "#" + sectionElement.attr('id');
+                         SpatialNavigation.focus(sectionElement.find('.catch-submit:last'));
+                         if (sectionElement.find('.catch-submit').length > 1) {
+                             sectionElement.find('.catch-submit').not('.catch-submit:last').removeClass('focusable');
+                         }
                      } else {
-                         form.next( ".response" ).html('<h3>' + returnData.message + '</h3>');
+                         statusElement.hide();
+                         statusElement.fadeIn();
+                         statusElement.html('<h3>' + returnData.message + '</h3>');
                      }
                  },
                  error: function( xhr, textStatus) {
                      var errorMessage = xhr.status + ' - ' + xhr.statusText;
-                     form.next( ".response" ).fadeIn();
-                     form.next( ".response" ).html('<h3>Fehler: ' + errorMessage + '</h3>');
+                     statusElement.hide();
+                     statusElement.fadeIn();
+                     statusElement.html('<h3>' + errorMessage + '</h3>');
                  }
              });
          }

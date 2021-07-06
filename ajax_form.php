@@ -4,20 +4,25 @@ require_once(explode("wp-content", __FILE__)[0] . "wp/wp-load.php");
 $message = '';
 
 foreach ($_POST as $key => $value) {
-  // skip all fields starting with status_message_
-  if (substr($key, 0, strlen("status_message_")) == "status_message_") {
-    continue;
-  }
-  if (is_array($value)) {
-    $message .= $key . ': ' . implode(',', $value) . "\n";
-  } else {
-    $message .= $key . ': ' . $value . "\n";
-  }
+    // skip all fields starting with status_message_
+    if (substr($key, 0, strlen("status_message_")) == "status_message_") {
+        continue;
+    }
+    if (is_array($value)) {
+        $message .= $key . ': ' . implode(', ', $value) . "\n";
+    } else {
+        $message .= $key . ': ' . $value . "\n";
+    }
+}
+
+if ($message === '') {
+    echo '{ "status" : "error", "message" : "Das Formular konnte nicht versendet werden. Der Inhalt ist leer." }';
+    return;
 }
 
 // Add receiver message
 if (!empty($_POST['status_message_receiver_message'])) {
-  $message = $_POST['status_message_receiver_message'] . "\n\n" . $message;
+    $message = $_POST['status_message_receiver_message'] . "\n\n" . $message;
 }
 
 // Add receivers
@@ -33,7 +38,8 @@ $subject = $_POST['status_message_receiver_subject'];
 // Send mail
 $success = wp_mail($to, $subject, $message);
 if ($success === true) {
-  echo '{ "status" : "success" }';
-  return;
+    echo '{ "status" : "success" }';
+    return;
 }
-echo '{ "status" : "error", "message" : "Das Formular konnte nicht versendet werden. Der Mailversand hat fehlgeschlagen." }';
+
+echo '{ "status" : "error", "message" : "Das Formular konnte nicht versendet werden. Der Mailversand ist fehlgeschlagen." }';

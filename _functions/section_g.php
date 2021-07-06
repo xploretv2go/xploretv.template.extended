@@ -76,14 +76,17 @@ function content_element_section_g($all_data, $section_index) {
         </form>
         <div class="xploretv-g-textblock text-center response" style="display: none;">
             <div class="xploretv-g-textblock-checkicon py-5">
-                <img src="<?php echo get_theme_file_uri() ?>/images/icon_checksmarthome.png" class="focusable" />
+                <img src="<?php echo get_theme_file_uri() ?>/images/icon_checksmarthome.png" class="focusable catch-submit" />
             </div>
             <h3><?= $all_data['status_message_success'] ?></h3>
             <?php if (!empty($all_data['proceed_button_label'])) { ?>
             <p class="mt-4">
-                <a href="<?= $all_data['proceed_button_link'] ?>" class="button xploretv-icon arrowright focusable"><?= $all_data['proceed_button_label'] ?></a>
+                <a href="<?= $all_data['proceed_button_link'] ?>" class="button xploretv-icon arrowright focusable catch-submit"><?= $all_data['proceed_button_label'] ?></a>
             </p>
             <?php } ?>
+        </div>
+        <div class="xploretv-g-textblock text-center status" style="display: none;">
+            <!-- Placeholder -->
         </div>
         <script>
             window.addEventListener('load', function() {
