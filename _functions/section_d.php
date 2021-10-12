@@ -101,6 +101,11 @@ function content_element_section_d($all_data, $section_index) {
 
             </div>
         </div>
+
+        <?php if ($all_data['video-provider'] === 'local-video' && $all_data['scroll_indicator'] && $all_data['scroll_indicator'] === true) { ?>
+            <img src="<?php echo get_theme_file_uri() ?>/images/arrow.png" alt="" class="scroll-indicator jump" />
+        <?php } ?>
+
         <script>
             window.addEventListener('load', function() {
                 // Add section to SN

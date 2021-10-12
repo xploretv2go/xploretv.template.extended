@@ -33,7 +33,7 @@
                     }
                     if (count($devices) === 0) {
                   ?>
-                    <a href="" class="focusable">Keine Smart Home Devices gefunden</a>
+                    <a href="<?php echo home_url('/devices/no-device/'); ?>" class="focusable">Keine Smart Home Devices gefunden</a>
                   <?php
                     } else {
                         echo 'Erkannte Geräte: ';
@@ -77,7 +77,7 @@
                                     device_container_content += '<a class="button focusable ml-2 mb-0" href="' + device.href + '">' + device.name + '</a>';
                                 });
                             } else {
-                                device_container_content = '<a href="" class="focusable">Keine Smart Home Devices gefunden</a>';
+                                device_container_content = '<a href="<?php echo home_url('/devices/no-device/'); ?>" class="focusable">Keine Smart Home Devices gefunden</a>';
                             }
                             $('#device_container').html(device_container_content);
                         });

@@ -519,6 +519,33 @@
                             "save_other_choice": 0
                         },
                         {
+                            "key": "field_615c740724700",
+                            "label": "Scroll Indicator",
+                            "name": "scroll_indicator",
+                            "type": "true_false",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_5ffc59cab9211",
+                                        "operator": "==",
+                                        "value": "local-video"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "",
+                            "default_value": 0,
+                            "ui": 0,
+                            "ui_on_text": "",
+                            "ui_off_text": ""
+                        },
+                        {
                             "key": "field_5fda43343569f",
                             "label": "Video Source (local)",
                             "name": "video-source",
@@ -1299,7 +1326,7 @@
                                     "label": "Placeholder",
                                     "name": "placeholder",
                                     "type": "text",
-                                    "instructions": "Please use the placeholder strings from the <a href=\"options-general.php?page=seso-asmp.php\">ASMP settings page<\/a>",
+                                    "instructions": "",
                                     "required": 0,
                                     "conditional_logic": [
                                         [
@@ -1734,27 +1761,9 @@
                     "sub_fields": [],
                     "min": "",
                     "max": ""
-                },
-                "layout_607fef39f2328": {
-                    "key": "layout_607fef39f2328",
-                    "name": "section_m",
-                    "label": "Section M - ASMP Debug",
-                    "display": "block",
-                    "sub_fields": [],
-                    "min": "",
-                    "max": ""
-                },
-                "layout_609412e7da54a": {
-                    "key": "layout_609412e7da54a",
-                    "name": "section_o",
-                    "label": "Section O - Philips Hue Debug",
-                    "display": "block",
-                    "sub_fields": [],
-                    "min": "",
-                    "max": ""
                 }
             },
-            "button_label": "Add Content Block",
+            "button_label": "Add Row",
             "min": "",
             "max": ""
         }
@@ -1778,5 +1787,5 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1620316938
+    "modified": 1634029659
 }

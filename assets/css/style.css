@@ -470,19 +470,20 @@ main {
     width: 100%;
     max-width: 88%;
     margin: 0 auto; }
+    .xploretv-c-container > div {
+      padding: 15px; }
+      .xploretv-c-container > div:focus, .xploretv-c-container > div:hover {
+        background-color: var(--a1-indicator);
+        color: var(--a1-label-grey-primary) !important; }
+        .xploretv-c-container > div:focus .h1, .xploretv-c-container > div:hover .h1 {
+          color: var(--a1-label-grey-primary) !important; }
   .xploretv-c-left {
     width: 100%;
     max-width: 60%;
-    margin: 0 auto; }
-    .xploretv-c-left:focus {
-      background-color: transparent !important;
-      border: 0;
-      color: var(--a1-label-grey-primary) !important; }
-      .xploretv-c-left:focus .h1 {
-        color: var(--a1-label-grey-primary) !important; }
+    margin: 0 auto;
+    padding-right: 15px; }
   .xploretv-c-right {
-    max-width: 25%;
-    margin-left: 130px; }
+    max-width: 40%; }
     .xploretv-c-right.order-1 {
       margin-left: 0; }
   .xploretv-c a.button {
@@ -627,6 +628,28 @@ main {
       height: 100%;
       background-size: cover;
       background-position-y: 50.5%; }
+  .xploretv-d .scroll-indicator {
+    width: 40px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    opacity: .8;
+    position: absolute;
+    bottom: 10vh;
+    left: calc(50% - 20px); }
+    .xploretv-d .scroll-indicator.jump {
+      -webkit-transform-origin: 50% 50%;
+              transform-origin: 50% 50%;
+      -webkit-animation: jump 1s ease-in alternate infinite;
+              animation: jump 1s ease-in alternate infinite; }
+
+@keyframes jump {
+  0% {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0); }
+  100% {
+    -webkit-transform: translate3d(0, 50%, 0);
+            transform: translate3d(0, 50%, 0); } }
 
 .xploretv-e {
   margin-top: 80px;
@@ -658,6 +681,7 @@ main {
   transition: background-color .5s ease-out; }
 
 .xploretv-e-slider .slick-slide.slick-current img {
+  border: 1px solid var(--a1-button-background-hot-red-selected);
   background-color: var(--a1-indicator); }
 
 @media (min-width: 1920px) {

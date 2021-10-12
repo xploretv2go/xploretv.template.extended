@@ -11,7 +11,7 @@
 
         // Focus the first focusable element of the section in viewport.
         SpatialNavigation.pause();
-        
+
         var visibleSection = $('#section_0');
         $('section').each(function(index, value) {
             if ($(this).offset().top > $(window).scrollTop()) {
@@ -45,39 +45,46 @@
         'onblur'
      ];
 
+    var key = "";
     var eventHandler = function(evt) {
 
-        if (evt.type == 'sn:willfocus') {
-            // Scroll to active section.
-            var screenHeight = $(window).height();
-            var sectionHeight = $(evt.target).closest('section').outerHeight();
-            var sectionOffset = $(evt.target).closest('section').offset().top;
-            var elementHeight = $(evt.target).outerHeight();
-            var elementOffset = $(evt.target).offset().top;
-            var targetScrollTop = 0;
-            // Scroll to top of section by default.
-            targetScrollTop = sectionOffset;
-            // Scroll back a little if the section height is smaller as the screen height.
-            if (sectionHeight < screenHeight) {
-                targetScrollTop = targetScrollTop - (screenHeight/2) + (sectionHeight/2);
-            }
-            // Scroll if an element within a section is out of the viewport.
-            if (sectionHeight >= screenHeight) {
-                if ((elementOffset + elementHeight + 60) >= (sectionOffset + screenHeight)) {
-                    targetScrollTop = elementOffset - (screenHeight - elementHeight) + 60;
-                }
-            }
-            // Always scroll to absolute top if there is only a very small distance.
-            if (targetScrollTop < 100) {
-                targetScrollTop = 0;
-            }
-            // All done!
-            $('html, body').animate({
-                scrollTop: targetScrollTop
-            }, {
-                queue: false
-            }, 500);
+        if(evt.type == 'keydown') {
+            key = evt.key;
+        }
 
+        if (evt.type == 'sn:willfocus') {
+            
+            if( key == 'ArrowDown' || key == 'ArrowUp' ){
+                // Scroll to active section.
+                var screenHeight = $(window).height();
+                var sectionHeight = $(evt.target).closest('section').outerHeight();
+                var sectionOffset = $(evt.target).closest('section').offset().top;
+                var elementHeight = $(evt.target).outerHeight();
+                var elementOffset = $(evt.target).offset().top;
+                var targetScrollTop = 0;
+                // Scroll to top of section by default.
+                targetScrollTop = sectionOffset;
+                // Scroll back a little if the section height is smaller as the screen height.
+                if (sectionHeight < screenHeight) {
+                    targetScrollTop = targetScrollTop - (screenHeight/2) + (sectionHeight/2);
+                }
+                // Scroll if an element within a section is out of the viewport.
+                if (sectionHeight >= screenHeight) {
+                    if ((elementOffset + elementHeight + 60) >= (sectionOffset + screenHeight)) {
+                        targetScrollTop = elementOffset - (screenHeight - elementHeight) + 60;
+                    }
+                }
+                // Always scroll to absolute top if there is only a very small distance.
+                if (targetScrollTop < 100) {
+                    targetScrollTop = 0;
+                }
+                // All done!
+                $('html, body').animate({
+                    scrollTop: targetScrollTop
+                }, {
+                    queue: false
+                }, 500);
+            }
         }
 
         // Focus on input type text via helper element.
@@ -147,6 +154,7 @@
     // Time
     function xploretvTime() {
         var currentdate = new Date();
+        //currentdate.toLocaleString('de-DE', { timeZone: 'Europe/Vienna' })
         var minutes = currentdate.getMinutes();
         minutes = minutes > 9 ? minutes : '0' + minutes;
         var time = currentdate.getHours() + ":" + minutes;
@@ -252,8 +260,8 @@ function getCookie(name) {
         $('.js-xploretv-e-slider').each(function(index) {
             $(this).addClass('xploretv-e-slider_'+index);
             $(this).not('.slick-initialized').slick({
-                  accessibility: false,
-                  infinite: true,
+                  accessibility: true,
+                  infinite: false,
                   slidesToShow: 3,
                   slidesToScroll: 1,
                   centerMode: true,
@@ -267,19 +275,20 @@ function getCookie(name) {
                   responsive: [{
                        breakpoint: 1300,
                        settings: {
+                           initialSlide: 2,
                            centerPadding: '222px',
                        }
                    }]
             });
 
             $('.xploretv-e-slider_'+index+' .slick-slide').each(function(){
-                $(this).on('sn:willmove', function(evt){
-                    if(evt.detail.direction == 'right'){
-                        $('.xploretv-e-slider_'+index+'#js-xploretv-e-slider').slick('slickNext');
-                    } else if(evt.detail.direction == 'left'){
-                        $('.xploretv-e-slider_'+index+'#js-xploretv-e-slider').slick('slickPrev');
-                    }
-                })
+                $(this).on('beforeChange',function(event){
+                    SpatialNavigation.pause();
+                });
+                $(this).on('afterChange',function(event){
+                    SpatialNavigation.resume();
+                    SpatialNavigation.focus($(this).find('.slick-current'));
+                });
             });
         });
     }
