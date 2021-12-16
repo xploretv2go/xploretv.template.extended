@@ -1,4 +1,4 @@
-# xploretv
+# xploretv - extended trial version
 <h2>What is xploretv.smarthome</h2>
 
 This is a WordPress template for the VEWD browser used on the XploreTV set top box (STB).
