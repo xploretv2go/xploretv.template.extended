@@ -5,13 +5,13 @@ function content_element_section_h($all_data, $section_index) {
     <!-- section_h -->
     <section id="section_<?= $section_index ?>" class="xploretv-h">
         <h3>Zerconf API</h3>
-        <p>Showing response from <a href="https://zeroconf:15051/a1/xploretv/v1/zeroconf" class="focusable">https://zeroconf:15051/a1/xploretv/v1/zeroconf</a></p>
+        <p>Showing response from <a href="http://zeroconf:15051/a1/xploretv/v1/zeroconf" class="focusable">http://zeroconf:15051/a1/xploretv/v1/zeroconf</a></p>
         <textarea style="width: 100%; height: 50vh; font-size: 13px; background-color: white; color: black !important;" class="focusable" id="zeroconf_debug"></textarea>
 
         <script>
             window.addEventListener('load', function() {
 
-                const detection_url = 'https://zeroconf:15051/a1/xploretv/v1/zeroconf';
+                const detection_url = 'http://zeroconf:15051/a1/xploretv/v1/zeroconf';
                 var request = $.ajax({
                     url: detection_url,
                     method: "GET"
