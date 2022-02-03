@@ -29,10 +29,13 @@
               <section id="device_container" class="d-flex align-items-center">
                   <?php
                     $devices = array();
-                    if (isset($_COOKIE['devices'])) {
+                    $services = array();
+
+                    if (isset($_COOKIE['devices']) || isset($_COOKIE['services']) ) {
                         $devices = json_decode(stripslashes($_COOKIE['devices']));
+                        $services = json_decode(stripslashes($_COOKIE['services']));
                     }
-                    if (count($devices) === 0) {
+                    if (count($devices) === 0 || count($services) === 0) {
                   ?>
                     <a href="<?php echo home_url('/devices/no-device/'); ?>" class="focusable">Keine Smart Home Devices gefunden</a>
                   <?php
@@ -43,6 +46,11 @@
                         <a class="button focusable ml-2 mb-0" data-sn-down="#main-service" href="<?= $device->href ?>"><?= $device->name ?></a>
                   <?php
                         }
+                        foreach ($services as $service) {
+                            ?>
+                                  <a class="button focusable ml-2 mb-0" data-sn-down="#main-service" href="<?= $service->href ?>"><?= $service->name ?></a>
+                            <?php
+                                  }
                     }
                   ?>
               </section>
@@ -66,6 +74,9 @@
                             method: "GET"
                         });
 
+                        var device_container_content = '';
+
+
                         request.done(function( msg ) {
                             var devices_cookie = getCookie('devices');
                             if (devices_cookie === null) {
@@ -82,11 +93,9 @@
 
                             devices_cookie = getCookie('devices');
                             devices = JSON.parse(devices_cookie);
-                            var device_container_content = '';
                             if (devices.length !== 0) {
-                                device_container_content += 'Erkannte Geräte: ';
                                 $.each(devices, function(key, device) {
-                                    device_container_content += '<a class="button focusable ml-2 mb-0" href="' + device.href + '">' + device.name + '</a>';
+                                    device_container_content = device_container_content + '<a class="button focusable ml-2 mb-0" href="' + device.href + '">' + device.name + '</a>';
                                 });
                             } else {
                                 device_container_content = '<a href="<?php echo home_url('/devices/no-device/'); ?>" class="focusable">Keine Smart Home Devices gefunden</a>';
@@ -94,7 +103,41 @@
                             $('#device_container').html(device_container_content);
                         });
 
+                        request_zeroconf.done(function( msg ) {
+                            var services_cookie = getCookie('services');
+                            if (services_cookie === null) {
+                                var now = new Date();
+                                var time = now.getTime();
+                                var expireTime = time + 5 * 60 * 1000; // Expire in 5 minutes.
+                                now.setTime(expireTime);
+                                var cookie_content = [];
+                                if (msg.services.length !== 0) {
+                                    cookie_content = [{name: 'Zeroconf', href: '<?php echo home_url('/services/zeroconf/'); ?>'}];
+                                }
+                                document.cookie = 'services=' + JSON.stringify(cookie_content) + ';expires=' + now.toUTCString() + ';path=/';
+                            }
+
+                            services_cookie = getCookie('services');
+                            services = JSON.parse(services_cookie);
+                            if (services.length !== 0) {
+                                $.each(services, function(key, service) {
+                                    console.log(device_container_content)
+
+                                    device_container_content = device_container_content +  '<a class="button focusable ml-2 mb-0" href="' + service.href + '">' + service.name + '</a>';
+                                });
+
+                            } else {
+                                device_container_content = '<a href="<?php echo home_url('/devices/no-device/'); ?>" class="focusable">Keine Smart Home Devices gefunden</a>';
+                            }
+                            $('#device_container').html(device_container_content);
+                        });
+                        
+
                         request.fail(function( jqXHR, textStatus ) {
+                            console.log( "Device detection failed: " + textStatus );
+                        });
+
+                        request_zeroconf.fail(function( jqXHR, textStatus ) {
                             console.log( "Device detection failed: " + textStatus );
                         });
 
