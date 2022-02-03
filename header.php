@@ -22,10 +22,11 @@
 		<?php
 		wp_body_open();
 		?>
-        <header id="section_header" class="xploretv-homepage">
+
+        <header id="section_header" class="xploretv-homepage" >
           <div class="d-flex justify-content-between align-items-center">
               <h1><?=get_the_title()?></h1>
-              <div id="device_container" class="d-flex align-items-center">
+              <section id="device_container" class="d-flex align-items-center">
                   <?php
                     $devices = array();
                     if (isset($_COOKIE['devices'])) {
@@ -39,27 +40,29 @@
                         echo 'Erkannte Geräte: ';
                         foreach ($devices as $device) {
                   ?>
-                        <a class="button focusable ml-2 mb-0" href="<?= $device->href ?>"><?= $device->name ?></a>
+                        <a class="button focusable ml-2 mb-0" data-sn-down="#main-service" href="<?= $device->href ?>"><?= $device->name ?></a>
                   <?php
                         }
                     }
                   ?>
-              </div>
+              </section>
 
                 <script>
                     window.addEventListener('load', function() {
                         const detection_url = 'https://api.nuki.io/discover/bridges';
-                        const detection_url_zeroconf = 'http://localzeroconf:15051/a1/xploretv/v1/zeroconf';
+                        const detection_url_zeroconf = 'http://zeroconf:15051/a1/xploretv/v1/zeroconf';
+
+                        console.log('starting');
 
                         var request = $.ajax({
                             url: detection_url,
-                            contenttype: "application/json"
+                            contenttype: "application/json",
                             method: "GET"
                         });
 
                         var request_zeroconf = $.ajax({
                             url: detection_url_zeroconf,
-                            contenttype: "application/json"
+                            contenttype: "application/json",
                             method: "GET"
                         });
 
@@ -91,53 +94,42 @@
                             $('#device_container').html(device_container_content);
                         });
 
-                        request_zeroconf.done(function( msg ) {
-                            var devices_cookie = getCookie('devices');
-                            if (devices_cookie === null) {
-                                var now = new Date();
-                                var time = now.getTime();
-                                var expireTime = time + 5 * 60 * 1000; // Expire in 5 minutes.
-                                now.setTime(expireTime);
-                                var cookie_content = [];
-                                if (msg.services.length !== 0) {
-                                    cookie_content = [{name: 'Zeroconf', href: '<?php echo home_url('/devices/zeroconf/'); ?>'}];
-                                }
-                                document.cookie = 'devices=' + JSON.stringify(cookie_content) + ';expires=' + now.toUTCString() + ';path=/';
-                            }
-
-                            devices_cookie = getCookie('devices');
-                            devices = JSON.parse(devices_cookie);
-                            var device_container_content = '';
-                            if (devices.length !== 0) {
-                                device_container_content += 'Erkannte Geräte: ';
-                                $.each(devices, function(key, device) {
-                                    device_container_content += '<a class="button focusable ml-2 mb-0" href="' + device.href + '">' + device.name + '</a>';
-                                });
-                            } else {
-                                device_container_content = '<a href="<?php echo home_url('/devices/no-device/'); ?>" class="focusable">Keine Smart Home Devices gefunden</a>';
-                            }
-                            $('#device_container').html(device_container_content);
-                        });
-
                         request.fail(function( jqXHR, textStatus ) {
                             console.log( "Device detection failed: " + textStatus );
                         });
 
-                        request_zeroconf.fail(function( jqXHR, textStatus ) {
-                            console.log( "Device detection failed: " + textStatus );
-                        });
+                        //setTimeout(loadNavigation, 1000);
 
-                        // Add section to SN
-                        SpatialNavigation.add('section_header', {
-                            selector: '#section_header .focusable',
-                            leaveFor: {
-                                up: '',
-                                down: '@section_0',
-                                left: '',
-                                right: ''
+                    });
+
+                    document.addEventListener("contentReady", loadNavigation);
+
+                    const serviceItem = document.getElementById('device_container');
+
+                    serviceItem.addEventListener('keydown', function(e) {
+                            if (e.keyCode === 40) {
+                                e.stopPropagation();
+                                const activeServices = document.getElementsByClassName('menu-active');
+                                activeServices[0].focus();
                             }
                         });
-                    });
+
+                    function loadNavigation() {
+                        SpatialNavigation.init();
+
+                        SpatialNavigation.add({
+                            selector: '.focusable'
+                        });
+
+                        SpatialNavigation.makeFocusable();
+
+                        // Focus the first navigable element.
+                        SpatialNavigation.focus();
+
+                        document.removeEventListener("contentReady", loadNavigation);
+                        console.log('ready');
+                    }
+
                 </script>
 
               <div id="js-xploretv-date-time" class="xploretv-date-time">
